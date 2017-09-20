@@ -3,7 +3,7 @@ var winston = require('winston');
 var checkTypes = require('check-types');
 
 var bid = models.bids;
-var FILE_NAME = 'BidSpec.js';
+var FILE_NAME = 'specs/BidSpec.js';
 
 module.exports = {
 

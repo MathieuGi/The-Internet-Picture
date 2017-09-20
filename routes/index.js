@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bidService = require('../services/bids');
 var winston = require('winston');
+var FILE_NAME = "routes/index.js";
 
 /* GET home page. */
 router.get('/', function(req, response, next) {
@@ -14,6 +15,7 @@ router.get('/', function(req, response, next) {
                 resultsArray.push(res);
                 return resultsArray;
             }).catch(err => {
+                winston.info(FILE_NAME + ' - Nothing retrieve from database')
                 resultsArray.push(null);
                 return resultsArray;
             });
