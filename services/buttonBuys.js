@@ -5,82 +5,77 @@ var math = require('math');
 var buttonBuy = models.buttonBuys;
 
 module.exports = {
-    getByToken: function(token){
-        
-        if (check.string(token)){
-            
+    getByToken: function(token) {
+
+        if (check.string(token)) {
+
             return buttonBuy.findOne({
-                where:{
+                where: {
                     token: token
                 }
             }).then(function(res) {
-                if(res == null){
+                if (res == null) {
                     throw "No result from the database";
                 }
                 return res;
-            }).catch(function(err){
+            }).catch(function(err) {
                 throw (err);
-            }) 
-        }
-        else {
+            })
+        } else {
             throw "the field is not a string";
         }
     },
-    getCurrentButton :function(){
+    getCurrentButton: function() {
 
         return buttonBuy.findOne({
-                where: {
-                    is_active: true,
-                },
-                order: [
-                    ['value', 'ASC'],
-                ]
-        }).then(function(res){
+            where: {
+                is_active: true,
+            },
+            order: [
+                ['value', 'ASC'],
+            ]
+        }).then(function(res) {
             return res;
-        }).catch(function(err){
+        }).catch(function(err) {
             throw (err);
         })
     },
-    getNoTimeButton: function(valueOfCurrentButton){
+    getNoTimeButton: function(valueOfCurrentButton) {
 
-        if(isNaN(valueOfCurrentButton)){
+        if (isNaN(valueOfCurrentButton)) {
             throw "The value of CurrentButton is not a number";
-        }
-        else{
+        } else {
             valueOfNoTimeButton = math.trunc(((valueOfCurrentButton + 50) / 100) + 1) * 100;
             return buttonBuy.findOne({
                 where: {
                     value: valueOfNoTimeButton
                 }
-            }).then(function(res){
-                if(res==null){
+            }).then(function(res) {
+                if (res == null) {
                     throw "No result from the database";
                 }
                 return res;
-            }).catch(function(err){
+            }).catch(function(err) {
                 throw err;
             });
         }
     },
     setCurrentButtonInactiv: function(IdOfCurrentButton) {
 
-        if(isNaN(IdOfCurrentButton)){
+        if (isNaN(IdOfCurrentButton)) {
             throw "The value of CurrentButton is not a number";
-        }
-        else{
+        } else {
             return buttonBuy.updateAttributes({
                 is_active: false
-            },
-            {
-                where : {
+            }, {
+                where: {
                     id: IdOfCurrentButton
                 }
-            }).then(function(res){
+            }).then(function(res) {
                 return res;
-            }).catch(function(err){
+            }).catch(function(err) {
                 throw err;
             })
         }
     }
 }
-
