@@ -1,4 +1,4 @@
-var service = require('../service/buttonBuy');
+var service = require('../services/buttonBuy');
 var sequelizeModel = require('../node_modules/sequelize/lib/model');
 
 describe('General test on function getByToken(string)', function () {
