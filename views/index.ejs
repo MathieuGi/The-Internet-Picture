@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>test</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+</head>
+
+<body>
+    <h1></h1>
+    <% if(res[0] != null) { %>
+        <p>Welcome to
+            <%= res[0].name %>
+        </p>
+    <% } else { %>
+        <p>No one found</p>
+    <% } %>
+</body>
+
 </html>
