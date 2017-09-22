@@ -3,7 +3,7 @@ var winston = require('winston');
 var checkTypes = require('check-types');
 
 var bid = models.bids;
-var FILE_NAME = 'specs/BidSpec.js';
+const FILE_NAME = 'services/bids.js';
 
 module.exports = {
 
@@ -21,7 +21,7 @@ module.exports = {
                 return res;
             }
         }).catch(function(err) {
-            winston.error('Error in ' + FILE_NAME + ' function "getBest" - Query failure: ' + err);
+            winston.error(FILE_NAME + ' - function "getBest" - Query failure: ' + err);
             throw 'Query failure: ' + err
         });
     },
@@ -40,7 +40,7 @@ module.exports = {
                 return res;
             }
         }).catch(function(err) {
-            winston.error('Error in ' + FILE_NAME + ' function "getAll" - Query failure: ' + err);
+            winston.error(FILE_NAME + ' - function "getAll" - Query failure: ' + err);
             throw 'Query failure: ' + err
         });
     },
@@ -63,8 +63,11 @@ module.exports = {
                 url: url,
                 text: text,
                 price: price
-            }).save().then(res => resolve(res)).catch(err => {
-                winston.error('Error in ' + FILE_NAME + ' function "create" - Query failure: ' + err);
+            }).save().then(res => {
+                winston.info(FILE_NAME + ' - New bid created successfully! ');
+                return res;
+            }).catch(err => {
+                winston.error(FILE_NAME + ' - function "create" - Query failure: ' + err);
                 throw 'Query failure: ' + err
             });
         }
