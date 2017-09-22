@@ -2,6 +2,7 @@ var service = require('../services/buttonBuys');
 var sequelizeModel = require('../node_modules/sequelize/lib/model');
 
 describe('General test on function getByToken(string)', function() {
+
     fit("should throw an error when argument is not a string", function(done) {
         // Test with a integer
         expect(function() { service.getByToken(2) }).toThrow("the field is not a string");
@@ -40,6 +41,7 @@ describe('General test on function getByToken(string)', function() {
 
 describe("Generale test on getCurrentButton", function() {
     fit("should throw an error if database throw an error", function(done) {
+
         // Do as if findOne throw an error
         spyOn(sequelizeModel, 'findOne').and.callFake(function() {
             return new Promise(function(resolve, reject) {
@@ -55,6 +57,7 @@ describe("Generale test on getCurrentButton", function() {
 
 describe("Generale test on getNoTimeButton", function() {
     fit("should throw an error if database throw an error", function(done) {
+
         // Do as if findOne throw an error
         spyOn(sequelizeModel, 'findOne').and.callFake(function() {
             return new Promise(function(resolve, reject) {
@@ -76,6 +79,7 @@ describe("Generale test on getNoTimeButton", function() {
     });
 
     fit("should throw an error if database return null", function(done) {
+        
         // Do as if database return null to the querie "findOne" 
         spyOn(sequelizeModel, 'findOne').and.callFake(function() {
             return new Promise(function(resolve, reject) {

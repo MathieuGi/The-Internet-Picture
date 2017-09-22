@@ -64,10 +64,12 @@
           </header>
         </div>
         <div class="col-md-3 ml-md-auto">
-            <button type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">
+            <button data-token="<%= res[2].token %>" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">
               Surenchérir
             </button>
-         
+            <button data-token="<%= res[3].token %>" type="button" id="no-time" class="buy-button btn btn-warning" data-toggle="modal" data-target="#modal-form">
+             J'ai pas le temps
+          </button>
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+const FILE_NAME = 'services/buttonBuys.js';
+
 var models = require('../models');
 var check = require('check-types');
 var math = require('math');
@@ -5,6 +7,8 @@ var math = require('math');
 var buttonBuy = models.buttonBuys;
 
 module.exports = {
+
+    // Function wich return the button associated to the token given in argument
     getByToken: function(token) {
 
         if (check.string(token)) {
@@ -20,11 +24,14 @@ module.exports = {
                 return res;
             }).catch(function(err) {
                 throw (err);
+                winston.error(FILE_NAME + ' - function "getByToken" - Query failure: ' + err);
             })
         } else {
             throw "the field is not a string";
         }
     },
+
+    // Function wich return the button of "renchérir"
     getCurrentButton: function() {
 
         return buttonBuy.findOne({
@@ -36,10 +43,15 @@ module.exports = {
             ]
         }).then(function(res) {
             return res;
+
+            // findOne has returned an error
         }).catch(function(err) {
             throw (err);
+            winston.error(FILE_NAME + ' - function "getCurrentButton" - Query failure: ' + err);
         })
     },
+
+    // Function wich return the button "j'ai pas le temps"
     getNoTimeButton: function(valueOfCurrentButton) {
 
         if (isNaN(valueOfCurrentButton)) {
@@ -55,11 +67,16 @@ module.exports = {
                     throw "No result from the database";
                 }
                 return res;
+
+                // findOne has returned an error
             }).catch(function(err) {
                 throw err;
+                winston.error(FILE_NAME + ' - function "getNoTimeButton" - Query failure: ' + err);
             });
         }
     },
+
+    // Function wich put "true" in database to "isActiv" for the current button
     setCurrentButtonInactiv: function(IdOfCurrentButton) {
 
         if (isNaN(IdOfCurrentButton)) {
@@ -72,9 +89,13 @@ module.exports = {
                     id: IdOfCurrentButton
                 }
             }).then(function(res) {
+                winston.info(FILE_NAME + ' - function "setCurrentButtonInactiv" - CurrentButton has been inactivated');
                 return res;
+
+                // updateAttributes has returned an error
             }).catch(function(err) {
                 throw err;
+                winston.error(FILE_NAME + ' - function "setCurrentButtonInactiv" - Query failure: ' + err);
             })
         }
     }
