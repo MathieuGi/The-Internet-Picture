@@ -8,7 +8,6 @@ const FILE_NAME = "routes/index.js";
 var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
-var fs = require("fs")
 
 /* GET home page. */
 router.get('/', function(req, response, next) {
