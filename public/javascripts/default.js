@@ -28,12 +28,14 @@ $(document).ready(function() {
         $('.error-message').hide();
         if ($('#form-image').length) {
             var url = "/createBid";
+
+            // Prepare 
             var data = new FormData();
             data.append("image", $('#form-image')[0].files[0]);
             data.append("name", $('#form-name').val());
             data.append("url", $('#form-url').val());
             data.append("text", $('#form-text').val());
-            data.append("token", "jfhgdvr");
+            data.append("token", token);
             $.ajax({
                 type: "POST",
                 url: url,
@@ -42,31 +44,21 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-
+                    // Active paypal button
                 },
                 error: function(err) {
                     if (err.responseJSON.error == "wrongType") {
-                        wrongImageType();
-                    } else if (err.responseJSON.error == "missingFields") {
-                        mandatoryFields();
-                    } else if (err.responseJSON.error == "Request failed") {
-                        alert("Merci de renseigner correctement les champs");
+                        $('#wrongImageType').show();
+                    } else if (err.responseJSON.error == "missingField") {
+                        $('#mandatoryFields').show();
                     } else {
-
+                        $('#submitFailed').show();
                     }
                 }
             });
         }
         e.preventDefault();
     });
-
-    var wrongImageType = function() {
-        $('#wrongImageType').show();
-    }
-
-    var mandatoryFields = function() {
-        $('#mandatoryFields').show();
-    }
 
     var richestTime = $('#richest-time').val();
 
@@ -91,7 +83,8 @@ $(document).ready(function() {
     }
 
     function checkTime(i) {
-        if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
+        // add zero in front of numbers < 10
+        if (i < 10) { i = "0" + i };
         return i;
     }
 
