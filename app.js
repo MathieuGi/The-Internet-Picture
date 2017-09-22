@@ -26,11 +26,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(helmet());
 
 app.use('/', index);
 app.use('/users', users);
+
+// simplify import of jquery and bootstrap in view
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

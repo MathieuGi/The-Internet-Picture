@@ -3,28 +3,15 @@ var router = express.Router();
 var bidService = require('../services/bids');
 var buttonBuyService = require('../services/buttonBuys');
 var winston = require('winston');
-var FILE_NAME = "routes/index.js";
-
-// Resolve multiple promises and return their results in an array
-var doPromises = function(array) {
-    return array.reduce((previousPromise, promise) => {
-        return previousPromise.then(resultsArray => {
-            return promise.then(res => {
-                winston.info(FILE_NAME + ' - Query success')
-                resultsArray.push(res);
-                return resultsArray;
-            }).catch(err => {
-                winston.warn(FILE_NAME + ' - Nothing retrieve from database')
-                resultsArray.push(null);
-                return resultsArray;
-            });
-        })
-    }, Promise.resolve([]));
-}
+var sharedService = require('../services/shared')
+const FILE_NAME = "routes/index.js";
+var multer = require('multer');
+var fileExt = require('file-extension');
+var checkType = require('check-types');
+var fs = require("fs")
 
 /* GET home page. */
 router.get('/', function(req, response, next) {
-
     winston.info(FILE_NAME + ' - Prepare to answer to / request');
     var promisesArray = [
         bidService.getBest(),
@@ -32,15 +19,62 @@ router.get('/', function(req, response, next) {
         buttonBuyService.getCurrentButton(),
     ];
 
-    doPromises(promisesArray).then(res => {
+    sharedService.doPromises(promisesArray).then(res => {
         var promisesArray2 = [buttonBuyService.getNoTimeButton(res[2].value)];
-        doPromises(promisesArray2).then(res2 => {
+        sharedService.doPromises(promisesArray2).then(res2 => {
             res.push(res2[0]);
             winston.info(FILE_NAME + ' - Send respond to client');
             response.render('index', { res: res });
         })
     })
 
+});
+
+var upload = multer({ dest: '../public/images/' });
+
+router.post('/createBid', upload.single('image'), function(req, res, next) {
+
+    // Variables
+    var body = req.body;
+    var originalName = req.file.originalname;
+    var extension = fileExt(originalName);
+    var newName = req.file.filename + '.' + extension
+    var acceptedFiles = ["jpeg", "jpg", "png", "gif"];
+
+    // Check if variables are right
+    if (body.name == "") {
+        winston.error(FILE_NAME + ' - Trying to create bid without name. Request canceled');
+        res.status(500).json({ error: "missingField" });
+    }
+
+    if (!(checkType.string(body.name) &&
+            checkType.string(body.url) &&
+            checkType.string(body.text) &&
+            checkType.string(body.token))) {
+
+        winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
+        res.status(500).json({ error: "wrongFieldsType" });
+    }
+
+    if (acceptedFiles.indexOf(fileExt(extension)) == -1) {
+        winston.error(FILE_NAME + ' - Trying to create bid with wrong file extension. Request canceled')
+        res.status(500).json({ error: "wrongType" });
+    } else {
+        try {
+            sharedService.saveImage(req.file, newName);
+
+            buttonBuyService.getByToken(body.token).then(button => {
+                bidService.create(body.name, newName, body.url, body.text, button.value);
+                res.status(200).json({ result: 'success' });
+            }).catch(function(err) {
+                winston.error(FILE_NAME + ' - Cannot find the button with this token');
+                res.status(500).json({ error: err });
+            });
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({ error: err });
+        }
+    }
 });
 
 module.exports = router;
