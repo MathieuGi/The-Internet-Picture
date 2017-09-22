@@ -17,7 +17,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         price: {
             type: DataTypes.INTEGER,
-        }
+        },
+        bidTime: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        isActive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
     }, {
         classMethods: {
             associate: function(models) {

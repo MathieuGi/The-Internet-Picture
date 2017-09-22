@@ -25,6 +25,14 @@ module.exports = {
             price: {
                 type: Sequelize.INTEGER
             },
+            bidTime: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0
+            },
+            isActive: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: false
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
