@@ -3,6 +3,7 @@ var router = express.Router();
 var bidService = require('../services/bids');
 var buttonBuyService = require('../services/buttonBuys');
 var winston = require('winston');
+//var ipn_verification = require('../paypal/ipn_verification');
 var FILE_NAME = "routes/index.js";
 
 // Resolve multiple promises and return their results in an array
@@ -42,5 +43,11 @@ router.get('/', function(req, response, next) {
     })
 
 });
+
+// router.post('/paypal', function(req, response, next) {
+//     winston.info(FILE_NAME + ' - Prepare to answer to /paypal request');
+
+
+// });
 
 module.exports = router;
