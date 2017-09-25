@@ -27,11 +27,11 @@ module.exports = {
             price: {
                 type: Sequelize.INTEGER
             },
-            bidTime: {
+            bid_time: {
                 type: Sequelize.INTEGER,
                 defaultValue: 0
             },
-            isActive: {
+            is_active: {
                 type: Sequelize.BOOLEAN,
                 defaultValue: false
             },
