@@ -1,3 +1,5 @@
+// To run migration : 'sequelize db:migrate'
+
 'use strict';
 module.exports = {
     up: (queryInterface, Sequelize) => {
