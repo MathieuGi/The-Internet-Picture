@@ -57,7 +57,7 @@ module.exports = {
             if (url.substring(0, 7) != "http://" && url.substring(0, 8) != "https://" && url != "") {
                 url = 'https://' + url;
             }
-            bid.build({
+            return bid.build({
                 name: name,
                 img_path: img_path,
                 url: url,
