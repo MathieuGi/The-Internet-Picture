@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         price: {
             type: DataTypes.INTEGER,
         },
-        bidTime: {
+        bid_time: {
             type: DataTypes.INTEGER,
             defaultValue: 0
         },
-        isActive: {
+        is_ative: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
