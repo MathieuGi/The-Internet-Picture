@@ -89,7 +89,6 @@ var returnRouter = function(io) {
 
                     // Create the new bid
                     bidService.create(body.name, newName, body.url, body.text, button.value).then(function() {
-                        sharedService.emitNewBidder(io);
                         res.status(200).json({ result: 'success' });
                     }).catch(function(err) {
                         winston.error(FILE_NAME + ' - Fail to add new bid in database');
