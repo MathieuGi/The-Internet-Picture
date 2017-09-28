@@ -11,17 +11,17 @@ $(document).ready(function() {
     var token = 0;
 
     // Display right button for buy
-    $(".buy-button").click(function(e) {
+    // $(".buy-button").click(function(e) {
 
-        token = $(this).data('token');
-        if ($(this)[0].id == 'bid-more') {
-            $('#no-time-button').hide();
-            $('#buy-button').show();
-        } else {
-            $('#buy-button').hide();
-            $('#no-time-button').show();
-        }
-    });
+    //     token = $(this).data('token');
+    //     if ($(this)[0].id == 'bid-more') {
+    //         $('#no-time-button').hide();
+    //         $('#buy-button').show();
+    //     } else {
+    //         $('#buy-button').hide();
+    //         $('#no-time-button').show();
+    //     }
+    // });
 
     //Submit form
     $("#new-form").submit(function(e) {
