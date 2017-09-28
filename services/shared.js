@@ -68,7 +68,7 @@ module.exports = {
 
     emitNewBidder: function(io) {
         var buttons = buttonBuyService.getCurrentButton().then(button => {
-            buttonBuyService.getNoTimeButton(button.value).then(noTimeButton => {
+            return buttonBuyService.getNoTimeButton(button.value).then(noTimeButton => {
                 return { button: button, noTimeButton: noTimeButton };
             }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err))
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
