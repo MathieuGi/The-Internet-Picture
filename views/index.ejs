@@ -92,7 +92,7 @@
 <script type="text/javascript" src="/javascripts/default.js" ></script>
 <script src="/socket.io/socket.io.js"></script>  
 <script>  
-  var socket = io.connect('http://localhost:3000');
+  var socket = io.connect(window.location.host);
   socket.on('newBidder', function(data){
     console.log(data)
     if(data[0].button != null){
