@@ -6,11 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var winston = require('winston');
-
-var index = require('./routes/index');
-var users = require('./routes/users');
+var socket_io = require("socket.io");
 
 var app = express();
+
+// Call socket.io to app
+var io = socket_io()
+app.io = io;
+
+var index = require('./routes/index')(io);
+var users = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

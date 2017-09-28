@@ -3,6 +3,8 @@ const FILE_NAME = "services/shared.js";
 var path = require('path');
 var fs = require('fs');
 var jimp = require('jimp');
+var bidService = require('./bids');
+var buttonBuyService = require('./buttonBuys');
 
 module.exports = {
     // Resolve multiple promises and return their results in an array
@@ -24,7 +26,10 @@ module.exports = {
                     return resultsArray;
 
                 });
-            })
+            }).catch(err => {
+                winston.error(FILE_NAME + ' - doPromises: ' + err);
+                throw err;
+            });
         }, Promise.resolve([]));
     },
 
@@ -59,5 +64,26 @@ module.exports = {
                 });
             }
         });
+    },
+
+    emitNewBidder: function(io) {
+        var buttons = buttonBuyService.getCurrentButton().then(button => {
+            buttonBuyService.getNoTimeButton(button.value).then(noTimeButton => {
+                return { button: button, noTimeButton: noTimeButton };
+            }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err))
+        }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
+
+        var bestBid = bidService.getBest().then(bestBid => {
+            return bestBid;
+        }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
+
+        var promisesArray = [buttons, bestBid];
+
+        this.doPromises(promisesArray).then(res => {
+            io.sockets.emit('newBidder', res);
+        }).catch(err => {
+            winston.error(FILE_NAME + ' - emitNewBidder: ' + err);
+            throw err;
+        })
     }
 }
