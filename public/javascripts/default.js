@@ -97,4 +97,30 @@ $(document).ready(function() {
         return d;
     }
 
+    // Socket.io
+    var socket = io.connect(window.location.host);
+    socket.on('newBidder', function(data) {
+        console.log(data)
+        if (data[0].button != null) {
+            $('#bid-more').replaceWith('<button data-token="' + data[0].button.token + '" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">' +
+                'Surenchérir' +
+                '</button>')
+        }
+
+        if (data[0].noTimeButton != null) {
+            $('#not-time').replaceWith(
+                '<button data-token="' +
+                data[0].noTimeButton.token +
+                '" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">' +
+                'J\'ai pas le temps' +
+                '</button>'
+            );
+        }
+
+        if (data[1] != null) {
+            $('#image').replaceWith(
+                '<img src="public/images/fullsize/' + data[1].img_path + '" class="richest-image rounded mx-auto d-block img-thumbnail" alt="image from richest">'
+            )
+        }
+    });
 });

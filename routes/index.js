@@ -48,7 +48,7 @@ var returnRouter = function(io) {
     // });
 
     // Use multer to get image from post resquest
-    var upload = multer({ dest: '../public/images/' });
+    var upload = multer({ dest: 'public/images/fullsize' });
 
     // Post request to create a new bid
     router.post('/createBid', upload.single('image'), function(req, res, next) {
@@ -88,7 +88,7 @@ var returnRouter = function(io) {
                 buttonBuyService.getByToken(body.token).then(button => {
 
                     // Create the new bid
-                    bidService.create(body.name, newName, body.url, body.text, button.value).then(function() {
+                    bidService.create(body.name, newName, body.url, body.text, button.value).then(function(newBid) {
                         res.status(200).json({ result: 'success' });
                     }).catch(function(err) {
                         winston.error(FILE_NAME + ' - Fail to add new bid in database');
