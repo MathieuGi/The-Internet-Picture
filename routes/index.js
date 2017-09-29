@@ -11,6 +11,12 @@ var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
 
+router.get('/test', function(req, response, next) {
+    bidService.isValueSuperiorCurrentBid(10).then(function(res){
+        response.json({"test": res});
+    });
+});
+
 /* GET home page. */
 router.get('/', function(req, response, next) {
     winston.info(FILE_NAME + ' - Prepare to answer to / request');
