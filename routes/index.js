@@ -1,11 +1,10 @@
 // Variables settings
 var express = require('express');
-var router = express.Router()
+var router = express.Router();
 var bidService = require('../services/bids');
 var buttonBuyService = require('../services/buttonBuys');
 var winston = require('winston');
-//var ipn_verification = require('../paypal/ipn_verification');
-var sharedService = require('../services/shared')
+var sharedService = require('../services/shared');
 const FILE_NAME = "routes/index.js";
 var multer = require('multer');
 var fileExt = require('file-extension');

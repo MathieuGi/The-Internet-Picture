@@ -1,5 +1,6 @@
 const FILE_NAME = 'services/buttonBuys.js';
 
+var winston = require('winston');
 var models = require('../models');
 var check = require('check-types');
 var math = require('math');
@@ -77,16 +78,16 @@ module.exports = {
     },
 
     // Function wich put "true" in database to "isActiv" for the current button
-    setCurrentButtonInactiv: function(IdOfCurrentButton) {
+    setCurrentButtonInactiv: function(idOfCurrentButton) {
 
-        if (isNaN(IdOfCurrentButton)) {
+        if (isNaN(idOfCurrentButton)) {
             throw "The value of CurrentButton is not a number";
         } else {
-            return buttonBuy.updateAttributes({
+            return buttonBuy.update({
                 is_active: false
             }, {
                 where: {
-                    id: IdOfCurrentButton
+                    id: idOfCurrentButton
                 }
             }).then(function(res) {
                 winston.info(FILE_NAME + ' - function "setCurrentButtonInactiv" - CurrentButton has been inactivated');
