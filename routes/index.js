@@ -9,6 +9,7 @@ const FILE_NAME = "routes/index.js";
 var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
+var stripe = require("stripe")("sk_test_XAfsNpri7WZmRNUlmmpopsBS");
 
 var returnRouter = function(io) {
 
@@ -21,30 +22,16 @@ var returnRouter = function(io) {
         var promisesArray = [
             bidService.getBest(),
             bidService.getAll(),
-            buttonBuyService.getCurrentButton(),
         ];
 
         // Execute all queries in the array
         sharedService.doPromises(promisesArray).then(res => {
 
-            // Use current button to find no time button
-            var promisesArray2 = [buttonBuyService.getNoTimeButton(res[2].value)];
-            sharedService.doPromises(promisesArray2).then(res2 => {
-
-                // Add no time button to result
-                res.push(res2[0]);
-                winston.info(FILE_NAME + ' - Send respond to client');
-                response.render('index', { res: res });
-            })
+            winston.info(FILE_NAME + ' - Send respond to client');
+            response.render('index', { res: res });
         })
 
     });
-
-    // router.post('/paypal', function(req, response, next) {
-    //     winston.info(FILE_NAME + ' - Prepare to answer to /paypal request');
-
-
-    // });
 
     // Use multer to get image from post resquest
     var upload = multer({ dest: 'public/images/fullsize' });
@@ -83,21 +70,25 @@ var returnRouter = function(io) {
                 // Save image in folder (fullsize and resized)
                 sharedService.saveImage(req.file, newName);
 
-                // Search the value of button
-                buttonBuyService.getByToken(body.token).then(button => {
 
-                    // Create the new bid
-                    bidService.create(body.name, newName, body.url, body.text, button.value).then(function(newBid) {
+                // Create the new bid
+                bidService.create(body.name, newName, body.url, body.text, parseInt(body.price)).then(function(newBid) {
+                    stripe.charges.create({
+                        amount: newBid.price,
+                        currency: "eur",
+                        description: "new Bid",
+                        source: body.token,
+                    }, function(err, charge) {
+                        if (err) {
+                            res.status(500).json({ error: 'paiementFailed' });
+                        }
+
                         res.status(200).json({ result: 'success' });
-                    }).catch(function(err) {
-                        winston.error(FILE_NAME + ' - Fail to add new bid in database');
-                        winston.error(FILE_NAME + ' - create bid: ' + err)
-                        res.status(500).json({ error: 'creationFailed' });
                     });
                 }).catch(function(err) {
-                    // Error when trying to get the value of button
-                    winston.error(FILE_NAME + ' - Cannot find the button with this token');
-                    res.status(500).json({ error: err });
+                    winston.error(FILE_NAME + ' - Fail to add new bid in database');
+                    winston.error(FILE_NAME + ' - create bid: ' + err)
+                    res.status(500).json({ error: 'creationFailed' });
                 });
             } catch (err) {
                 // Error when trying to save image and resize it
