@@ -46,9 +46,33 @@
 
               <br>
               
-                <button id="buy-button" class="confirm-button btn btn-primary float-right">valider</button>
+              <button id="go-to-paiement" class="btn btn-primary float-right">Payer</button>
               
             </form>
+
+            <!-- Paiement form -->
+            <form id="paiement-form">
+              <div class="group">
+                <label>
+                  <span>Name</span>
+                  <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+                </label>
+              </div>
+              <div class="group">
+                <label>
+                  <span>Card</span>
+                  <div id="card-element" class="field"></div>
+                </label>
+              </div>
+              <button classe="confirm-button" id="buy-button" type="submit">Pay $25</button>
+              <div class="outcome">
+                <div class="error" role="alert"></div>
+                <div class="success">
+                  Success! Your Stripe token is <span class="token"></span>
+                </div>
+              </div>
+            </form>
+
           </div>
         </div>
       </div>
@@ -81,21 +105,23 @@
       </div>
     </div>
 
+  <!--  
     <form action="/charge" method="post" id="payment-form">
-      <div class="form-row">
-        <label for="card-element">
-          Credit or debit card
-        </label>
-        <div id="card-element">
-          <!-- a Stripe Element will be inserted here. -->
+        <div class="form-row">
+          <label for="card-element">
+            Credit or debit card
+          </label>
+          <div id="card-element">
+          
+          </div>
+
+
+          <div id="card-errors" role="alert"></div>
         </div>
 
-        <!-- Used to display Element errors -->
-        <div id="card-errors" role="alert"></div>
-      </div>
-
-      <button>Submit Payment</button>
-    </form>
+        <button>Submit Payment</button>
+      </form> 
+    -->
 
     <footer>
       
