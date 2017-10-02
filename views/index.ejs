@@ -39,7 +39,7 @@
                 <input type="url" class="form-control" id="form-url" placeholder="Entrez un lien">
               </div>
 
-              <div class="form-check">
+              <div class="form-group">
                 <label for="text">Texte complémentaire</label>
                 <input type="text" class="form-control" id="form-text" placeholder="Entrez un text complémentaire">
               </div>
@@ -64,7 +64,7 @@
                   <div id="card-element" class="field"></div>
                 </label>
               </div>
-              <button classe="confirm-button" id="buy-button" type="submit">Pay $25</button>
+              <button classe="confirm-button" id="buy-button">Pay $25</button>
               <div class="outcome">
                 <div class="error" role="alert"></div>
                 <div class="success">
@@ -88,12 +88,9 @@
           </header>
         </div>
         <div class="col-md-3 ml-md-auto">
-            <button data-token="<%= res[2].token %>" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">
-              Surenchérir
+            <button type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">
+              Payer
             </button>
-            <button data-token="<%= res[3].token %>" type="button" id="no-time" class="buy-button btn btn-warning" data-toggle="modal" data-target="#modal-form">
-             J'ai pas le temps
-          </button>
         </div>
       </div>
       <div class="row">
