@@ -6,22 +6,7 @@ $(document).ready(function() {
     // Start clock
     startTime();
 
-    $('body').css('min-height', $(window).height() + 30 + "px")
-
-    var token = 0;
-
-    // Display right button for buy
-    $(".buy-button").click(function(e) {
-
-        token = $(this).data('token');
-        // if ($(this)[0].id == 'bid-more') {
-        //     $('#no-time-button').hide();
-        //     $('#buy-button').show();
-        // } else {
-        //     $('#buy-button').hide();
-        //     $('#no-time-button').show();
-        // }
-    });
+    $('body').css('min-height', $(window).height() + 30 + "px");
 
     /******************* Submit form *******************/
     $("#new-form").submit(function(e) {
@@ -101,22 +86,6 @@ $(document).ready(function() {
     /******************* Socket.io *******************/
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
-        console.log(data)
-        if (data[0].button != null) {
-            $('#bid-more').replaceWith('<button data-token="' + data[0].button.token + '" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">' +
-                'Surenchérir' +
-                '</button>')
-        }
-
-        if (data[0].noTimeButton != null) {
-            $('#not-time').replaceWith(
-                '<button data-token="' +
-                data[0].noTimeButton.token +
-                '" type="button" id="bid-more" class=" buy-button btn btn-primary" data-toggle="modal" data-target="#modal-form">' +
-                'J\'ai pas le temps' +
-                '</button>'
-            );
-        }
 
         if (data[1] != null) {
             $('#image').replaceWith(
@@ -176,11 +145,11 @@ $(document).ready(function() {
         setOutcome(event);
     });
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+    $('#paiement-form').submit(function(e) {
         e.preventDefault();
-        var form = document.querySelector('form');
+        var form = $('#paiement-form');
         var extraDetails = {
-            name: form.querySelector('input[name=cardholder-name]').value,
+            name: form.find('input[name="cardholder-name"]').val(),
         };
         stripe.createToken(card, extraDetails).then(setOutcome);
     });
