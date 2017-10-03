@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	
+    // Hide every error message
+    $('.error-message').hide();
+
 	$('.menu-item').click(function(){
 		var menu = $(this).attr("id");
 		$('.menu-item').removeClass('active');
@@ -15,5 +19,9 @@ $(document).ready(function(){
 
 
 	$('.main-article .richest-text').css('bottom', $('.main-article .richest-text').outerHeight());
-	
+
+	if($('.img-text img').height() < ($('.img-text .img').height() - 20)){
+		$('.img-text img').css('margin-bottom', $('.main-article .richest-text').outerHeight());
+	}
+
 });
