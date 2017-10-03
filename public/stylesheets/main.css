@@ -80,6 +80,7 @@ body {
 }
 
 .main-article header {
+	background-color: white;
 	max-height: 50px;
 	min-height: 30px;
 	padding: 3%;
@@ -88,21 +89,17 @@ body {
 }
 
 .main-article .richest-text {
+	background-color: white;
 	min-height: 30px;
 	padding: 3%;
-	border: solid #e6e6e6;
-	border-width: 1px 1px 1px 1px;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	position: relative;
+
 }
 
 .main-article {
 	display: inline-block;
-	background-color: white;
-}
-
-.main-article .img .border {
-	padding: 25px;
-	background-image: url('../images/static/border.jpg') no-repeat;
-	background-size: 100%;
 }
 
 .bid-more {
@@ -141,9 +138,6 @@ body {
 	max-width: 350px
 }
 
-.main-title .img1 {
-
-}
-.main-title .img2 {
-	max-width: 300px
-}
+/*.main-title, #menu, .main-article header, .richest-text, .img-text .img {
+	opacity: 0; 
+}*/
