@@ -8,10 +8,12 @@ $(document).ready(function() {
 
     $('body').css('min-height', $(window).height() + 30 + "px");
 
+    var stripeToken = 0;
+
     /******************* Submit form *******************/
     $("#new-form").submit(function(e) {
         $('.error-message').hide();
-        if ($('#form-image').length) {
+        if ($('#form-image').length && stripeToken != 0) {
             var url = "/createBid";
 
             // Prepare 
@@ -20,7 +22,8 @@ $(document).ready(function() {
             data.append("name", $('#form-name').val());
             data.append("url", $('#form-url').val());
             data.append("text", $('#form-text').val());
-            data.append("token", token);
+            data.append("price", $('#form-price').val());
+            data.append("token", stripeToken);
             $.ajax({
                 type: "POST",
                 url: url,
@@ -29,9 +32,11 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-                    // Active paypal button
+                    console.log("ok")
+                        // Active paypal button
                 },
                 error: function(err) {
+                    // Add paiementFailed
                     if (err.responseJSON.error == "wrongType") {
                         $('#wrongImageType').show();
                     } else if (err.responseJSON.error == "missingField") {
@@ -133,8 +138,10 @@ $(document).ready(function() {
         if (result.token) {
             // Use the token to create a charge or a customer
             // https://stripe.com/docs/charges
+            stripeToken = result.token.id;
             successElement.querySelector('.token').textContent = result.token.id;
             successElement.classList.add('visible');
+            $('#new-form').submit();
         } else if (result.error) {
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');

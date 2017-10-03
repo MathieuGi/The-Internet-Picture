@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Qui est le plus riche</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel='stylesheet' href='stylesheets/main.css' />
+    <!-- <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' /> -->
+</head>
+<body>
+
+<div class="container-fluid">
+	<div class="row main-title">
+<!-- 		<div class="col-md-4 img1">
+			<img class="float-right" src="images/static/header2.png">
+		</div> -->
+		<div class="col-md-12 text-center">
+			<h1>Qui est le plus riche</h1>
+		</div>
+<!-- 		<div class="col-md-4 img2">
+			<img class="float-left" src="images/static/header1.png">
+		</div> -->
+	</div>
+
+	<div class="row" id="menu">
+		<div class="col-md-4 menu-item text-center" id="rank-table">
+			Classement
+		</div>
+		<div class="col-md-4 menu-item active text-center" id="picture-area">
+			Image
+		</div>
+		<div class="col-md-4 menu-item text-center" id="bid-more">
+			Enchérir
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 main-area rank-table">
+			<div class="rank-header">
+				<span>Classement</span>
+				<img src="images/static/arrow-down.png" alt="down-arrow"/>
+			</div>
+			<table class="table table-responsive table-striped">
+				<tbody>
+					<tr>
+						<td class="align-middle"><img class="thumbs" src="images/thumbs/0084c7b4538cf53fb4621e9062789556.jpg" alt="image miniature"></td>
+						<td class="align-middle text-truncate">Arthur</td>
+						<td class="align-middle">134 €</td>
+						<td class="align-middle">10j 3h 4m</td>
+					</tr>
+					<tr>
+						<td class="align-middle"><img class="thumbs" src="images/thumbs/0084c7b4538cf53fb4621e9062789556.jpg" alt="image miniature"></td>
+						<td class="align-middle text-truncate">Arthur la grosse merde</td>
+						<td class="align-middle">134 €</td>
+						<td class="align-middle">10j 3h 4m</td>
+					</tr>
+					<tr>
+						<td class="align-middle"><img class="thumbs" src="images/thumbs/0084c7b4538cf53fb4621e9062789556.jpg" alt="image miniature"></td>
+						<td class="align-middle text-truncate">Arthur</td>
+						<td class="align-middle">134 €</td>
+						<td class="align-middle">10j 3h 4m</td>
+					</tr>
+					<tr>
+						<td class="align-middle"><img class="thumbs" src="images/thumbs/0084c7b4538cf53fb4621e9062789556.jpg" alt="image miniature"></td>
+						<td class="align-middle text-truncate">Arthur</td>
+						<td class="align-middle">134 €</td>
+						<td class="align-middle">10j 3h 4m</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-8 text-center main-area picture-area">
+			<article class="main-article">
+				<header>
+					<div class="row">
+						<div class="col-md-8">
+							<span class="richest-name float-left align-middle">Surnom</span>
+						</div>
+						<div class="col-md-4">
+							<span class="timer float-right align-middle">Timer</span>
+						</div>
+					</div>
+				</header>
+				
+				<div class="img-text">
+					<div class="img">
+						<div class="border">
+							<img class="img-fluid" src="images/fullsize/7291b9b8e2f8231a194ef80fzczerczecze.jpg" alt="Richest image"/>
+						</div>
+					</div>
+					<div class="richest-text">
+						Texte à afficher
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="col-md-8 main-area bid-more text-center">
+			<form id="new-form">
+              <div class="form-group">
+                <label for="form-name">Nom *</label>
+                <input type="text" class="form-control" id="form-name" aria-describedby="name" placeholder="Entrez votre nom" required>
+                <small id="name" class="form-text text-muted"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 2Mo) *</label>
+                <div id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </div>
+                <input type="file" class="form-control" id="form-image" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-url">Lien url</label>
+                <input type="url" class="form-control" id="form-url" placeholder="Entrez un lien">
+              </div>
+
+              <div class="form-group">
+                <label for="form-text">Texte complémentaire</label>
+                <input type="text" class="form-control" id="form-text" placeholder="Entrez un text complémentaire">
+              </div>
+
+              <div class="form-group">
+                <label for="form-price">Montant (€) *</label>
+                <input type="number" class="form-control" id="form-price" placeholder="3"> 
+              </div>
+
+              <br>
+              
+              <button id="go-to-paiement" class="btn btn-primary float-right">Payer</button>
+              
+            </form>
+
+            <!-- Paiement form -->
+            <form id="paiement-form">
+              <div class="group">
+                <label>
+                  <span>Name</span>
+                  <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+                </label>
+              </div>
+              <div class="group">
+                <label>
+                  <span>Card</span>
+                  <div id="card-element" class="field"></div>
+                </label>
+              </div>
+              <button classe="confirm-button" id="buy-button">Pay $25</button>
+              <div class="outcome">
+                <div class="error" role="alert"></div>
+                <div class="success">
+                  Success! Your Stripe token is <span class="token"></span>
+                </div>
+              </div>
+            </form>
+		</div>
+	</div>
+</div>
+    
+    <!-- <script src="/jquery/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="javascripts/main.js" ></script> 
+    <!-- <script src="/socket.io/socket.io.js"></script>  
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="javascripts/default.js" ></script> -->
+</body>
+</html>
