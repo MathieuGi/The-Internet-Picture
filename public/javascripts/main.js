@@ -24,4 +24,40 @@ $(document).ready(function(){
 		$('.img-text img').css('margin-bottom', $('.main-article .richest-text').outerHeight());
 	}
 
+	// Form validation
+	var form = $('#paiement-form');
+
+	form.submit(function(e){
+		if(form.checkValidity() == false){
+			e.preventDefault();
+			e.stopPropagation();
+		}
+
+		form.addClass("was-validated");
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// REMOVE THIS PART AFTER FUNCTIONNAL INTEGRATION
+	var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
+	var elements = stripe.elements();
+
+
+	// Create an instance of the card Element
+	var card = elements.create('card');
+
+	// Add an instance of the card Element into the `card-element` <div>
+	card.mount('#card-element');
+
 });
