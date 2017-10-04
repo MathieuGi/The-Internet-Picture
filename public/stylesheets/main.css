@@ -156,7 +156,16 @@ body {
 	background-color: white;
 }
 
+#paiement-form .star-legend {
+	position: absolute;
+	bottom: 0;
+	right: 5%;
+}
 
+#paiement-form .terms {
+	color: #666EE8;
+	text-decoration: underline;
+}
 
 #paiement-form button {
     float: left;

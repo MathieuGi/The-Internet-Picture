@@ -28,15 +28,14 @@ $(document).ready(function(){
 	var form = $('#paiement-form');
 
 	form.submit(function(e){
-		if(form.checkValidity() == false){
+		if(form[0].checkValidity() == false){
+			$('.invalid-feedback').show();
 			e.preventDefault();
 			e.stopPropagation();
 		}
 
 		form.addClass("was-validated");
 	});
-
-
 
 
 
