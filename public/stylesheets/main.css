@@ -140,8 +140,20 @@ body {
 	background-color: #e6e6e6
 }
 
+.img-text .img img {
+	max-height: 70vh;
+}
+
+.rich2 .img img {
+	max-height: 55vh;
+}
+
+.rich3 .img img {
+	max-height: 40vh;
+}
+
 .main-title img {
-	max-width: 350px
+	max-width: 350px;
 }
 
 /*.main-title, #menu, .main-article header, .richest-text, .img-text .img {

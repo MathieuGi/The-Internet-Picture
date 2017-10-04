@@ -17,11 +17,13 @@ $(document).ready(function(){
 	// 	});
 	// });
 
+	// Display text at bottom of image
+	var textHeight = $('.main-article .richest-text').outerHeight();
+	$('.main-article .richest-text').css('bottom', textHeight);
+	$('.main-article .img-text').css('height', $('.main-article .img-text').height() - textHeight)
 
-	$('.main-article .richest-text').css('bottom', $('.main-article .richest-text').outerHeight());
-
-	if($('.img-text img').height() < ($('.img-text .img').height() - 20)){
-		$('.img-text img').css('margin-bottom', $('.main-article .richest-text').outerHeight());
+	if($('.img-text img').height() < ($('.img-text .img').height())){
+		$('.img-text img').css('margin-bottom', textHeight);
 	}
 
 	// Form validation
@@ -37,6 +39,20 @@ $(document).ready(function(){
 		form.addClass("was-validated");
 	});
 
+	// Put the two image (second and third richest) into the right position
+	var positionImageRichest = $(".img-text").position().top;
+	var heightOfRich2 = $(".rich2").height();
+	var heightOfRich3 = $(".rich3").height();
+	var heightImageRichest = $(".img-text").height();
+
+	$(".rich2").css({"position": "relative", "top": positionImageRichest-heightOfRich2+heightImageRichest});
+	$(".rich3").css({"position": "relative", "top": positionImageRichest-heightOfRich3+heightImageRichest});
+
+
+
+
+
+
 	// REMOVE THIS PART AFTER FUNCTIONNAL INTEGRATION
 	var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
 	var elements = stripe.elements();
@@ -47,13 +63,4 @@ $(document).ready(function(){
 
 	// Add an instance of the card Element into the `card-element` <div>
 	card.mount('#card-element');
-
-	// Put the two image (second and third richest) into the right position
-	var positionImageRichest = $(".rich1").position().top;
-	var heightOfRich2 = $(".rich2").height();
-	var heightOfRich3 = $(".rich3").height();
-	var heightImageRichest = $(".imageOfRichest").height();
-
-	$(".rich2").css({"position": "relative", "top": positionImageRichest-heightOfRich2+heightImageRichest});
-	$(".rich3").css({"position": "relative", "top": positionImageRichest-heightOfRich3+heightImageRichest});
 });
