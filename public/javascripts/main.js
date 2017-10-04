@@ -37,17 +37,6 @@ $(document).ready(function(){
 		form.addClass("was-validated");
 	});
 
-
-
-
-
-
-
-
-
-
-
-
 	// REMOVE THIS PART AFTER FUNCTIONNAL INTEGRATION
 	var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
 	var elements = stripe.elements();
@@ -59,4 +48,12 @@ $(document).ready(function(){
 	// Add an instance of the card Element into the `card-element` <div>
 	card.mount('#card-element');
 
+	// Put the two image (second and third richest) into the right position
+	var positionImageRichest = $(".rich1").position().top;
+	var heightOfRich2 = $(".rich2").height();
+	var heightOfRich3 = $(".rich3").height();
+	var heightImageRichest = $(".imageOfRichest").height();
+
+	$(".rich2").css({"position": "relative", "top": positionImageRichest-heightOfRich2+heightImageRichest});
+	$(".rich3").css({"position": "relative", "top": positionImageRichest-heightOfRich3+heightImageRichest});
 });
