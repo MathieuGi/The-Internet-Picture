@@ -1,17 +1,17 @@
 /************************* Fonts ****************************/
 @font-face {
 	font-family: "CormorantGaramond_Light";
-	src: url('D:\\Workspaces\\theinternetpicture\\public\\fonts\\Cormorant_Garamond\\CormorantGaramond-Light.ttf');
+	src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Light.ttf');
 }
 
 @font-face {
 	font-family: "CormorantGaramond_Bold";
-	src: url('D:\\Workspaces\\theinternetpicture\\public\\fonts\\Cormorant_Garamond\\CormorantGaramond-Bold.ttf');
+	src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Bold.ttf');
 }
 
 @font-face {
 	font-family: "Raleway_ExtraLight";
-	src: url('D:\\Workspaces\\theinternetpicture\\public\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
+	src: url('..\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
 }
 
 body {

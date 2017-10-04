@@ -7,8 +7,8 @@ $(document).ready(function(){
 		var menu = $(this).attr("id");
 		$('.menu-item').removeClass('active');
 		$(this).addClass('active');
-		$('.main-area').hide();
-		$('.' + menu).show();
+		$('.main-area').fadeOut(700).delay(700);
+		$('.' + menu).fadeIn(800);
 	});
 
 	// $('.main-title').fadeTo(1500, 1, function(){
