@@ -3,6 +3,7 @@ $(document).ready(function() {
     // Hide every error message
     $('.error-message').hide();
 
+    // Navigation menu
     $('.menu-item').click(function() {
         var menu = $(this).attr("id");
         $('.menu-item').removeClass('active');
@@ -11,11 +12,8 @@ $(document).ready(function() {
         $('.' + menu).fadeIn(800);
     });
 
-    // $('.main-title').fadeTo(1500, 1, function(){
-    // 	$('.img-text .img').fadeTo(1500, 1, function(){
-    // 		$('#menu, .main-article header, .richest-text').fadeTo(2000, 1);
-    // 	});
-    // });
+    // Open page effect
+	$('.main-title, #menu, .rich1 .richest-text, .rich1 .header, .rich2, .rich3').fadeTo(3500, 1);
 
     // Display text at bottom of image
     var textHeight = $('.main-article .richest-text').outerHeight();
@@ -51,6 +49,7 @@ $(document).ready(function() {
 
 
     /******************* Stripe *********************/
+
     var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
     var elements = stripe.elements();
 
@@ -82,10 +81,12 @@ $(document).ready(function() {
 
 
     /******************* Socket.io *******************/
+
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
 
         if (data[1] != null) {
+            // A revoir !!
             $('#image').replaceWith(
                 '<img src="public/images/fullsize/' + data[1].img_path + '" class="richest-image rounded mx-auto d-block img-thumbnail" alt="image from richest">'
             )
@@ -94,7 +95,7 @@ $(document).ready(function() {
 
 
 
-    // Functions
+    /*********************** Functions **********************/
 
     var sendForm = function() {
         alert('test')
@@ -118,8 +119,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-                    console.log("ok")
-                        // Active paypal button
+                    // Refresh page
                 },
                 error: function(err) {
                     // Add paiementFailed

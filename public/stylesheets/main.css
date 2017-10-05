@@ -234,3 +234,13 @@ body {
 #paiement-form .success .token {
     display: none;
 }
+
+
+
+
+
+
+/* Open page effect */
+.main-title, #menu, .rich1 .richest-text, .rich1 .header, .rich2, .rich3 {
+	opacity: 0;
+}

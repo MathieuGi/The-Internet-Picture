@@ -74,64 +74,61 @@ module.exports = {
     },
 
     // This function update a bid from 'is_active': false to 'is_active': true  function(idBids)
-    setBidActive: function(idBid){
-        if (!checkTypes.integer(idBid)){
+    setBidActive: function(idBid) {
+        if (!checkTypes.integer(idBid)) {
             throw "idBid must be an integer"
-        }
-        else {
+        } else {
             return bid.update({
-                is_active : true
-            },{
-                where :{
-                    id : idBid
+                is_active: true
+            }, {
+                where: {
+                    id: idBid
                 }
-            }).then(function(res){
+            }).then(function(res) {
                 return res;
-            }).catch(function(err){
+            }).catch(function(err) {
                 throw err;
             })
         }
     },
 
     // This function check if the value of the bids (in argument) is superior to the value of the current bid function(idBids)
-    isValueSuperiorCurrentBid: function(valueOfBid){
-        return this.getBest().then(function(res){
-            if ( res.value >= valueOfBid ){
+    isValueSuperiorCurrentBid: function(valueOfBid) {
+        return this.getBest().then(function(res) {
+            if (res.value >= valueOfBid) {
                 // return the getBest in order to use it directly in setBidTime 
                 return res;
-            }
-            else{
+            } else {
                 return false;
             }
-        }).catch(function(err){
+        }).catch(function(err) {
             throw err;
         })
     },
 
     // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
-    setBidTime: function(idBid){
+    setBidTime: function(idBid) {
 
-        return this.getBest().then(function(res){
+        return this.getBest().then(function(res) {
             // Transform date object into timestamp object
             var createdAt = res.createdAt.getTime();
             var nowDate = Date.now();
-            var bidTime = (nowDate-createdAt)/1000/3600;
-            
+            var bidTime = (nowDate - createdAt) / 1000 / 3600;
+
             console.log(bid + "--------------------------------");
 
             bid.update({
-                bid_time : bidTime
-            },
-            {
-                where : {
-                    id : res.id
+                bid_time: bidTime
+            }, {
+                where: {
+                    id: res.id
                 }
-            }).then(function(res){
+            }).then(function(res) {
                 return res;
-            }).catch(function(err){
+            }).catch(function(err) {
                 throw err;
             })
-        }).catch(function(err){
+        }).catch(function(err) {
             throw err;
         })
     }
