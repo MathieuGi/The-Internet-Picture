@@ -51,6 +51,22 @@ body {
 	min-height: 105vh;
 }
 
+.paiement-success {
+    display: none;
+    padding: 40px;
+    width: 20vw;
+    height: 120px;
+    background: white;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 4px 2px -2px gray;
+    margin: auto;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+}
+
 .thumbs {
 	max-height: 50px;
 	max-width: 50px;
@@ -79,6 +95,14 @@ body {
 
 .text-truncate {
     max-width: 90px;
+}
+
+.rank-table .see-more {
+    cursor: pointer;
+}
+
+.rank-table .loading {
+    display: none;
 }
 
 .main-title {
