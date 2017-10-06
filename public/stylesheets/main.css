@@ -1,192 +1,161 @@
 /************************* Fonts ****************************/
-
 @font-face {
-    font-family: "CormorantGaramond_Light";
-    src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Light.ttf');
+	font-family: "CormorantGaramond_Light";
+	src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Light.ttf');
 }
 
 @font-face {
-    font-family: "CormorantGaramond_Bold";
-    src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Bold.ttf');
+	font-family: "CormorantGaramond_Bold";
+	src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Bold.ttf');
 }
 
 @font-face {
-    font-family: "Raleway_ExtraLight";
-    src: url('..\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
+	font-family: "Raleway_ExtraLight";
+	src: url('..\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
 }
 
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-h1 {
-    font-size: 4em;
-    font-family: "CormorantGaramond_Light";
-    color: #cc0000;
+h1{
+	font-size: 4em;
+	font-family: "CormorantGaramond_Light";
+	color: #cc0000;
+	cursor: pointer;
 }
 
-.rank-header,
-.richest-name {
-    font-family: "CormorantGaramond_Bold";
+.rank-header, .richest-name{
+	font-family: "CormorantGaramond_Bold";
 }
 
-.richest-text,
-.timer,
-.bid-more,
-.menu-item {
-    font-family: "Raleway_ExtraLight";
+.richest-text, .timer, .bid-more, .menu-item{
+	font-family: "Raleway_ExtraLight";
 }
 
 .richest-text {
-    font-weight: 600;
+	font-weight: 600;
 }
 
-table td {
-    font-family: "CormorantGaramond_Light";
-    font-size: 1em;
+table td{
+	font-family: "CormorantGaramond_Light";
+	font-size: 1em;
 }
-
 
 /************************* CSS ****************************/
 
 body {
-    min-width: 1150px;
-    background-color: #fafafa;
-    min-height: 105vh;
-}
-
-.paiement-success {
-    display: none;
-    padding: 40px;
-    width: 20vw;
-    height: 120px;
-    background: white;
-    border: 1px solid #e6e6e6;
-    box-shadow: 0 4px 2px -2px gray;
-    margin: auto;
-    position: fixed;
-    top: 30px;
-    left: 0;
-    right: 0;
-    z-index: 99999;
+	min-width: 1150px;
+	background-color: #fafafa;
+	min-height: 105vh;
 }
 
 .thumbs {
-    max-height: 50px;
-    max-width: 50px;
+	max-height: 50px;
+	max-width: 50px;
 }
 
 .rank-table-area {
-    display: none;
+	display: none;
 }
 
 .rank-table {
-    overflow: auto;
-    max-height: 60vh;
+	overflow: auto;
+	max-height: 60vh;
 }
 
 .rank-header {
-    max-height: 50px;
-    padding: 14px;
-    border: solid #e6e6e6;
-    border-width: 1px 1px 0px 1px;
+	max-height: 50px;
+	padding: 14px;
+	border: solid grey;
+	border-width: 1px 1px 0px 1px;
 }
 
 .rank-header img {
-    position: absolute;
-    right: 25px;
+	position: absolute;
+	right: 25px;
 }
 
 .text-truncate {
     max-width: 90px;
 }
 
-.rank-table .see-more {
-    cursor: pointer;
-}
-
-.rank-table .loading {
-    display: none;
-}
-
 .main-title {
-    margin-top: -5vh;
-    margin-bottom: 2vh;
+	margin-top: -5vh;
+	margin-bottom: 2vh;
 }
 
 .main-article header {
-    background-color: white;
-    max-height: 50px;
-    min-height: 30px;
-    padding: 3%;
-    border: solid #e6e6e6;
-    border-width: 1px 1px 1px 1px;
+	background-color: white;
+	max-height: 50px;
+	min-height: 30px;
+	padding: 3%;
+	border: solid #e6e6e6;
+	border-width: 1px 1px 1px 1px;
 }
 
 .main-article .richest-text {
-    background-color: white;
-    min-height: 30px;
-    padding: 3%;
-    border: 1px solid #e6e6e6;
-    border-radius: 2px;
-    position: absolute;
-    bottom: 0;
-    opacity: 0.9;
+	background-color: white;
+	min-height: 30px;
+	padding: 3%;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	position: relative;
+	opacity: 0.9;
 }
 
 .main-article {
-    display: inline-block;
+	display: inline-block;
 }
 
 .bid-more {
-    display: none;
+	display:none;
 }
 
 #menu .menu-item {
-    border-bottom: 1px solid #e6e6e6;
-    padding-bottom: 5px;
-    cursor: pointer;
+	border-bottom: 1px solid #e6e6e6;
+	padding-bottom: 5px;
+	cursor: pointer;
 }
 
 #menu .menu-item.active {
-    border-bottom: 2px solid #cc0000;
-    color: #cc0000;
-    padding-bottom: 5px;
-    font-weight: bold;
+	border-bottom: 2px solid #cc0000;
+	color: #cc0000;
+	padding-bottom: 5px;
+	font-weight: bold;
 }
 
 #menu {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .img-text .img {
-    min-width: 400px;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid #e6e6e6;
-    border-width: 0px 1px 0px 1px;
-    background-color: #e6e6e6
+	min-width: 400px;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: solid #e6e6e6;
+	border-width: 0px 1px 0px 1px;
+	background-color: #e6e6e6
 }
 
 .img-text .img img {
-    max-height: 70vh;
+	max-height: 70vh;
 }
 
 .rich2 .img img {
-    max-height: 55vh;
+	max-height: 55vh;
 }
 
 .rich3 .img img {
-    max-height: 40vh;
+	max-height: 40vh;
 }
 
 .main-title img {
-    max-width: 350px;
+	max-width: 350px;
 }
-
 
 /*.main-title, #menu, .main-article header, .richest-text, .img-text .img {
 	opacity: 0; 
@@ -194,23 +163,21 @@ body {
 
 
 /* Form */
-
-#paiement-form .information,
-#paiement-form .paiement {
-    border: 1px solid #e6e6e6;
-    padding: 25px;
-    background-color: white;
+#paiement-form .information, #paiement-form .paiement{
+	border: 1px solid #e6e6e6;
+	padding: 25px;
+	background-color: white;
 }
 
 #paiement-form .star-legend {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
+	position: absolute;
+	bottom: 0;
+	right: 5%;
 }
 
 #paiement-form .terms {
-    color: #666EE8;
-    text-decoration: underline;
+	color: #666EE8;
+	text-decoration: underline;
 }
 
 #paiement-form button {
@@ -270,13 +237,11 @@ body {
 }
 
 
-/* Open page effect */
 
-.main-title,
-#menu,
-.rich1 .richest-text,
-.rich1 .header,
-.rich2,
-.rich3 {
-    opacity: 0;
+
+
+
+/* Open page effect */
+.main-title, #menu, .rich1 .richest-text, .rich1 .header, .rich2, .rich3 {
+	opacity: 0;
 }
