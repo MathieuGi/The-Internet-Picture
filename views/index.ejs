@@ -7,6 +7,10 @@
 </head>
 <body>
 <div class="container-fluid">
+
+  <div class="paiement-success text-center">
+    Transaction effectuée ! Merci pour votre confiance !
+  </div>
   <div class="row main-title">
 <!--    <div class="col-md-4 img1">
       <img class="float-right" src="images/static/header2.png">
@@ -50,15 +54,23 @@
       <div class="rank-table">
         <table class="table table-responsive table-striped">
           <tbody>
-            <% res[1].forEach(function(bidder){ %>
-              <tr>
-                <td class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature"></td>
-                <td class="align-middle text-truncate"><%= bidder.name %></td>
-                <td class="align-middle"><%= bidder.price %> €</td>
-                <td class="align-middle">temps</td>
-              </tr>
+            <% bidders.forEach(function(bidder, index){ %>
+            <tr>
+              <td class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature"></td>
+              <td class="align-middle text-truncate"><%= bidder.name %></td>
+              <td class="align-middle"><%= bidder.price %> €</td>
+              <td class="align-middle">temps</td>
+            </tr>
             <% }) %>
-            
+
+            <% if(bidders.length === 10) { %>
+            <tr id="load-more">
+              <td class="align-middle text-center" colspan="4">
+                <button class="btn btn-primary btn-block see-more" data-offset="10">Voir plus</button>
+                <img class="loading" src="images/static/loading.gif"/>
+              </td>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -76,7 +88,7 @@
         <header>
           <div class="row">
             <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= res[1][1].name %></span>
+              <span class="richest-name float-left align-middle"><%= bidders[1].name %></span>
             </div>
             <div class="col-md-4">
               <span class="timer float-right align-middle">Timer</span>
@@ -85,13 +97,13 @@
         </header>
 
         <!-- Image and text part -->
-        <% if(res[1][2].url != "") { %>
-        <a href="<%= res[1][1].url %>" target="_blank">
+        <% if(bidders[1].url != "") { %>
+        <a href="<%= bidders[1].url %>" target="_blank">
         <% } %>
           <div class="img">
-            <img class="img-fluid" src="images/fullsize/<%= res[1][1].img_path %>" alt="Richest image"/>
+            <img class="img-fluid" src="images/fullsize/<%= bidders[1].img_path %>" alt="Richest image"/>
           </div>
-        <% if(res[1][1].url != "") { %>
+        <% if(bidders[1].url != "") { %>
         </a>
         <% } %>
       </article>
@@ -105,7 +117,7 @@
         <header class="header">
           <div class="row">
             <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= res[0].name %></span>
+              <span class="richest-name float-left align-middle"><%= bidders[0].name %></span>
             </div>
             <div class="col-md-4">
               <span class="timer float-right align-middle">Timer</span>
@@ -114,25 +126,28 @@
         </header>
 
         <!-- Image and text part -->
-        <% if(res[0].url != "") { %>
-        <a href="<%= res[0].url %>" target="_blank">
-        <% } %>
+        <div class="img-text">
+        
+          <% if(bidders[0].url != "") { %>
+          <a href="<%= bidders[0].url %>" target="_blank">
+          <% } %>
 
-          <div class="img-text">
             <div class="img imageOfRichest">
-              <img class="img-fluid" src="public/images/fullsize/<%= res[0].img_path %>" alt="Richest image"/>
+              <img class="img-fluid" src="public/images/fullsize/<%= bidders[0].img_path %>" alt="Richest image"/>
             </div>
 
-            <% if(res[0].text != "") { %>
+          <% if(bidders[0].url != "") { %>
+          </a>
+          <% } %>
+
+            <% if(bidders[0].text != "") { %>
             <div class="richest-text">
-              <%= res[0].text %>
+              <%= bidders[0].text %>
             </div>
             <% } %>
           </div>
 
-        <% if(res[0].url != "") { %>
-        </a>
-        <% } %>
+        
         
       </article>
     </div>
@@ -145,21 +160,21 @@
         <header>
           <div class="row">
             <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= res[1][2].name %></span>
+              <span class="richest-name float-left align-middle"><%= bidders[2].name %></span>
             </div>
           </div>
         </header>
 
         <!-- Image and text part -->
-        <% if(res[1][2].url != "") { %>
-        <a href="<%= res[1][2].url %>" target="_blank">
+        <% if(bidders[2].url != "") { %>
+        <a href="<%= bidders[2].url %>" target="_blank">
         <% } %>
 
           <div class="img">
-            <img class="img-fluid" src="images/fullsize/<%= res[1][2].img_path %>" alt="Richest image"/>
+            <img class="img-fluid" src="images/fullsize/<%= bidders[2].img_path %>" alt="Richest image"/>
           </div>
 
-        <% if(res[1][2].url != "") { %>
+        <% if(bidders[2].url != "") { %>
         </a>
         <% } %>
 

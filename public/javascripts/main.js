@@ -13,15 +13,61 @@ $(document).ready(function() {
     });
 
     // Open page effect
-	$('.main-title, #menu, .rich1 .richest-text, .rich1 .header, .rich2, .rich3').fadeTo(3500, 1);
+    $('.main-title, #menu, .rich1 .header, .rich2, .rich3').fadeTo(3500, 1);
+    $('.rich1 .richest-text').fadeTo(3500, 0.9)
 
     // Display text at bottom of image
     var textHeight = $('.main-article .richest-text').outerHeight();
-    $('.main-article .richest-text').css('bottom', textHeight);
-    $('.main-article .img-text').css('height', $('.main-article .img-text').height() - textHeight)
 
-    if ($('.img-text img').height() < ($('.img-text .img').height())) {
+    $('.main-article .richest-text').css('width', $('.main-article .img-text').width());
+    $(window).resize(function() {
+        $('.main-article .richest-text').css('width', $('.main-article .img-text').width());
+    })
+
+    if ($('.img-text img').height() < ($('.img-text .img').height() + 20)) {
         $('.img-text img').css('margin-bottom', textHeight);
+    }
+
+    // Load more in rank table
+    $('.rank-table .see-more').click(function() {
+        var offset = $(this).data('offset');
+        $('.rank-table .see-more').hide();
+        $('.rank-table .loading').show();
+
+        $.ajax({
+            type: "GET",
+            url: "/getBidsList",
+            data: { offset: offset },
+            success: function(res) {
+                setTimeout(function() {
+                    addNextBidders(res.bidders, offset);
+                    $('.rank-table .loading').hide();
+                    $('.rank-table .see-more').show();
+                }, 800);
+            },
+            error: function(err) {
+                console.log('error')
+            }
+        });
+
+
+    });
+
+    // Add next bidders in rank-table
+    var addNextBidders = function(bidders, offset) {
+        var html = "";
+        $.each(bidders, function(index, bid) {
+            html += rankTableRow(bid);
+        });
+
+        $('#load-more').before(html);
+
+        if (bidders.length < 10) {
+            $('#load-more').html('<td class="align-middle text-center" colspan="4">Plus d\'enchérisseur</td>')
+        } else {
+            $('.rank-table .see-more').data('offset', offset + 10);
+        }
+
     }
 
     // Form validation
@@ -65,10 +111,10 @@ $(document).ready(function() {
         if (result.token) {
             // Use the token to create a charge or a customer
             // https://stripe.com/docs/charges
-            stripeToken = result.token.id;
+            var stripeToken = result.token.id;
             successElement.querySelector('.token').textContent = result.token.id;
             successElement.classList.add('visible');
-            sendForm();
+            sendForm(stripeToken);
         } else if (result.error) {
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
@@ -84,12 +130,15 @@ $(document).ready(function() {
 
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
+        if (data[0] != null) {
+            var html = rankTableRow(data[0]);
 
-        if (data[1] != null) {
+            $('.rank-table .table tbody').prepend(html);
             // A revoir !!
-            $('#image').replaceWith(
-                '<img src="public/images/fullsize/' + data[1].img_path + '" class="richest-image rounded mx-auto d-block img-thumbnail" alt="image from richest">'
-            )
+            $('.imageOfRichest').html(
+                '<img class="img-fluid" src="public/images/fullsize/' + data[0].img_path + '" alt="image from richest">'
+            );
+
         }
     });
 
@@ -97,8 +146,19 @@ $(document).ready(function() {
 
     /*********************** Functions **********************/
 
-    var sendForm = function() {
-        alert('test')
+    // Generate the html corresponding to a row in rank-table
+    var rankTableRow = function(bid) {
+        var html = "";
+        return html += '<tr>' +
+            '<td class="align-middle"><img class="thumbs" src="images/thumbs/' + bid.img_path + '" alt="image miniature"></td>' +
+            '<td class="align-middle text-truncate">' + bid.name + '</td>' +
+            '<td class="align-middle">' + bid.price + ' €</td>' +
+            '<td class="align-middle">' + 'time' + '</td>' +
+            '</tr>';
+    }
+
+    // Send all information to create and paye a new bid
+    var sendForm = function(stripeToken) {
         $('.error-message').hide();
         if ($('#form-image').length && stripeToken != 0) {
             var url = "/createBid";
@@ -119,7 +179,8 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-                    // Refresh page
+                    $('#menu #picture-area').trigger('click');
+                    $('.paiement-success').show().delay(3000).fadeOut(500);
                 },
                 error: function(err) {
                     // Add paiementFailed

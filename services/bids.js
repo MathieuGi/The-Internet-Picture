@@ -27,12 +27,14 @@ module.exports = {
     },
 
     // This function is used to get all bids
-    getAll: function() {
+    getAll: function(limit, offset) {
         return bid.findAll({
             order: [
                 ['price', 'DESC'],
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: limit,
+            offset: offset
         }).then(function(res) {
             if (res == null) {
                 throw 'No result from database';
@@ -71,6 +73,14 @@ module.exports = {
                 throw 'Query failure: ' + err;
             });
         }
+    },
+
+    delete: function(id) {
+        return bid.destroy({
+            where: {
+                id: id
+            }
+        })
     },
 
     // This function update a bid from 'is_active': false to 'is_active': true  function(idBids)
