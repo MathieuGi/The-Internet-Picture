@@ -23,6 +23,7 @@ h1{
 	font-size: 4em;
 	font-family: "CormorantGaramond_Light";
 	color: #cc0000;
+	cursor: pointer;
 }
 
 .rank-header, .richest-name{

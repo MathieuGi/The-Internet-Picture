@@ -3,13 +3,25 @@ $(document).ready(function() {
     // Hide every error message
     $('.error-message').hide();
 
+    // Redirection to the image menu when clicking on "Qui est le plus riche"
+    $('h1').click(function(){
+        $('.rank-table-area').hide();
+        $('#rank-table-area').removeClass('active');
+
+        $('.picture-area').show();
+        $('#picture-area').addClass('active');
+
+        $('.bid-more').hide();
+        $('#bid-more').removeClass('active');
+    })
+
     // Navigation menu
     $('.menu-item').click(function() {
         var menu = $(this).attr("id");
         $('.menu-item').removeClass('active');
         $(this).addClass('active');
-        $('.main-area').fadeOut(700).delay(700);
-        $('.' + menu).fadeIn(800);
+        $('.main-area').hide();
+        $('.' + menu).show();
     });
 
     // Open page effect
