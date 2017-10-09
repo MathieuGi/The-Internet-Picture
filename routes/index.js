@@ -110,6 +110,7 @@ var returnRouter = function(io) {
                             bidService.delete(newBid.id);
                             res.status(500).json({ error: 'paiementFailed' });
                         } else {
+                            bidService.setBidTime();
                             sharedService.emitNewBidder(io);
                             res.status(200).json({ result: 'success' });
                         }
