@@ -28,18 +28,6 @@ $(document).ready(function() {
     $('.main-title, #menu, .rich1 .header, .rich2, .rich3').fadeTo(3500, 1);
     $('.rich1 .richest-text').fadeTo(3500, 0.9)
 
-    // Display text at bottom of image
-    var textHeight = $('.main-article .richest-text').outerHeight();
-
-    $('.main-article .richest-text').css('width', $('.main-article .img-text').width());
-    $(window).resize(function() {
-        $('.main-article .richest-text').css('width', $('.main-article .img-text').width());
-    })
-
-    if ($('.img-text img').height() < ($('.img-text .img').height() + 20)) {
-        $('.img-text img').css('margin-bottom', textHeight);
-    }
-
     // Load more in rank table
     $('.rank-table .see-more').click(function() {
         var offset = $(this).data('offset');
@@ -96,17 +84,22 @@ $(document).ready(function() {
         stripe.createToken(card).then(setOutcome);
     });
 
-    // Put the two image (second and third richest) into the right position
-    var positionImageRichest = $(".img-text").position().top;
-    var heightOfRich2 = $(".rich2").height();
-    var heightOfRich3 = $(".rich3").height();
-    var heightImageRichest = $(".img-text").height();
-
-    $(".rich2").css({ "position": "relative", "top": positionImageRichest - heightOfRich2 + heightImageRichest });
-    $(".rich3").css({ "position": "relative", "top": positionImageRichest - heightOfRich3 + heightImageRichest });
-
     // Timer
     startTime();
+
+    // Others timer 
+    hideTimePart('.second-area');
+    hideTimePart('.third-area');
+
+    // Richest adapte img position
+    if($('.richest-area .block-image .img').height() == 350){
+        $('.richest-area .block-image img').css('margin-top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
+    }
+    $(window).resize(function(){
+        if($('.richest-area .block-image .img').height() == 350){
+            $('.richest-area .block-image img').css('margin-top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
+        }
+    });    
 
     /******************* Stripe *********************/
 
@@ -186,13 +179,50 @@ $(document).ready(function() {
         var s = timer.getSeconds();
         m = checkTime(m);
         s = checkTime(s);
-        // d = checkDay(d);
-        // $('.clock').html(d + h + "h " + m + "m " + s + "s");
+
         addToTimer('days', d);
         addToTimer('hours', h);
         addToTimer('minutes', m);
         addToTimer('seconds', s);
+
+        if(d == 0 && h == 0){
+            $('.richest-area .hours').hide();
+            $('.richest-area table').css('width', '100px');
+            if(m == 0){
+                $('.richest-area .minutes').hide();
+                $('.richest-area table').css('width', '50px');
+            }
+        }
+
         var t = setTimeout(startTime, 500);
+    }
+
+    function hideTimePart(element){
+        
+        if($(element + ' .days').html() > 0 || $(element + ' .hours').html() > 0) {
+            $(element + ' .seconds').hide();
+            if($(element + ' .days').html() > 0){
+                $(element + ' table').css('width', '100px');
+            } else {
+                $(element + ' table').css('width', '70px');
+            }
+            
+        }   
+
+        if ($(element + ' .days').html() === '0') {
+            $(element + ' .days').hide();
+            $(element + ' table').css('width', '100px');
+            
+            if($(element + ' .hours').html() === '0'){
+                $(element + ' .hours').hide();
+                $(element + ' table').css('width', '70px');
+                
+                if($(element + ' .minutes').html() === '0'){
+                    $(element + ' .minutes').hide();
+                    $(element + ' table').css('width', '40px');
+                }
+            }
+        }
     }
 
     function checkTime(i) {
@@ -212,15 +242,14 @@ $(document).ready(function() {
 
     // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
     function addToTimer(type, value) {
-        if (value > 0) {
-            $('.' + type + ' .clock').html(value);
-            if(!$('.' + type).is(':visible')){
-                $('.' + type).show();
-            }
-        } else {
-            if (type != 'seconds') {
-                $('.' + type).hide();
-            }
+        $('.richest-area td.' + type).html(value);
+        if (!$('.richest-area .' + type).is(':visible')) {
+            $('.richest-area .' + type).show();
+        }
+    
+        if (type == 'days' && value == 0) {
+            $('.richest-area .' + type).hide();
+            $('.richest-area table').css('width', '150px');
         }
     }
 

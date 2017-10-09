@@ -36,12 +36,17 @@ h1 {
 .clock,
 .bid-value,
 .bid-more,
-.menu-item {
+.menu-item,
+.timer-part span {
     font-family: "Raleway_ExtraLight";
 }
 
 .clock {
-    font-size: 2em;
+    font-size: 1.5em;
+}
+
+.timer-part span {
+    font-size: 0.8em;
 }
 
 .richest-text {
@@ -53,13 +58,24 @@ table td {
     font-size: 1em;
 }
 
+.block-image .time table th {
+	font-weight: normal;
+	font-size: 8px;
+}
+
+.top-rank h2 {
+	font-size: 3.5em;
+}
+
 
 /************************* CSS ****************************/
 
 body {
-    min-width: 1150px;
+    min-width: 1000px;
     background-color: #fafafa;
-    min-height: 105vh;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .paiement-success {
@@ -77,6 +93,8 @@ body {
     right: 0;
     z-index: 99999;
 }
+
+/* Rank table part */
 
 .thumbs {
     max-height: 50px;
@@ -117,48 +135,131 @@ body {
 }
 
 .main-title {
-    margin-top: -5vh;
+	margin-top: 1vh;
     margin-bottom: 2vh;
 }
 
-.main-article header {
-    background-color: white;
-    max-height: 50px;
-    min-height: 30px;
-    padding: 3%;
-    border: solid #e6e6e6;
-    border-width: 1px 1px 1px 1px;
+.main-title h1 {
+    font-weight: bold;
 }
 
-.main-article .richest-text {
-    background-color: white;
-    min-height: 30px;
-    border: 1px solid #e6e6e6;
-    border-radius: 2px;
-    position: relative;
-    padding: 3%;
-    opacity: 0.9;
+
+/* Homepage part */
+
+.richest-area .top-rank {
+	margin-bottom: 25px;
 }
 
-.rich1 .timer-part {
-    height: 80px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+.block-image header {
+	display: flex;
+	align-items: center;
+	background: white;
+	border: solid #e6e6e6;
+    border-width: 1px 1px 0px 1px;
 }
 
-.rich1 .clock {
-    background-image: url('../images/static/timer-circle.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 80px;
+.block-image .img {
+	display: flex;
+	justify-content: center;
+	background: gainsboro;
+	height: fit-content;
 }
 
-.main-article {
-    display: inline-block;
+.block-image img {
+	border: solid #e6e6e6;
+    border-width: 1px;
 }
+
+.block-image .name {
+	display: inline-flex;
+	justify-content: flex-start;
+	width: 55%;
+}
+
+.block-image .time {
+	display: inline-flex;
+	justify-content: flex-end;
+	width: 45%;
+}
+
+.richest-area td, th {
+	width: 40px;
+	text-align: center;
+}
+
+.richest-area table {
+	width: 200px;
+}
+
+.others-area table {
+	width: 135px;
+}
+
+.richest-area {
+	position: relative;
+}
+
+.richest-area .block-image img {
+	max-height: 800px;
+}
+
+.richest-area .block-image .img {
+	min-height: 350px;
+}
+
+.richest-area .top-rank {
+	color: #e8d254;
+}
+.second-area .top-rank {
+	color: #dadace;
+}
+.third-area .top-rank {
+	color: #edab60;
+}
+
+.richest-area .block-image header {
+	height: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.richest-area .richest-text {
+	position: relative;
+	height: 60px;
+	top: -60px;
+	background-color: white;
+	opacity: 0.8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+}
+
+.richest-area .richest-text span {
+	word-break: break-all;
+}
+
+.second-area, .third-area {
+	margin-bottom: 60px;
+}
+
+.others-area .block-image header {
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.others-area .top-rank{
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.others-area .block-image img{
+	max-height: 150px;
+}
+
+/* Bid mor part */
 
 .bid-more {
     display: none;
@@ -180,38 +281,6 @@ body {
 #menu {
     margin-bottom: 20px;
 }
-
-.img-text .img {
-    min-width: 400px;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid #e6e6e6;
-    border-width: 0px 1px 0px 1px;
-    background-color: #e6e6e6
-}
-
-.img-text .img img {
-    max-height: 70vh;
-}
-
-.rich2 .img img {
-    max-height: 55vh;
-}
-
-.rich3 .img img {
-    max-height: 40vh;
-}
-
-.main-title img {
-    max-width: 350px;
-}
-
-
-/*.main-title, #menu, .main-article header, .richest-text, .img-text .img {
-	opacity: 0; 
-}*/
 
 
 /* Form */

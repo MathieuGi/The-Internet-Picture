@@ -16,7 +16,7 @@
       <img class="float-right" src="images/static/header2.png">
     </div> -->
     <div class="col-md-12 text-center">
-      <h1>Qui est le plus riche</h1>
+      <h1>Qui est le plus riche ?</h1>
     </div>
 <!--    <div class="col-md-4 img2">
       <img class="float-left" src="images/static/header1.png">
@@ -77,135 +77,178 @@
     </div>
   </div>
 
-  <!--Picture part-->
-  <div class="row main-area picture-area">
-
-    <!--Image of the second richest-->
-    <div class="col-md-4 text-center">
-      <article class="main-article rich2">
-
-        <!-- Header part -->
-        <header>
-          <div class="row">
-            <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= bidders[1].name %></span>
-            </div>
-            <div class="col-md-4">
-              <span class="bid-value float-right align-middle">Enchère : <%= bidders[1].price %> €</span>
-            </div>
+  <!-- home page -->
+  <div class="row main-area picture-area justify-content-md-center align-items-end">
+    <div class="col-5 order-2 richest-area">
+      <div class="row top-rank">
+        <div class="col-12 text-center">
+          <h2>1</h2>
+          <span><%= bidders[0].price %> €</span>
+        </div>
+      </div>
+      <article class="block-image">
+        <header class="header">
+          <div class="name">
+            <span><%= bidders[0].name %></span>
+          </div>
+          <div class="time timer-part text-center">
+            <input id="richest-time" type="hidden" value="<%= bidders[0].createdAt.getTime() %>"/>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="days"></td>
+                  <td class="hours"></td>
+                  <td class="minutes"></td>
+                  <td class="seconds"></td>
+                </tr>
+                <tr>
+                  <th class="days">
+                    Jours
+                  </th>
+                  <th class="hours">
+                    Heures
+                  </th>
+                  <th class="minutes">
+                    Minutes
+                  </th>
+                  <th class="seconds">
+                    Secondes
+                  </th>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </header>
+        <% if(bidders[0].url != "") { %>
+        <a href="<%= bidders[0].url %>" target="_blank">
+        <% } %>
+          <div class="img">
+            <div>
+              <img class="img-fluid" src="images/fullsize/<%= bidders[0].img_path %>">              
+            </div>
+          </div>
+        <% if(bidders[0].url != "") { %>
+        </a>
+        <% } %>
+        
+          <div class="richest-text text-center" <% if(bidders[0].text == "") { %> style="background:transparent"<% } %>>
+            <span>
+              <%= bidders[0].text %>
+            </span>
+          </div>
+        
+      </article>  
+    </div>  
 
-        <!-- Image and text part -->
+    <div class="col-3 order-1 others-area second-area">
+      <div class="row top-rank">
+        <div class="col-12 text-center">
+          <h2>2</h2>
+          <span><%= bidders[1].price %> €</span>
+        </div>
+      </div>
+      <article class="block-image">
+        <header class="header">
+          <div class="name">
+            <span><%= bidders[1].name %></span>
+          </div>
+          <div class="time text-center">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="days"><%= Math.trunc(bidders[1].bid_time / (24 * 60 * 60 * 1000)) %></td>
+                  <td class="hours"><%= new Date(bidders[1].bid_time).getHours() - 1 %></td>
+                  <td class="minutes"><%= new Date(bidders[1].bid_time).getMinutes() %></td>
+                  <td class="seconds"><%= new Date(bidders[1].bid_time).getSeconds() %></td>
+                </tr>
+                <tr>
+                  <th class="days">
+                    Jours
+                  </th>
+                  <th class="hours">
+                    Heures
+                  </th>
+                  <th class="minutes">
+                    Minutes
+                  </th>
+                  <th class="seconds">
+                    Secondes
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </header>
         <% if(bidders[1].url != "") { %>
         <a href="<%= bidders[1].url %>" target="_blank">
         <% } %>
           <div class="img">
-            <img class="img-fluid" src="images/fullsize/<%= bidders[1].img_path %>" alt="Richest image"/>
+            <div>
+              <img class="img-fluid" src="images/fullsize/<%= bidders[1].img_path %>">
+            </div>
           </div>
         <% if(bidders[1].url != "") { %>
         </a>
         <% } %>
-      </article>
+      </article>  
     </div>
 
-    <!--Image of THE richest-->
-    <div class="col-md-5 text-center"> 
-    
-      <article class="main-article rich1">
-
-        <!-- Timer part -->
-        <input id="richest-time" type="hidden" value="<%= bidders[0].createdAt.getTime() %>"/>
-        <div class="row align-items-center justify-content-center timer-part">
-          <div class="col-md-3 days">
-            <div class="clock"></div>
-            Jours
-          </div>
-          <div class="col-md-3 hours"> 
-            <div class="clock"></div>
-            Heures
-          </div>
-          <div class="col-md-3 minutes"> 
-            <div class="clock"></div>
-            Minutes
-          </div>
-          <div class="col-md-3 seconds"> 
-            <div class="clock"></div>
-            Secondes
-          </div>
+    <div class="col-3 order-3 others-area third-area">
+      <div class="row top-rank">
+        <div class="col-12 text-center">
+          <h2>3</h2>
+          <span><%= bidders[2].price %> €</span>
         </div>
-
-        <!-- Header part -->
+      </div>
+      <article class="block-image">
         <header class="header">
-          <div class="row"> 
-            <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= bidders[0].name %></span>
-            </div>
-            <div class="col-md-4">
-              <span class="bid-value float-right align-middle">Enchère : <%= bidders[0].price %> €</span>
-            </div>
+          <div class="name">
+            <span><%= bidders[2].name %></span>
+          </div>
+          <div class="time text-center">
+           <input id="third-time" type="hidden" value="<%= bidders[2].createdAt.getTime() %>"/>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="days"><%= Math.trunc(bidders[2].bid_time / (24 * 60 * 60 * 1000)) %></td>
+                  <td class="hours"><%= new Date(bidders[2].bid_time).getHours() - 1 %></td>
+                  <td class="minutes"><%= new Date(bidders[2].bid_time).getMinutes() %></td>
+                  <td class="seconds"><%= new Date(bidders[2].bid_time).getSeconds() %></td>
+                </tr>
+                <tr>
+                  <th class="days">
+                    Jours
+                  </th>
+                  <th class="hours">
+                    Heures
+                  </th>
+                  <th class="minutes">
+                    Minutes
+                  </th>
+                  <th class="seconds">
+                    Secondes
+                  </th>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </header>
-
-        <!-- Image and text part -->
-        <div class="img-text">
-        
-          <% if(bidders[0].url != "") { %>
-          <a href="<%= bidders[0].url %>" target="_blank">
-          <% } %>
-
-            <div class="img imageOfRichest">
-              <img class="img-fluid" src="public/images/fullsize/<%= bidders[0].img_path %>" alt="Richest image"/>
-            </div>
-
-          <% if(bidders[0].url != "") { %>
-          </a>
-          <% } %>
-
-            <% if(bidders[0].text != "") { %>
-            <div class="richest-text">
-              <%= bidders[0].text %>
-            </div>
-            <% } %>
-          </div>
-
-        
-        
-      </article>
-    </div>
-
-    <!--Image of the third richest-->
-    <div class="col-md-3 text-center">
-      <article class="main-article rich3">
-
-        <!-- Header part -->
-        <header>
-          <div class="row">
-            <div class="col-md-8">
-              <span class="richest-name float-left align-middle"><%= bidders[2].name %></span>
-            </div>
-            <div class="col-md-4">
-              <span class="bid-value float-right align-middle">Enchère : <%= bidders[2].price %> €</span>
-            </div>
-          </div>
-        </header>
-
-        <!-- Image and text part -->
         <% if(bidders[2].url != "") { %>
         <a href="<%= bidders[2].url %>" target="_blank">
         <% } %>
-
           <div class="img">
-            <img class="img-fluid" src="images/fullsize/<%= bidders[2].img_path %>" alt="Richest image"/>
+            <div>
+              <img class="img-fluid" src="images/fullsize/<%= bidders[2].img_path %>">
+            </div>
           </div>
-
         <% if(bidders[2].url != "") { %>
         </a>
         <% } %>
-
-      </article>
-    </div>
+      </article>  
+    </div>  
   </div>
+
+ 
 
   <!--Bid part-->
   <div class="row main-area bid-more">
@@ -240,8 +283,8 @@
 
             <!-- Text -->
             <div class="form-group">
-                <label for="form-text">Texte complémentaire</label>
-                <input type="text" class="form-control" id="form-text" placeholder="Entrez un text complémentaire">
+                <label for="form-text">Texte complémentaire (160 caractères)</label>
+                <input type="text" class="form-control" id="form-text" maxlength="160" placeholder="Entrez un text complémentaire">
             </div>
           </div>
 
