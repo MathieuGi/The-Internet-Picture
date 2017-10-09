@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('.error-message').hide();
 
     // Redirection to the image menu when clicking on "Qui est le plus riche"
-    $('h1').click(function(){
+    $('h1').click(function() {
         $('.rank-table-area').hide();
         $('#rank-table-area').removeClass('active');
 
@@ -105,6 +105,8 @@ $(document).ready(function() {
     $(".rich2").css({ "position": "relative", "top": positionImageRichest - heightOfRich2 + heightImageRichest });
     $(".rich3").css({ "position": "relative", "top": positionImageRichest - heightOfRich3 + heightImageRichest });
 
+    // Timer
+    startTime();
 
     /******************* Stripe *********************/
 
@@ -167,6 +169,59 @@ $(document).ready(function() {
             '<td class="align-middle">' + bid.price + ' €</td>' +
             '<td class="align-middle">' + 'time' + '</td>' +
             '</tr>';
+    }
+
+    function startTime() {
+        var oneDay = 24 * 60 * 60 * 1000;
+        var createdAt = parseInt($('#richest-time').val(), 10);
+        var date = new Date();
+        var currentTime = date.getTime() - createdAt;
+        //alert("created : " + createdAt + " timezoneoff : " + timezoneOffset + " currentTime : " + currentTime)
+        var timer = new Date(currentTime);
+        var d = Math.trunc(currentTime / oneDay)
+
+        // RETIRER LE -1 LORSQU'ON CHANGE DE FUSEAU HORAIRE
+        var h = timer.getHours() - 1;
+        var m = timer.getMinutes();
+        var s = timer.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        // d = checkDay(d);
+        // $('.clock').html(d + h + "h " + m + "m " + s + "s");
+        addToTimer('days', d);
+        addToTimer('hours', h);
+        addToTimer('minutes', m);
+        addToTimer('seconds', s);
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        // add zero in front of numbers < 10
+        if (i < 10) { i = "0" + i };
+        return i;
+    }
+
+    function checkDay(d) {
+        if (d > 0) {
+            d = d + "j ";
+        } else {
+            d = "";
+        }
+        return d;
+    }
+
+    // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
+    function addToTimer(type, value) {
+        if (value > 0) {
+            $('.' + type + ' .clock').html(value);
+            if(!$('.' + type).is(':visible')){
+                $('.' + type).show();
+            }
+        } else {
+            if (type != 'seconds') {
+                $('.' + type).hide();
+            }
+        }
     }
 
     // Send all information to create and paye a new bid

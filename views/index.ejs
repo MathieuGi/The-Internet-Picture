@@ -91,7 +91,7 @@
               <span class="richest-name float-left align-middle"><%= bidders[1].name %></span>
             </div>
             <div class="col-md-4">
-              <span class="timer float-right align-middle">Timer</span>
+              <span class="bid-value float-right align-middle">Enchère : <%= bidders[1].price %> €</span>
             </div>
           </div>
         </header>
@@ -110,17 +110,39 @@
     </div>
 
     <!--Image of THE richest-->
-    <div class="col-md-5 text-center">  
+    <div class="col-md-5 text-center"> 
+    
       <article class="main-article rich1">
+
+        <!-- Timer part -->
+        <input id="richest-time" type="hidden" value="<%= bidders[0].createdAt.getTime() %>"/>
+        <div class="row align-items-center justify-content-center timer-part">
+          <div class="col-md-3 days">
+            <div class="clock"></div>
+            Jours
+          </div>
+          <div class="col-md-3 hours"> 
+            <div class="clock"></div>
+            Heures
+          </div>
+          <div class="col-md-3 minutes"> 
+            <div class="clock"></div>
+            Minutes
+          </div>
+          <div class="col-md-3 seconds"> 
+            <div class="clock"></div>
+            Secondes
+          </div>
+        </div>
 
         <!-- Header part -->
         <header class="header">
-          <div class="row">
+          <div class="row"> 
             <div class="col-md-8">
               <span class="richest-name float-left align-middle"><%= bidders[0].name %></span>
             </div>
             <div class="col-md-4">
-              <span class="timer float-right align-middle">Timer</span>
+              <span class="bid-value float-right align-middle">Enchère : <%= bidders[0].price %> €</span>
             </div>
           </div>
         </header>
@@ -161,6 +183,9 @@
           <div class="row">
             <div class="col-md-8">
               <span class="richest-name float-left align-middle"><%= bidders[2].name %></span>
+            </div>
+            <div class="col-md-4">
+              <span class="bid-value float-right align-middle">Enchère : <%= bidders[2].price %> €</span>
             </div>
           </div>
         </header>
@@ -251,7 +276,7 @@
             </div>
 
             <!-- Submit -->
-            <button classe="confirm-button" id="buy-button">Pay 25€</button>
+            <button classe="confirm-button" id="buy-button">Valider</button>
 
             <p class="star-legend">* Champ obligatoire</p>
 
