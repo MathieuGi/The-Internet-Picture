@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>C'est qui le plus riche</title>
+    <title>C'est qui le plus riche ?</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/main.css' />
 </head>
@@ -16,7 +16,7 @@
       <img class="float-right" src="images/static/header2.png">
     </div> -->
     <div class="col-md-12 text-center">
-      <h1>Qui est le plus riche</h1>
+      <h1>Qui est le plus riche ?</h1>
     </div>
 <!--    <div class="col-md-4 img2">
       <img class="float-left" src="images/static/header1.png">
@@ -214,10 +214,10 @@
       <!-- Paiement form -->
       <form id="paiement-form" novalidate>
         <div class="row">
-          <div class="col-md-1"></div>
+          <div class="col-md-3"></div>
 
           <!-- Form first part -->
-          <div class="col-md-5 information">
+          <div class="col-md-6 information">
 
             <!-- Name -->
             <div class="form-group">
@@ -231,7 +231,7 @@
                 <div id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </div>
                 <input type="file" class="form-control" id="form-image" required>
             </div>
-
+         
             <!-- Link -->
             <div class="form-group">
                 <label for="form-url">Lien url</label>
@@ -243,19 +243,24 @@
                 <label for="form-text">Texte complémentaire</label>
                 <input type="text" class="form-control" id="form-text" placeholder="Entrez un text complémentaire">
             </div>
-          </div>
-
-          <!-- Separation between the two parts of form -->
-          <div class="col-md-1"></div>
-
-          <!-- Form second part -->
-          <div class="col-md-4 paiement">
 
             <!-- Selected price -->
             <div class="form-group">
                 <label for="form-price">Montant (€) *</label>
                 <input type="number" class="form-control" id="form-price" placeholder="3" required> 
             </div>
+
+            <!-- Go to the pay part -->
+            <a href="#paiement"><input type="button" id="trump" value="Renchérir" href="#paiement" /></a>
+          </div>
+        </div></br>
+         
+          <!-- Separation between the two parts of form -->
+        <div class="row">
+          <div class="col-md-3"></div>
+
+          <!-- Form second part -->
+          <div class="col-md-6 paiement" id="paiement">
 
             <!-- Card number -->
             <div class="form-group">
