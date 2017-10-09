@@ -78,6 +78,28 @@ body {
     padding: 0;
 }
 
+#buy-button:hover{
+    cursor:pointer;
+    background-color: #8389e2;
+}
+#trump {
+  color: #ffffff;
+  background-color: #666EE8;
+  border-radius : 4px;
+  border: none;
+  padding: 15px 32px;
+  cursor : pointer;
+
+}
+#trump:hover {
+background-color: #8389e2;
+}
+
+
+
+.paiement {
+    display:none;
+}
 .paiement-success {
     display: none;
     padding: 40px;

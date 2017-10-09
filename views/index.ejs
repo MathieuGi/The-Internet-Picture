@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>C'est qui le plus riche</title>
+    <title>C'est qui le plus riche ?</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/main.css' />
 </head>
@@ -59,7 +59,28 @@
               <td class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature"></td>
               <td class="align-middle text-truncate"><%= bidder.name %></td>
               <td class="align-middle"><%= bidder.price %> €</td>
-              <td class="align-middle">temps</td>
+              <td class="align-middle">
+              <%if (bidder.bid_time == 0) { %>
+                -
+              <% } else { %>
+                <% var date = new Date(bidder.bid_time) %>
+                <% var day = Math.trunc(bidder.bid_time/24/3600/1000) %>
+                <% var hours = date.getHours()-1 %>
+                <% var seconds = date.getSeconds() %>
+                <%= day > 0 ? day : '' %>
+                <%= day = 1 && day > 0 ? ' jour' : '' %>
+                <%= day > 1 && day > 0 ? ' jour' : '' %>
+                <%= day== 0 && hours == 0 ? '' : hours %>
+                <%= hours > 1 && hours > 0 ? ' heures' : '' %>
+                <%= hours == 1 && hours > 0 ? ' heure' : '' %>
+                <%= bidder.bid_time >= 60000 ? date.getMinutes() : '' %>
+                <%= date.getMinutes() > 1 && bidder.bid_time >= 60000 ? ' minutes' : '' %>
+                <%= date.getMinutes() == 1 && bidder.bid_time >= 60000 ? ' minute' : '' %>
+                <%= day == 0 && hours == 0 ? seconds : '' %>
+                <%= seconds > 1 && seconds > 0 ? ' secondes' : '' %>
+                <%= seconds == 1 && seconds > 0 ? ' seconde' : '' %>
+              <% } %>
+              </td>
             </tr>
             <% }) %>
 
@@ -257,10 +278,10 @@
       <!-- Paiement form -->
       <form id="paiement-form" novalidate>
         <div class="row">
-          <div class="col-md-1"></div>
+          <div class="col-md-3"></div>
 
           <!-- Form first part -->
-          <div class="col-md-5 information">
+          <div class="col-md-6 information">
 
             <!-- Name -->
             <div class="form-group">
@@ -274,7 +295,7 @@
                 <div id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </div>
                 <input type="file" class="form-control" id="form-image" required>
             </div>
-
+         
             <!-- Link -->
             <div class="form-group">
                 <label for="form-url">Lien url</label>
@@ -286,19 +307,24 @@
                 <label for="form-text">Texte complémentaire (160 caractères)</label>
                 <input type="text" class="form-control" id="form-text" maxlength="160" placeholder="Entrez un text complémentaire">
             </div>
-          </div>
-
-          <!-- Separation between the two parts of form -->
-          <div class="col-md-1"></div>
-
-          <!-- Form second part -->
-          <div class="col-md-4 paiement">
 
             <!-- Selected price -->
             <div class="form-group">
                 <label for="form-price">Montant (€) *</label>
                 <input type="number" class="form-control" id="form-price" placeholder="3" required> 
             </div>
+
+            <!-- Go to the pay part -->
+            <a href="#paiement"><input type="button" id="trump" value="Renchérir" href="#paiement" /></a>
+          </div>
+        </div></br>
+         
+          <!-- Separation between the two parts of form -->
+        <div class="row">
+          <div class="col-md-3"></div>
+
+          <!-- Form second part -->
+          <div class="col-md-6 paiement" id="paiement">
 
             <!-- Card number -->
             <div class="form-group">

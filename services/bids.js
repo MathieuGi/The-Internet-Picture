@@ -26,6 +26,7 @@ module.exports = {
         });
     },
 
+
     // This function is used to get all bids
     getAll: function(limit, offset) {
         return bid.findAll({
@@ -117,21 +118,20 @@ module.exports = {
     },
 
     // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
-    setBidTime: function(idBid) {
+    setBidTime: function() {
 
-        return this.getBest().then(function(res) {
+        return this.getAll(1,1).then(function(res) {
             // Transform date object into timestamp object
-            var createdAt = res.createdAt.getTime();
+            
+            var createdAt = res[0].createdAt.getTime();
             var nowDate = Date.now();
-            var bidTime = (nowDate - createdAt) / 1000 / 3600;
-
-            console.log(bid + "--------------------------------");
+            var bidTime = (nowDate - createdAt);
 
             bid.update({
                 bid_time: bidTime
             }, {
                 where: {
-                    id: res.id
+                    id: res[0].id
                 }
             }).then(function(res) {
                 return res;

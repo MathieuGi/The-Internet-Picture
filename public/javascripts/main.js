@@ -53,6 +53,18 @@ $(document).ready(function() {
 
     });
 
+    // On clicking on trump button, show payement form
+    $("#trump").click(function(){
+        //e.preventDefault();
+        if ($("#paiement").is(":visible")){
+            $(".paiement").hide();
+        }
+        else {
+            $(".paiement").show(); 
+        }
+
+    });
+
     // Add next bidders in rank-table
     var addNextBidders = function(bidders, offset) {
         var html = "";
