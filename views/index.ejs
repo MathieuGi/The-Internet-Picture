@@ -147,7 +147,7 @@
 
             <!-- Selected price -->
             <div class="form-group">
-                <label for="form-price">Montant (€) *</label> - Meilleur enchère actuelle : <%= bidders[0].price %>
+                <label for="form-price">Montant (€) *</label> - Meilleur enchère actuelle : <%= bidders[0].price %> €
                 <input type='hidden' class="min-price" value='<%= bidders[0].price %>'/>
                 <input type="number" class="form-control" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
                 <span class="error-message" id="price-too-low">L'enchère minimum est de <%= bidders[0].price + 1 %> €</span>
@@ -190,7 +190,7 @@
 
             <!-- Submit -->
             <div>
-              <button class="confirm-button" id="buy-button">Valider</button>
+              <input type="submit" class="confirm-button" id="buy-button">Valider</button>
               <img class="loading" src="images/static/loading.gif"/>
             </div>
             

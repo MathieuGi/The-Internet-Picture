@@ -86,7 +86,7 @@ $(document).ready(function() {
     var form = $('#paiement-form');
 
     form.submit(function(e) {
-
+        e.preventDefault();
         if (! validateForm()) {
             $('.invalid-feedback').show();
             e.preventDefault();
