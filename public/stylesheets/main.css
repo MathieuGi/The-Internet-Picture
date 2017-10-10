@@ -78,6 +78,13 @@ body {
     padding: 0;
 }
 
+.error-message, .invalid-feedback {
+    display: none;
+	color: #E4584C;
+	font-size: 13px;
+	font-family: "Raleway_ExtraLight";
+}
+
 #buy-button:hover{
     cursor:pointer;
     background-color: #8389e2;
@@ -94,8 +101,6 @@ body {
 #trump:hover {
 background-color: #8389e2;
 }
-
-
 
 .paiement {
     display:none;
@@ -152,7 +157,7 @@ background-color: #8389e2;
     cursor: pointer;
 }
 
-.rank-table .loading {
+.loading {
     display: none;
 }
 

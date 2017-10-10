@@ -55,13 +55,12 @@ module.exports = {
             } else {
 
                 // Resize image and store it on server
-                jimp.read(fullPath, function(err, img) {
-                    if (err) {
-                        winston.error(FILE_NAME + ' - Fail to read image: ' + err);
-                        throw 'readFileFailed'
-                    }
+                jimp.read(fullPath).then(function(img) {
                     img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
                     winston.info(FILE_NAME + ' - Image saved and resized ');
+                }).catch(function(err){
+                    winston.error(FILE_NAME + ' function saveImage - Fail to read image: ' + err);
+                    throw 'readFileFailed';
                 });
             }
         });
