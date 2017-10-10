@@ -57,7 +57,10 @@ $(document).ready(function() {
             $(".paiement").hide();
         }
         else {
-            $(".paiement").show(); 
+            if(validateForm()){
+                $(".paiement").show();               
+            }
+
         }
         e.preventDefault();
     });
@@ -334,6 +337,8 @@ $(document).ready(function() {
 
     // Validate form
     var validateForm = function(){
+        console.log($('#form-price').val())
+        $('.error-message').hide();
         if($('#form-name').val() == ""){
             $('#mandatoryFields').show();
             window.location = '#form-name';
@@ -346,8 +351,16 @@ $(document).ready(function() {
             $('#imageToBig').show();
             window.location = '#form-image';
             return false;
-        } else if ($('#form-price') == ""){
+        } else if ($('#form-price').val() == ""){
             $('#missing-price').show();
+            window.location = '#form-price';
+            return false;
+        } else if ($('#form-price').val() % 1 != 0){
+            $('#must-be-integer').show();
+            window.location = '#form-price';
+            return false;
+        }  else if (parseInt($('#form-price').val(), 10) <= parseInt($('.min-price').val(), 10)){
+            $('#price-too-low').show();
             window.location = '#form-price';
             return false;
         } else {

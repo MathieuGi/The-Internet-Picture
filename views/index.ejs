@@ -148,8 +148,11 @@
             <!-- Selected price -->
             <div class="form-group">
                 <label for="form-price">Montant (€) *</label> - Meilleur enchère actuelle : <%= bidders[0].price %>
+                <input type='hidden' class="min-price" value='<%= bidders[0].price %>'/>
                 <input type="number" class="form-control" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+                <span class="error-message" id="price-too-low">L'enchère minimum est de <%= bidders[0].price + 1 %> €</span>
                 <span class="error-message" id="missing-price">Merci de renseigner un prix</span>
+                <span class="error-message" id="must-be-integer">Seuls les valeurs entières sont acceptées</span>
             </div>
 
             <!-- Go to the pay part -->
