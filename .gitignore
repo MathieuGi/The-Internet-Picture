@@ -28,3 +28,7 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# Non static images
+public/images/fullsize
+public/images/thumbs

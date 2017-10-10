@@ -5,6 +5,7 @@ var fs = require('fs');
 var jimp = require('jimp');
 var bidService = require('./bids');
 var buttonBuyService = require('./buttonBuys');
+var ejs = require('ejs');
 
 module.exports = {
     // Resolve multiple promises and return their results in an array
@@ -54,13 +55,12 @@ module.exports = {
             } else {
 
                 // Resize image and store it on server
-                jimp.read(fullPath, function(err, img) {
-                    if (err) {
-                        winston.error(FILE_NAME + ' - Fail to read image: ' + err);
-                        throw 'readFileFailed'
-                    }
+                jimp.read(fullPath).then(function(img) {
                     img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
                     winston.info(FILE_NAME + ' - Image saved and resized ');
+                }).catch(function(err){
+                    winston.error(FILE_NAME + ' function saveImage - Fail to read image: ' + err);
+                    throw 'readFileFailed';
                 });
             }
         });
@@ -70,8 +70,8 @@ module.exports = {
     emitNewBidder: function(io) {
 
         // Get new bestBid
-        var bestBid = bidService.getBest().then(bestBid => {
-            return bestBid;
+        var bestBid = bidService.getAll(3, 0).then(bidders => {
+            return ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
 
         // Execute promises and send the result via socket.io

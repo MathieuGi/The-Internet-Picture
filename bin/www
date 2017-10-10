@@ -16,7 +16,8 @@ var certificate = fs.readFileSync('sslcert/cert.cer', 'utf8');
 var credentials = { key: privateKey, cert: certificate };
 
 // Specify the two differents ports
-var port_HTTP = normalizePort(process.env.PORT_HTTP || '3000');
+
+var port_HTTP = normalizePort(process.env.PORT_HTTP || '3001');
 var port_HTTPS = normalizePort(process.env.PORT_HTTPS || '3000');
 
 // At top of routing calls
