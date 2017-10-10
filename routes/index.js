@@ -68,31 +68,46 @@ var returnRouter = function(io) {
 
         // Variables settings
         var body = req.body;
+
+        // Check if variables exist
+        if (body.name == "") {
+            winston.error(FILE_NAME + ' - Trying to create bid without name. Request canceled');
+            return res.status(500).json({ error: "missingField" });
+        }
+
+        if(typeof req.file == 'undefined'){
+            winston.error(FILE_NAME + ' - Trying to create bid without image. Request canceled');
+            return res.status(500).json({ error: "noImage" });
+        }
+
         var originalName = req.file.originalname;
         var extension = fileExt(originalName);
         var newName = req.file.filename + '.' + extension
         var acceptedFiles = ["jpeg", "jpg", "png", "gif"];
 
-        // Check if variables are right
-        if (body.name == "") {
-            winston.error(FILE_NAME + ' - Trying to create bid without name. Request canceled');
-            res.status(500).json({ error: "missingField" });
-        }
-
-        if (!(checkType.string(body.name) &&
-                checkType.string(body.url) &&
-                checkType.string(body.text) &&
-                checkType.string(body.token))) {
-
-            winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
-            res.status(500).json({ error: "wrongFieldsType" });
-        }
-
         // Verifying the file extension
         if (acceptedFiles.indexOf(fileExt(extension)) == -1) {
             winston.error(FILE_NAME + ' - Trying to create bid with wrong file extension. Request canceled')
-            res.status(500).json({ error: "wrongType" });
+            return res.status(500).json({ error: "wrongType" });
         } else {
+
+           // Check variables types
+            if (!(checkType.string(body.name) &&
+                    checkType.string(body.url) &&
+                    checkType.string(body.text) &&
+                    checkType.string(body.token) &&
+                    checkType.integer(parseInt(body.price, 10)))
+                ) {
+
+                winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
+                return res.status(500).json({ error: "wrongFieldsType" });
+            }
+
+            if(body.name.length > 40 || body.text.length > 130){
+                winston.error(FILE_NAME + ' - Trying to create bid with too long fields');
+                return res.status(500).json({ error: "wrongFieldsType" });
+            }
+
             try {
                 // Save image in folder (fullsize and resized)
                 sharedService.saveImage(req.file, newName);
@@ -109,11 +124,11 @@ var returnRouter = function(io) {
                     }, function(err, charge) {
                         if (err) {
                             bidService.delete(newBid.id);
-                            res.status(500).json({ error: 'paiementFailed' });
+                            return res.status(500).json({ error: 'paiementFailed' });
                         } else {
-                            bidService.setBidTime().then(res => {
+                            bidService.setBidTime().then(() => {
                                 sharedService.emitNewBidder(io);
-                                res.status(200).json({ result: 'success' });                            
+                                return res.status(200).json({ result: 'success' });                            
                             });
 
                         }
@@ -121,12 +136,12 @@ var returnRouter = function(io) {
                 }).catch(function(err) {
                     winston.error(FILE_NAME + ' - Fail to add new bid in database');
                     winston.error(FILE_NAME + ' - create bid: ' + err)
-                    res.status(500).json({ error: 'creationFailed' });
+                    return res.status(500).json({ error: 'creationFailed' });
                 });
             } catch (err) {
                 // Error when trying to save image and resize it
                 winston.error(FILE_NAME + ' - ' + err);
-                res.status(500).json({ error: err });
+                return res.status(500).json({ error: err });
             }
         }
     });

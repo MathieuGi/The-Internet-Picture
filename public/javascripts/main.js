@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-    // Hide every error message
-    $('.error-message').hide();
-
     // Redirection to the image menu when clicking on "Qui est le plus riche"
     $('h1').click(function() {
         $('.rank-table-area').hide();
@@ -54,15 +51,15 @@ $(document).ready(function() {
     });
 
     // On clicking on trump button, show payement form
-    $("#trump").click(function(){
-        //e.preventDefault();
+    $("#trump").click(function(e){
+        
         if ($("#paiement").is(":visible")){
             $(".paiement").hide();
         }
         else {
             $(".paiement").show(); 
         }
-
+        e.preventDefault();
     });
 
     // Add next bidders in rank-table
@@ -86,14 +83,17 @@ $(document).ready(function() {
     var form = $('#paiement-form');
 
     form.submit(function(e) {
-        if (form[0].checkValidity() == false) {
+
+        if (! validateForm()) {
             $('.invalid-feedback').show();
             e.preventDefault();
             e.stopPropagation();
+        } else {
+            $('.invalid-feedback').hide();
+            $('#paiement-form .confirm-button').hide();
+            $('#paiement-form .loading').show();
+            stripe.createToken(card).then(setOutcome);
         }
-
-        e.preventDefault();
-        stripe.createToken(card).then(setOutcome);
     });
 
     // Timer
@@ -131,6 +131,9 @@ $(document).ready(function() {
             successElement.classList.add('visible');
             sendForm(stripeToken);
         } else if (result.error) {
+
+            $('#paiement-form .loading').hide();
+            $('#paiement-form .confirm-button').show();
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
         }
@@ -283,6 +286,8 @@ $(document).ready(function() {
     // Send all information to create and paye a new bid
     var sendForm = function(stripeToken) {
         $('.error-message').hide();
+
+        // If their is an image in form and a token created by stripe
         if ($('#form-image').length && stripeToken != 0) {
             var url = "/createBid";
 
@@ -302,20 +307,51 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-                    $('#menu #picture-area').trigger('click');
-                    $('.paiement-success').show().delay(3000).fadeOut(500);
+                    location.reload();
                 },
                 error: function(err) {
+
+                    // On error show button and hide loading
+                    $('#paiement-form .loading').hide(); 
+                    $('#paiement-form .confirm-button').show();
+
                     // Add paiementFailed
                     if (err.responseJSON.error == "wrongType") {
                         $('#wrongImageType').show();
                     } else if (err.responseJSON.error == "missingField") {
                         $('#mandatoryFields').show();
+                    } else if(err.responseJSON.error == "wrongFieldsType") {
+                        $('#paiement-form .invalid-feedback').show();
+                    } else if(err.responseJSON.error == "noImage") {
+                        $('#paiement-form #noImage').show();
                     } else {
                         $('#submitFailed').show();
                     }
                 }
             });
+        }
+    }
+
+    // Validate form
+    var validateForm = function(){
+        if($('#form-name').val() == ""){
+            $('#mandatoryFields').show();
+            window.location = '#form-name';
+            return false;
+        } else if($('#form-image').val() == ""){
+            $('#noImage').show();
+            window.location = '#form-image';
+            return false;
+        } else if($('#form-image')[0].files[0].size > 2000000){
+            $('#imageToBig').show();
+            window.location = '#form-image';
+            return false;
+        } else if ($('#form-price') == ""){
+            $('#missing-price').show();
+            window.location = '#form-price';
+            return false;
+        } else {
+            return true;
         }
     }
 });
