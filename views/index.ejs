@@ -77,8 +77,8 @@
                 <%= date.getMinutes() > 1 && bidder.bid_time >= 60000 ? ' minutes' : '' %>
                 <%= date.getMinutes() == 1 && bidder.bid_time >= 60000 ? ' minute' : '' %>
                 <%= day == 0 && hours == 0 ? seconds : '' %>
-                <%= seconds > 1 && seconds > 0 ? ' secondes' : '' %>
-                <%= seconds == 1 && seconds > 0 ? ' seconde' : '' %>
+                <%= seconds > 1 && seconds > 0 && day == 0 && hours == 0 ? ' secondes' : '' %>
+                <%= seconds == 1 && seconds > 0 && day == 0 && hours == 0 ? ' seconde' : '' %>
               <% } %>
               </td>
             </tr>
@@ -197,7 +197,14 @@
     </div>
   </div>
 </div>
-    
+<br><br>
+  <footer class="page-footer">
+    <div class="row justify-content-md-center footer">
+    <div class="col-md-auto" > <a href="#"> conditions générales </a></div>
+    <div class="col-md-auto" > <a href="#"> Nous contacter </a></div> 
+    </div>
+  </footer>
+
 <script src="/jquery/jquery.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/javascripts/main.js" ></script> 

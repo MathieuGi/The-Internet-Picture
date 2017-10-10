@@ -397,3 +397,7 @@ background-color: #8389e2;
 .rich3 {
     opacity: 0;
 }
+
+a:link{
+    color: gray;     
+}
