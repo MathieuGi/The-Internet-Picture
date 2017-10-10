@@ -41,7 +41,7 @@ module.exports = {
         var thumbsPath = 'public/images/thumbs/' + name;
 
         // Throw an error if image is too big
-        if (file.size > 2000000) {
+        if (file.size > 4000000) {
             winston.error(FILE_NAME + ' - The file it too big');
             throw 'sizeError'
         }
@@ -56,6 +56,7 @@ module.exports = {
 
                 // Resize image and store it on server
                 jimp.read(fullPath).then(function(img) {
+                    img.contain(800, 800).quality(100).background(0xFFFFFFFF).write(fullPath);
                     img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
                     winston.info(FILE_NAME + ' - Image saved and resized ');
                 }).catch(function(err){

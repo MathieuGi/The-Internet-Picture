@@ -191,6 +191,7 @@ $(document).ready(function() {
         var createdAt = parseInt($('#richest-time').val(), 10);
         var date = new Date();
         var currentTime = date.getTime() - createdAt;
+
         //alert("created : " + createdAt + " timezoneoff : " + timezoneOffset + " currentTime : " + currentTime)
         var timer = new Date(currentTime);
         var d = Math.trunc(currentTime / oneDay)
@@ -347,7 +348,7 @@ $(document).ready(function() {
             $('#noImage').show();
             window.location = '#form-image';
             return false;
-        } else if($('#form-image')[0].files[0].size > 2000000){
+        } else if($('#form-image')[0].files[0].size > 4000000){
             $('#imageToBig').show();
             window.location = '#form-image';
             return false;

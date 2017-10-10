@@ -19,7 +19,7 @@
               <tbody>
                 <tr>
                   <td class="days"><%= Math.trunc(bidder.bid_time / (24 * 60 * 60 * 1000)) %></td>
-                  <td class="hours"><%= new Date(bidder.bid_time).getHours() - 1 %></td>
+                  <td class="hours"><%= new Date(bidder.bid_time).getHours() %></td>
                   <td class="minutes"><%= new Date(bidder.bid_time).getMinutes() %></td>
                   <td class="seconds"><%= new Date(bidder.bid_time).getSeconds() %></td>
                 </tr>
