@@ -1,0 +1,104 @@
+<!--Bid part-->
+<div class="row main-area bid-more">
+  <div class="col-md-12 text-center">
+
+    <!-- Paiement form -->
+    <form id="paiement-form" novalidate>
+      <div class="row">
+        <div class="col-md-3"></div>
+
+        <!-- Form first part -->
+        <div class="col-md-6 information">
+
+          <!-- Name -->
+          <div class="form-group">
+              <label for="form-name">Nom *</label>
+              <input type="text" class="form-control" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
+              <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
+          </div>
+
+          <!-- Image -->
+          <div class="form-group">
+              <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 2Mo) *</label>
+              <input type="file" class="form-control" id="form-image" accept=".jpeg, .jpg, .png, .gif" required>
+              <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
+              <span id="noImage" class="error-message"> Merci de selectionner une image </span>
+              <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
+          </div>
+       
+          <!-- Link -->
+          <div class="form-group">
+              <label for="form-url">Lien url</label>
+              <input type="url" class="form-control" id="form-url" placeholder="Entrez un lien">
+          </div>
+
+          <!-- Text -->
+          <div class="form-group">
+              <label for="form-text">Texte complémentaire (130 caractères)</label>
+              <input type="text" class="form-control" id="form-text" maxlength="130" placeholder="Entrez un text complémentaire">
+          </div>
+
+          <!-- Selected price -->
+          <div class="form-group">
+              <label for="form-price">Montant (€) *</label> - Meilleur enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €
+              <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
+              <input type="number" class="form-control form-price" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+              <span class="error-message" id="price-too-low">L'enchère minimum est de <span class="min-bid-value"><%= bidders[0].price + 1 %></span> €</span>
+              <span class="error-message" id="missing-price">Merci de renseigner un prix</span>
+              <span class="error-message" id="must-be-integer">Seuls les valeurs entières sont acceptées</span>
+          </div>
+
+          <!-- Go to the pay part -->
+            <a href="#paiement">
+              <input type="button" id="trump" value="Renchérir" href="#paiement" />
+            </a>
+          
+        </div>
+      </div></br>
+       
+        <!-- Separation between the two parts of form -->
+      <div class="row">
+        <div class="col-md-3"></div>
+
+        <!-- Form second part -->
+        <div class="col-md-6 paiement" id="paiement">
+
+          <!-- Card number -->
+          <div class="form-group">
+            <label for="card-element">Card</label>
+            <div id="card-element" class="form-control"></div>
+          </div>
+
+          <!-- User terms -->
+          <div class="checkbox">
+            <label>
+                <input type="checkbox" checked> J'accepte les <a href="#" class="terms">conditions générales d'utilisation</a>
+            </label>
+          </div>
+
+          <!-- Missing fields message -->
+          <div class="invalid-feedback">
+            Certains champs ne sont pas remplis correctement
+          </div>
+
+          <!-- Submit -->
+          <div>
+            <button type="submit" class="confirm-button" id="buy-button">Valider</button>
+            <img class="loading" src="images/static/loading.gif"/>
+          </div>
+          
+          <p class="star-legend">* Champ obligatoire</p>
+
+          <!-- Outcome for stripe -->
+          <div class="outcome">
+            <div class="error" role="alert"></div>
+            <div class="success">
+              <span class="token"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

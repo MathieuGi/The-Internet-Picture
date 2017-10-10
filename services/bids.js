@@ -83,40 +83,7 @@ module.exports = {
             }
         })
     },
-
-    // This function update a bid from 'is_active': false to 'is_active': true  function(idBids)
-    setBidActive: function(idBid) {
-        if (!checkTypes.integer(idBid)) {
-            throw "idBid must be an integer"
-        } else {
-            return bid.update({
-                is_active: true
-            }, {
-                where: {
-                    id: idBid
-                }
-            }).then(function(res) {
-                return res;
-            }).catch(function(err) {
-                throw err;
-            })
-        }
-    },
-
-    // This function check if the value of the bids (in argument) is superior to the value of the current bid function(idBids)
-    isValueSuperiorCurrentBid: function(valueOfBid) {
-        return this.getBest().then(function(res) {
-            if (res.value >= valueOfBid) {
-                // return the getBest in order to use it directly in setBidTime 
-                return res;
-            } else {
-                return false;
-            }
-        }).catch(function(err) {
-            throw err;
-        })
-    },
-
+    
     // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
     setBidTime: function() {
 

@@ -23,8 +23,6 @@ body {
 h1 {
     font-size: 4em;
     font-family: "CormorantGaramond_Light";
-    color: #cc0000;
-    cursor: pointer;
 }
 
 .rank-header,
@@ -34,7 +32,6 @@ h1 {
 
 .richest-text,
 .clock,
-.bid-value,
 .bid-more,
 .menu-item,
 .timer-part span {
@@ -78,6 +75,11 @@ body {
     padding: 0;
 }
 
+.main-title a:link {
+    text-decoration: none;
+    color: #cc0000;
+    cursor: pointer;
+}
 .error-message, .invalid-feedback {
     display: none;
 	color: #E4584C;

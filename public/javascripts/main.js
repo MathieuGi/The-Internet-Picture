@@ -1,17 +1,5 @@
 $(document).ready(function() {
 
-    // Redirection to the image menu when clicking on "Qui est le plus riche"
-    $('h1').click(function() {
-        $('.rank-table-area').hide();
-        $('#rank-table-area').removeClass('active');
-
-        $('.picture-area').show();
-        $('#picture-area').addClass('active');
-
-        $('.bid-more').hide();
-        $('#bid-more').removeClass('active');
-    })
-
     // Navigation menu
     $('.menu-item').click(function() {
         var menu = $(this).attr("id");
@@ -151,23 +139,37 @@ $(document).ready(function() {
 
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
-        $('.picture-area').fadeTo(400, 0, function(){
-            $('.picture-area').html(data[0])
-            setTimeout(function(){
 
-                // Others timer 
-                hideTimePart('.others-area.order-1');
-                hideTimePart('.others-area.order-3');
+        var html = rankTableRow(data.bestBid);
 
-                // Richest adapte img position
-                replaceImg();
-            }, 100);
-            setTimeout(function(){
-                $('.picture-area').fadeTo(300, 1);
-            }, 200);
-            
-        });
+        if($('.picture-area').is(':visible')){
+            $('.picture-area').fadeTo(400, 0, function(){
+                $('.picture-area').html(data.homepage);
+                setTimeout(function(){
 
+                    // Others timer 
+                    hideTimePart('.others-area.order-1');
+                    hideTimePart('.others-area.order-3');
+
+                    // Richest adapte img position
+                    replaceImg();
+                }, 100);
+                setTimeout(function(){
+                    $('.picture-area').fadeTo(300, 1);
+                }, 200);            
+            });
+        } else {
+            $('.picture-area').html(data.homepage);
+        }
+
+
+        $('.rank-table .table tbody').prepend(html);
+
+        $('.bid-value').html(data.bestBid.price);
+        $('#paiement-form .min-bid-value').html(data.bestBid.price + 1);
+        $('.form-price').val(data.bestBid.price + 1);
+        $('.min-price').val(data.bestBid.price + 1);
+        $('.paiement-success').show().delay(2500).fadeOut(2000);
  
     });
 
@@ -182,7 +184,7 @@ $(document).ready(function() {
             '<td class="align-middle"><img class="thumbs" src="images/thumbs/' + bid.img_path + '" alt="image miniature"></td>' +
             '<td class="align-middle text-truncate">' + bid.name + '</td>' +
             '<td class="align-middle">' + bid.price + ' €</td>' +
-            '<td class="align-middle">' + 'time' + '</td>' +
+            '<td class="align-middle">-</td>' +
             '</tr>';
     }
 
@@ -359,7 +361,7 @@ $(document).ready(function() {
             $('#must-be-integer').show();
             window.location = '#form-price';
             return false;
-        }  else if (parseInt($('#form-price').val(), 10) <= parseInt($('.min-price').val(), 10)){
+        }  else if (parseInt($('#form-price').val(), 10) < parseInt($('.min-price').val(), 10)){
             $('#price-too-low').show();
             window.location = '#form-price';
             return false;
