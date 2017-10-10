@@ -28,7 +28,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             bid_time: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.BIGINT,
                 defaultValue: 0
             },
             is_active: {
