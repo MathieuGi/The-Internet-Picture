@@ -71,14 +71,16 @@ module.exports = {
     emitNewBidder: function(io) {
 
         // Get new bestBid
-        var bestBid = bidService.getAll(3, 0).then(bidders => {
-            return ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
+        var homepage = bidService.getAll(3, 0).then(bidders => {
+            var newHtml = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
+            var json = {newHtml: newHtml, bestBid: bidders[0]};
+            return json;
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
 
         // Execute promises and send the result via socket.io
-        var promisesArray = [bestBid];
+        var promisesArray = [homepage];
         this.doPromises(promisesArray).then(res => {
-            io.sockets.emit('newBidder', res);
+            io.sockets.emit('newBidder', {homepage: res[0].newHtml, bestBid: res[0].bestBid});
         }).catch(err => {
             winston.error(FILE_NAME + ' - emitNewBidder: ' + err);
             throw err;
