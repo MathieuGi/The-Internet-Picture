@@ -190,8 +190,7 @@ $(document).ready(function() {
         var oneDay = 24 * 60 * 60 * 1000;
         var createdAt = parseInt($('#richest-time').val(), 10);
         var date = new Date();
-        var currentTime = date.getTime() - createdAt;
-
+        var currentTime = Math.abs(date.getTime() + (2 * 60 * 60 * 1000) - createdAt);
         //alert("created : " + createdAt + " timezoneoff : " + timezoneOffset + " currentTime : " + currentTime)
         var timer = new Date(currentTime);
         var d = Math.trunc(currentTime / oneDay)
