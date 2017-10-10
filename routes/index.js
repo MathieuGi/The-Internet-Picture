@@ -102,7 +102,12 @@ var returnRouter = function(io) {
                 winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
                 return res.status(500).json({ error: "wrongFieldsType" });
             }
-            
+
+            if(body.name.length > 40 || body.text.length > 130){
+                winston.error(FILE_NAME + ' - Trying to create bid with too long fields');
+                return res.status(500).json({ error: "wrongFieldsType" });
+            }
+
             try {
                 // Save image in folder (fullsize and resized)
                 sharedService.saveImage(req.file, newName);
