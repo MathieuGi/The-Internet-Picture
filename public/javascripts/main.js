@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     // Redirection to the image menu when clicking on "Qui est le plus riche"
     $('h1').click(function() {
         $('.rank-table-area').hide();
@@ -83,18 +83,17 @@ $(document).ready(function() {
     var form = $('#paiement-form');
 
     form.submit(function(e) {
-        $('#paiement-form .confirm-button').hide();
-        $('#paiement-form .loading').show();
-        if (form[0].checkValidity() == false) {
+
+        if (! validateForm()) {
             $('.invalid-feedback').show();
             e.preventDefault();
             e.stopPropagation();
         } else {
             $('.invalid-feedback').hide();
+            $('#paiement-form .confirm-button').hide();
+            $('#paiement-form .loading').show();
+            stripe.createToken(card).then(setOutcome);
         }
-
-        e.preventDefault();
-        stripe.createToken(card).then(setOutcome);
     });
 
     // Timer
@@ -330,6 +329,29 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
+    }
+
+    // Validate form
+    var validateForm = function(){
+        if($('#form-name').val() == ""){
+            $('#mandatoryFields').show();
+            window.location = '#form-name';
+            return false;
+        } else if($('#form-image').val() == ""){
+            $('#noImage').show();
+            window.location = '#form-image';
+            return false;
+        } else if($('#form-image')[0].files[0].size > 2000000){
+            $('#imageToBig').show();
+            window.location = '#form-image';
+            return false;
+        } else if ($('#form-price') == ""){
+            $('#missing-price').show();
+            window.location = '#form-price';
+            return false;
+        } else {
+            return true;
         }
     }
 });

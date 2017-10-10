@@ -130,6 +130,7 @@
                 <input type="file" class="form-control" id="form-image" accept=".jpeg, .jpg, .png, .gif" required>
                 <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
                 <span id="noImage" class="error-message"> Merci de selectionner une image </span>
+                <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
             </div>
          
             <!-- Link -->
@@ -148,6 +149,7 @@
             <div class="form-group">
                 <label for="form-price">Montant (€) *</label> - Meilleur enchère actuelle : <%= bidders[0].price %>
                 <input type="number" class="form-control" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+                <span class="error-message" id="missing-price">Merci de renseigner un prix</span>
             </div>
 
             <!-- Go to the pay part -->
