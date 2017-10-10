@@ -12,7 +12,7 @@
     "check-types": "7.3.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "ejs": "~2.5.6",
+    "ejs": "2.5.7",
     "express": "4.15.5",
     "file-extension": "3.1.2",
     "helmet": "3.8.1",

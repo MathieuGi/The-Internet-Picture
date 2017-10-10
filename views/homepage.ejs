@@ -1,0 +1,65 @@
+<!-- Richest -->
+    <% bidders.forEach(function(bidder, i) { %>
+    <% if (i >= 3) return false %>
+    <div class="col-<%= (i == 0 ? 5 : 3) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %>">
+      <div class="row top-rank">
+        <div class="col-12 text-center">
+          <h2><%= i+1 %></h2>
+          <span><%= bidder.price %> €</span>
+        </div>
+      </div>
+      <article class="block-image">
+        <header class="header">
+          <div class="name">
+            <span><%= bidder.name %></span>
+          </div>
+          <div class="time timer-part text-center">
+            <input id="richest-time" type="hidden" value="<%= bidder.createdAt.getTime() %>"/>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="days"><%= Math.trunc(bidder.bid_time / (24 * 60 * 60 * 1000)) %></td>
+                  <td class="hours"><%= new Date(bidder.bid_time).getHours() - 1 %></td>
+                  <td class="minutes"><%= new Date(bidder.bid_time).getMinutes() %></td>
+                  <td class="seconds"><%= new Date(bidder.bid_time).getSeconds() %></td>
+                </tr>
+                <tr>
+                  <th class="days">
+                    Jours
+                  </th>
+                  <th class="hours">
+                    Heures
+                  </th>
+                  <th class="minutes">
+                    Minutes
+                  </th>
+                  <th class="seconds">
+                    Secondes
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </header>
+        <% if(bidder.url != "") { %>
+        <a href="<%= bidder.url %>" target="_blank">
+        <% } %>
+          <div class="img">
+            <div>
+              <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>">              
+            </div>
+          </div>
+        <% if(bidder.url != "") { %>
+        </a>
+        <% } %> 
+        
+          <div class="richest-text text-center <%= (i == 0 ? 'visible':'') %>" <% if(bidder.text == "") { %> style="background:transparent"<% } %>>
+            <span>
+              <%= bidder.text %>
+            </span>
+          </div>
+        
+      </article>  
+    </div>  
+
+    <% }) %>

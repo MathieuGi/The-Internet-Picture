@@ -168,6 +168,10 @@ background-color: #8389e2;
 
 /* Homepage part */
 
+.main-area .richest-text {
+	display: none;
+}
+
 .richest-area .top-rank {
 	margin-bottom: 25px;
 }
@@ -190,6 +194,7 @@ background-color: #8389e2;
 .block-image img {
 	border: solid #e6e6e6;
     border-width: 1px;
+    position: relative;
 }
 
 .block-image .name {
@@ -232,10 +237,10 @@ background-color: #8389e2;
 .richest-area .top-rank {
 	color: #e8d254;
 }
-.second-area .top-rank {
+.others-area.order-1 .top-rank {
 	color: #dadace;
 }
-.third-area .top-rank {
+.others-area.order-3 .top-rank {
 	color: #edab60;
 }
 
@@ -261,7 +266,7 @@ background-color: #8389e2;
 	word-break: break-all;
 }
 
-.second-area, .third-area {
+.others-area {
 	margin-bottom: 60px;
 }
 

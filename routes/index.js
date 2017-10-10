@@ -45,6 +45,7 @@ var returnRouter = function(io) {
 
     });
 
+    // Load more element in rank-table
     router.get('/getBidsList', function(req, response, next) {
         winston.info(FILE_NAME + ' - Prepare to answer to /getBidsList request');
 
@@ -110,9 +111,11 @@ var returnRouter = function(io) {
                             bidService.delete(newBid.id);
                             res.status(500).json({ error: 'paiementFailed' });
                         } else {
-                            bidService.setBidTime();
-                            sharedService.emitNewBidder(io);
-                            res.status(200).json({ result: 'success' });
+                            bidService.setBidTime().then(res => {
+                                sharedService.emitNewBidder(io);
+                                res.status(200).json({ result: 'success' });                            
+                            });
+
                         }
                     });
                 }).catch(function(err) {

@@ -100,17 +100,13 @@ $(document).ready(function() {
     startTime();
 
     // Others timer 
-    hideTimePart('.second-area');
-    hideTimePart('.third-area');
+    hideTimePart('.others-area.order-1');
+    hideTimePart('.others-area.order-3');
 
     // Richest adapte img position
-    if($('.richest-area .block-image .img').height() == 350){
-        $('.richest-area .block-image img').css('margin-top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
-    }
+    replaceImg();
     $(window).resize(function(){
-        if($('.richest-area .block-image .img').height() == 350){
-            $('.richest-area .block-image img').css('margin-top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
-        }
+        replaceImg();
     });    
 
     /******************* Stripe *********************/
@@ -149,16 +145,24 @@ $(document).ready(function() {
 
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
-        if (data[0] != null) {
-            var html = rankTableRow(data[0]);
+        $('.picture-area').fadeTo(400, 0, function(){
+            $('.picture-area').html(data[0])
+            setTimeout(function(){
 
-            $('.rank-table .table tbody').prepend(html);
-            // A revoir !!
-            $('.imageOfRichest').html(
-                '<img class="img-fluid" src="public/images/fullsize/' + data[0].img_path + '" alt="image from richest">'
-            );
+                // Others timer 
+                hideTimePart('.others-area.order-1');
+                hideTimePart('.others-area.order-3');
 
-        }
+                // Richest adapte img position
+                replaceImg();
+            }, 100);
+            setTimeout(function(){
+                $('.picture-area').fadeTo(300, 1);
+            }, 200);
+            
+        });
+
+ 
     });
 
 
@@ -209,6 +213,34 @@ $(document).ready(function() {
         var t = setTimeout(startTime, 500);
     }
 
+    function checkTime(i) {
+        // add zero in front of numbers < 10
+        if (i < 10) { i = "0" + i };
+        return i;
+    }
+
+    function checkDay(d) {
+        if (d > 0) {
+            d = d + "j ";
+        } else {
+            d = "";
+        }
+        return d;
+    }
+
+    // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
+    function addToTimer(type, value) {
+        $('.richest-area td.' + type).html(value);
+        if (!$('.richest-area .' + type).is(':visible')) {
+            $('.richest-area .' + type).show();
+        }
+    
+        if (type == 'days' && value == 0) {
+            $('.richest-area .' + type).hide();
+            $('.richest-area table').css('width', '150px');
+        }
+    }
+
     function hideTimePart(element){
         
         if($(element + ' .days').html() > 0 || $(element + ' .hours').html() > 0) {
@@ -237,31 +269,14 @@ $(document).ready(function() {
         }
     }
 
-    function checkTime(i) {
-        // add zero in front of numbers < 10
-        if (i < 10) { i = "0" + i };
-        return i;
-    }
-
-    function checkDay(d) {
-        if (d > 0) {
-            d = d + "j ";
-        } else {
-            d = "";
-        }
-        return d;
-    }
-
-    // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
-    function addToTimer(type, value) {
-        $('.richest-area td.' + type).html(value);
-        if (!$('.richest-area .' + type).is(':visible')) {
-            $('.richest-area .' + type).show();
-        }
-    
-        if (type == 'days' && value == 0) {
-            $('.richest-area .' + type).hide();
-            $('.richest-area table').css('width', '150px');
+    // Replace the principal image depending on the presence of richest-text or not
+    function replaceImg(){
+        if($('.richest-area .block-image img').height() <= 350){
+            if(!$.trim($('.richest-area .richest-text span').html())){
+                $('.richest-area .block-image img').css('top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height())  / 2)
+            } else {
+                $('.richest-area .block-image img').css('top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
+            }
         }
     }
 

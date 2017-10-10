@@ -127,7 +127,7 @@ module.exports = {
             var nowDate = Date.now();
             var bidTime = (nowDate - createdAt);
 
-            bid.update({
+            return bid.update({
                 bid_time: bidTime
             }, {
                 where: {
