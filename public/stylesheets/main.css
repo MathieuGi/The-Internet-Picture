@@ -75,7 +75,7 @@ body {
     padding: 0;
 }
 
-.main-title a:link {
+.main-title a {
     text-decoration: none;
     color: #cc0000;
     cursor: pointer;
