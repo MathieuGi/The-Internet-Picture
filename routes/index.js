@@ -10,6 +10,7 @@ var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
 var stripe = require("stripe")("sk_test_XAfsNpri7WZmRNUlmmpopsBS");
+var ejs = require('ejs');
 
 var returnRouter = function(io) {
 
@@ -53,7 +54,7 @@ var returnRouter = function(io) {
 
         bidService.getAll(10, parseInt(query.offset)).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            response.json({ bidders: res });
+            response.render('rankTableContent', {bidders: res});
         }).catch(err => {
             winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });
