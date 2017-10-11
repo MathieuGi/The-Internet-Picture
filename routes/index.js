@@ -56,7 +56,7 @@ var returnRouter = function(io) {
             winston.info(FILE_NAME + ' - Send respond to client');
             response.render('rankTableContent', {bidders: res});
         }).catch(err => {
-            winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
+            winston.error(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });
     });
 

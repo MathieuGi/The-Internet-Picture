@@ -70,9 +70,11 @@
 
           <!-- User terms -->
           <div class="checkbox">
-            <label>
-                <input type="checkbox" checked> J'accepte les <a href="#" class="terms">conditions générales d'utilisation</a>
+            <label for="form-terms">
+                <input id="form-terms" type="checkbox" checked> J'accepte les <a href="#" class="terms">conditions générales d'utilisation</a>
             </label>
+            <br>
+            <span class="error-message" id="missing-terms">Merci d'accepter les conditions générales d'utilisation</span>
           </div>
 
           <!-- Missing fields message -->

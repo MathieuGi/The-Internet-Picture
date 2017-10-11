@@ -44,9 +44,10 @@ $(document).ready(function() {
             $(".paiement").hide();
         }
         else {
-            if(validateForm()){
+            if(validateForm(1)){
                 $(".paiement").show();
-                $(window).scrollTop($("#card-element").offset().top - 40);           
+                $(window).scrollTop($("#card-element").offset().top - 40);   
+                $('#card-element').focus()        
             }
 
         }
@@ -58,11 +59,12 @@ $(document).ready(function() {
 
     form.submit(function(e) {
         e.preventDefault();
-        if (! validateForm()) {
-            $('.invalid-feedback').show();
+        if (! validateForm(2)) {
             e.preventDefault();
             e.stopPropagation();
         } else {
+            e.preventDefault();
+            e.stopPropagation();
             $('.invalid-feedback').hide();
             $('#paiement-form .confirm-button').hide();
             $('#paiement-form .loading').show();
@@ -310,7 +312,7 @@ $(document).ready(function() {
     }
 
     // Validate form
-    var validateForm = function(){
+    var validateForm = function(validationNumber){
 
         $('.error-message').hide();
 
@@ -349,6 +351,12 @@ $(document).ready(function() {
             $(window).scrollTop($("#form-price").offset().top - 40);
             return false;
         } 
+
+        else if ( (validationNumber == 2) && (!$('#form-terms').prop('checked')) ){
+            $('#missing-terms').show();
+            $(window).scrollTop($("#form-terms").offset().top - 40);
+            return false;
+        }
 
         else {
             return true;
