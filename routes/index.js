@@ -16,7 +16,6 @@ var returnRouter = function(io) {
 
     /* GET home page. */
     router.get('/', function(req, response, next) {
-
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
 
         bidService.getAll(10, 0).then(res => {
