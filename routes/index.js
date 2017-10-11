@@ -82,7 +82,7 @@ var returnRouter = function(io) {
 
         var originalName = req.file.originalname;
         var extension = fileExt(originalName);
-        var newName = req.file.filename + '.' + extension
+        var newName = req.file.filename + '.' + "jpg"
         var acceptedFiles = ["jpeg", "jpg", "png", "gif"];
 
         // Verifying the file extension
@@ -110,7 +110,7 @@ var returnRouter = function(io) {
 
             try {
                 // Save image in folder (fullsize and resized)
-                sharedService.saveImage(req.file, newName);
+                sharedService.saveImage(req.file, req.file.filename);
 
 
                 // Create the new bid

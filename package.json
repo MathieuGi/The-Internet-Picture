@@ -16,6 +16,7 @@
     "express": "4.15.5",
     "file-extension": "3.1.2",
     "helmet": "3.8.1",
+    "image-size": "0.6.1",
     "jimp": "0.2.28",
     "jquery": "3.2.1",
     "math": "0.0.3",

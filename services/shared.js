@@ -35,68 +35,84 @@ module.exports = {
         }, Promise.resolve([]));
     },
 
-    reSizeImage: function(filePath,name,quality) {
-
+    transformImage: function(filePath, name, quality){
         var _this = this;
         var weight = 120000; // Weight max of the final picture wanted
         var thumbsPath = 'public/images/thumbs/' + name + '.jpg'; // Path of the thumbs picture
         var modelePath = 'public/images/fullsize/' + name + 'modele.jpg'; // Path of the modele picture (700-400 with quality 100)
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
-        var toDeletePath = 'public/images/fullsize/' + name; // Path of the picture without an extension (wich has to be deleted)
+        var toDeletePath = 'public/images/fullsize/' + name; // first file to delete at the end
 
-        jimp.read(filePath).then(function(img) {
-            
-            if(quality == 100){
-                // Resize picture in 700*400 keeping 100% quality 
-                img.contain(700, 400).quality(100).background(0xFFFFFFFF).write(modelePath,function(){
+        jimp.read(filePath).then(img => {
 
-                    // check weight (called size in the function)
+            // First call to this function
+            if(quality === 100) {
+
+                // Check if we need to resize
+                var dimensions = sizeOf(filePath);
+                if(dimensions.width > 700 || dimensions.height > 400){
+
+                    // Resize image
+                    winston.info(FILE_NAME + ' - transformImage: Resizing image in 700x400')
+                    img.contain(700, 400);
+                }
+
+                // Save model image
+                img.background(0xFFFFFFFF).write(modelePath, function(){
+                    // check image weight 
                     var stats = fs.statSync(modelePath);
+                    winston.info(FILE_NAME + ' - get stats for image: ' + modelePath);
                     var fileSizeInBytes = stats.size;
-                    if(fileSizeInBytes>weight){
-                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ' : ' +modelePath);
+
+                    if(fileSizeInBytes > weight){
+                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ': ' +modelePath);
+
                         // If weight too big, lower quality
                         quality = quality - 10;
-                       _this.reSizeImage(modelePath,name,quality);
-                    }else{
+                        _this.transformImage(modelePath, name, quality);
+                        return;
+                    } else {
                         /* If weight is good, make the thumbs picture and create the final of the picture (fullPath), 
                         delete the modele picture and delete the picture without an extension */
-                        winston.info(FILE_NAME + ' - Image created with quality = '+ quality + ' : ' +modelePath);
+                        winston.info(FILE_NAME + ' - Image created with quality = '+ quality + ': ' +modelePath);
                         img.write(fullPath); 
                         img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
                         fs.unlink(modelePath);
                         fs.unlink(toDeletePath);
+                        return;
                     }
                 });
-            }else{
-                // The resizing has been done (700*400) but weight is too big, so we lower quality
-                img.quality(quality).write(fullPath,function(){
+            } else {
+                // Recursive call to this function 
+                img.quality(quality).write(fullPath, function(){
                     
                     // check if the weight is better now
                     var stats = fs.statSync(fullPath);
                     var fileSizeInBytes = stats.size;
-                    if(fileSizeInBytes>weight){
-                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ' : ' +modelePath);
+                    if(fileSizeInBytes > weight){
+
+                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ': ' + modelePath);
+
                         // If the weight is again too big, lower the quality
                         quality = quality - 10;
-                        _this.reSizeImage(modelePath,name,quality);
-                    }
-                    else{
-                        // Create the thumbs picture, delete the modele picture and the 'without extension' picture
+                        _this.transformImage(modelePath, name, quality);
+                        return;
+                    } else {
 
-                        winston.info(FILE_NAME + ' - Image created with quality : '+ quality + ' : ' +modelePath);
+                        // Create the thumbs picture, delete the modele picture and the 'without extension' picture
+                        winston.info(FILE_NAME + ' - Image created with quality : '+ quality + ': ' +modelePath);
                         img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
                         fs.unlink(modelePath); 
                         fs.unlink(toDeletePath);
+                        return;
                     }
-                });
-            }      
-        }).catch(function(err){
+                })
+            }
+        }).catch(err => {
             winston.error(FILE_NAME + ' function saveImage - Fail to read image: ' + err);
-            throw 'readFileFailed';
         });
     },
-    
+
     saveImage: function(file, name) {
         var _this = this;
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
@@ -108,13 +124,8 @@ module.exports = {
         }
         
         winston.info(FILE_NAME + ' - Image will be resized : ' + fullPath);
-        // var dimensions = sizeOf(file.path);
-        // if( (dimension.width < 700) && (dimension.height < 400)){
-           _this.changeImageQuality(file.path,name,100);
-    //     }
-    //     else{
-         //    _this.reSizeImage(file.path,name,100);
-    //    }
+
+       _this.transformImage(file.path, name, 100);
     },
 
     // Function use to send a socket message with every new information on bestBid and buttons
