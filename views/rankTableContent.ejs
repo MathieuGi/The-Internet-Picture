@@ -1,0 +1,16 @@
+<% bidders.forEach(function(bidder, index){ %>
+    <% include rankTableRow %>
+<% }) %>
+
+<% if(bidders.length === 10) { %>
+<tr id="load-more">
+  <td class="align-middle text-center" colspan="4">
+    <button class="btn btn-primary btn-block see-more" data-offset="10">Voir plus</button>
+    <img class="loading" src="images/static/loading.gif"/>
+  </td>
+</tr>
+<% } else { %>
+<tr id="load-more">
+	<td class="align-middle text-center" colspan="4">Plus d'enchérisseur</td>
+</tr>
+<% } %>

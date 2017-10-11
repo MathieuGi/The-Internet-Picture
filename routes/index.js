@@ -10,17 +10,22 @@ var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
 var stripe = require("stripe")("sk_test_XAfsNpri7WZmRNUlmmpopsBS");
+var ejs = require('ejs');
 
 var returnRouter = function(io) {
 
     /* GET home page. */
     router.get('/', function(req, response, next) {
-
+        console.log(req.device.type + '---------------');
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
 
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            response.render('index', { bidders: res });
+            if(req.device.type === "phone"){
+                response.render('mobile/index', { bidders: res });
+            } else {
+                response.render('index', { bidders: res });
+            }
         }).catch(err => {
             winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });
@@ -53,9 +58,9 @@ var returnRouter = function(io) {
 
         bidService.getAll(10, parseInt(query.offset)).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            response.json({ bidders: res });
+            response.render('rankTableContent', {bidders: res});
         }).catch(err => {
-            winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
+            winston.error(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });
     });
 

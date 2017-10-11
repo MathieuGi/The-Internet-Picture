@@ -132,19 +132,17 @@ module.exports = {
     emitNewBidder: function(io) {
 
         // Get new bestBid
-        var homepage = bidService.getAll(3, 0).then(bidders => {
-            var newHtml = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
-            var json = {newHtml: newHtml, bestBid: bidders[0]};
-            return json;
+        return bidService.getAll(3, 0).then(bidders => {
+            var newHomepage = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
+            var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), {bidder: bidders[0]});
+            var changeTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), {bidder: bidders[1]})
+            
+            io.sockets.emit('newBidder', {
+                newHomepage: newHomepage, 
+                bestBid: bidders[0], 
+                newTableRow: newTableRow,
+                changeTableRow: changeTableRow
+            });
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
-
-        // Execute promises and send the result via socket.io
-        var promisesArray = [homepage];
-        this.doPromises(promisesArray).then(res => {
-            io.sockets.emit('newBidder', {homepage: res[0].newHtml, bestBid: res[0].bestBid});
-        }).catch(err => {
-            winston.error(FILE_NAME + ' - emitNewBidder: ' + err);
-            throw err;
-        })
     },
 }
