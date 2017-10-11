@@ -7,8 +7,11 @@ var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var winston = require('winston');
 var socket_io = require("socket.io");
+var compression = require("compression");
 
 var app = express();
+
+app.use(compression());
 
 // Call socket.io to app
 var io = socket_io()
@@ -41,6 +44,7 @@ app.use('/users', users);
 // simplify import of jquery and bootstrap in view
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
