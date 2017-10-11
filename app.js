@@ -8,6 +8,7 @@ var helmet = require('helmet');
 var winston = require('winston');
 var socket_io = require("socket.io");
 var compression = require("compression");
+var device = require("express-device");
 
 var app = express();
 
@@ -37,6 +38,9 @@ app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 app.use(helmet());
+app.use(device.capture());
+
+device.enableViewRouting(app);
 
 app.use('/', index);
 app.use('/users', users);

@@ -16,11 +16,16 @@ var returnRouter = function(io) {
 
     /* GET home page. */
     router.get('/', function(req, response, next) {
+        console.log(req.device.type + '---------------');
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
 
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            response.render('index', { bidders: res });
+            if(req.device.type === "mobile"){
+                response.render('mobile/index', { bidders: res });
+            } else {
+                response.render('index', { bidders: res });
+            }
         }).catch(err => {
             winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });

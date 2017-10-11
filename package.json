@@ -15,6 +15,7 @@
     "debug": "~2.6.3",
     "ejs": "2.5.7",
     "express": "4.15.5",
+    "express-device": "0.4.2",
     "file-extension": "3.1.2",
     "helmet": "3.8.1",
     "jimp": "0.2.28",
