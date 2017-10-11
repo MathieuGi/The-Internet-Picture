@@ -21,7 +21,7 @@ var returnRouter = function(io) {
 
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            if(req.device.type === "mobile"){
+            if(req.device.type === "phone"){
                 response.render('mobile/index', { bidders: res });
             } else {
                 response.render('index', { bidders: res });
