@@ -5,18 +5,7 @@ $(document).ready(function() {
     var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
     var elements = stripe.elements();
 
-    var style = {
-      base: {
-        lineHeight: '16vw',
-        fontSize: '5vw'
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    };
-
-    var card = elements.create('card', {style: style});
+    var card = elements.create('card');
     card.mount('#card-element');
 
     function setOutcome(result) {

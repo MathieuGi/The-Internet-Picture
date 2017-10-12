@@ -3,7 +3,11 @@
 	font-size: 4vw;
 }
 
-#paiement-form, #paiement-form .form-control {
+#paiement-form {
+	font-size: 4vw;
+}
+
+#paiement-form .form-control {
 	font-size: 5vw;
 }
 
@@ -19,4 +23,32 @@
 #paiement-form .form-group {
 	margin-bottom: 5vh;
 	margin-top: 5vh;
+}
+
+#paiement-form button {
+    background: #666EE8;
+    color: white;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 5vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 400;
+    width: 100%;
+    outline: none;
+}
+
+#paiement-form #form-terms {
+	width: 40px;
+	height: 40px;
+}
+
+#paiement-form .error-message {
+	font-size: 3.5vw;
+}
+
+.text-truncate {
+    max-width: 350px;
 }
