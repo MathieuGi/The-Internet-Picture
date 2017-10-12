@@ -140,7 +140,6 @@ $(document).ready(function() {
 
         $('.bid-value').html(data.bestBid.price);
         $('#paiement-form .min-bid-value').html(data.bestBid.price + 1);
-        $('.form-price').val(data.bestBid.price + 1);
         $('.min-price').val(data.bestBid.price + 1);
         $('.paiement-success').show().delay(2500).fadeOut(2000);
  

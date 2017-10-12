@@ -15,7 +15,7 @@
     src: url('..\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
 }
 
-body {
+body { 
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -91,6 +91,7 @@ body {
     cursor:pointer;
     background-color: #8389e2;
 }
+
 #trump {
   color: #ffffff;
   background-color: #666EE8;
@@ -100,6 +101,7 @@ body {
   cursor : pointer;
 
 }
+
 #trump:hover {
 background-color: #8389e2;
 }
@@ -107,6 +109,7 @@ background-color: #8389e2;
 .paiement {
     display:none;
 }
+
 .paiement-success {
     display: none;
     padding: 40px;
@@ -175,10 +178,6 @@ background-color: #8389e2;
 
 /* Homepage part */
 
-.main-area .richest-text {
-	display: none;
-}
-
 .richest-area .top-rank {
 	margin-bottom: 25px;
 }
@@ -191,11 +190,42 @@ background-color: #8389e2;
     border-width: 1px 1px 0px 1px;
 }
 
+.block-image .name {
+    display: inline-flex;
+    justify-content: flex-start;
+    width: 55%;
+}
+
+.block-image .time {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 45%;
+}
+
+.richest-area td, th {
+    width: 40px;
+    text-align: center;
+}
+
+.richest-area table {
+    width: 200px;
+}
+
+.others-area table {
+    width: 135px;
+}
+
 .block-image .img {
 	display: flex;
 	justify-content: center;
+    align-items: center;
 	background: gainsboro;
-	height: fit-content;
+}
+
+.richest-area .block-image .img {
+    align-items: flex-start !important;
+    min-height: 300px;
+    max-height: 400px;
 }
 
 .block-image img {
@@ -204,41 +234,8 @@ background-color: #8389e2;
     position: relative;
 }
 
-.block-image .name {
-	display: inline-flex;
-	justify-content: flex-start;
-	width: 55%;
-}
-
-.block-image .time {
-	display: inline-flex;
-	justify-content: flex-end;
-	width: 45%;
-}
-
-.richest-area td, th {
-	width: 40px;
-	text-align: center;
-}
-
-.richest-area table {
-	width: 200px;
-}
-
-.others-area table {
-	width: 135px;
-}
-
 .richest-area {
 	position: relative;
-}
-
-.richest-area .block-image img {
-	max-height: 800px;
-}
-
-.richest-area .block-image .img {
-	min-height: 350px;
 }
 
 .richest-area .top-rank {
@@ -273,7 +270,7 @@ background-color: #8389e2;
 	word-break: break-all;
 }
 
-.others-area {
+.others-area.hasText {
 	margin-bottom: 60px;
 }
 
@@ -289,9 +286,16 @@ background-color: #8389e2;
 	flex-direction: column;
 }
 
-.others-area .block-image img{
-	max-height: 150px;
+.others-area.order-1 .block-image .img, .others-area.order-1 .block-image img{
+    min-height: 150px;
+    max-height: 250px;
 }
+
+.others-area.order-3 .block-image .img, .others-area.order-3 .block-image img{
+    min-height: 100px;
+    max-height: 200px;
+}
+
 
 /* Bid mor part */
 

@@ -1,0 +1,29 @@
+<% if(bidder.price != 0) { %>
+<tr>
+  <td class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature"></td>
+  <td class="align-middle text-truncate"><%= bidder.name %></td>
+  <td class="align-middle text-center"><%= bidder.price %> €</td>
+  <td class="align-middle text-center">
+  <%if (bidder.bid_time == 0) { %>
+    -
+  <% } else { %>
+    <% var date = new Date(bidder.bid_time) %>
+    <% var day = Math.trunc(bidder.bid_time/24/3600/1000) %>
+    <% var hours = date.getHours()-1 %>
+    <% var seconds = date.getSeconds() %>
+    <%= day > 0 ? day : '' %>
+    <%= day = 1 && day > 0 ? ' jour' : '' %>
+    <%= day > 1 && day > 0 ? ' jour' : '' %>
+    <%= day== 0 && hours == 0 ? '' : hours %>
+    <%= hours > 1 && hours > 0 ? ' heures' : '' %>
+    <%= hours == 1 && hours > 0 ? ' heure' : '' %>
+    <%= bidder.bid_time >= 60000 ? date.getMinutes() : '' %>
+    <%= date.getMinutes() > 1 && bidder.bid_time >= 60000 ? ' minutes' : '' %>
+    <%= date.getMinutes() == 1 && bidder.bid_time >= 60000 ? ' minute' : '' %>
+    <%= day == 0 && hours == 0 ? seconds : '' %>
+    <%= seconds > 1 && seconds > 0 ? ' secondes' : '' %>
+    <%= seconds == 1 && seconds > 0 ? ' seconde' : '' %>
+  <% } %>
+  </td>
+</tr>
+<% } %>
