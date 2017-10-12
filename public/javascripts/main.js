@@ -75,16 +75,6 @@ $(document).ready(function() {
     // Timer
     startTime();
 
-    // Others timer 
-    hideTimePart('.others-area.order-1');
-    hideTimePart('.others-area.order-3');
-
-    // Richest adapte img position
-    replaceImg();
-    $(window).resize(function(){
-        replaceImg();
-    });    
-
     /******************* Stripe *********************/
 
     var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
@@ -221,45 +211,6 @@ $(document).ready(function() {
         }
     }
 
-    function hideTimePart(element){
-        
-        if($(element + ' .days').html() > 0 || $(element + ' .hours').html() > 0) {
-            $(element + ' .seconds').hide();
-            if($(element + ' .days').html() > 0){
-                $(element + ' table').css('width', '100px');
-            } else {
-                $(element + ' table').css('width', '70px');
-            }
-            
-        }   
-
-        if ($(element + ' .days').html() === '0') {
-            $(element + ' .days').hide();
-            $(element + ' table').css('width', '100px');
-            
-            if($(element + ' .hours').html() === '0'){
-                $(element + ' .hours').hide();
-                $(element + ' table').css('width', '70px');
-                
-                if($(element + ' .minutes').html() === '0'){
-                    $(element + ' .minutes').hide();
-                    $(element + ' table').css('width', '40px');
-                }
-            }
-        }
-    }
-
-    // Replace the principal image depending on the presence of richest-text or not
-    function replaceImg(){
-        if($('.richest-area .block-image img').height() <= 350){
-            if(!$.trim($('.richest-area .richest-text span').html())){
-                $('.richest-area .block-image img').css('top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height())  / 2)
-            } else {
-                $('.richest-area .block-image img').css('top', ($('.richest-area .block-image .img').height() - $('.richest-area .block-image img').height() - 60)  / 2)
-            }
-        }
-    }
-
     // Send all information to create and paye a new bid
     var sendForm = function(stripeToken) {
         $('.error-message').hide();
@@ -284,9 +235,9 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 success: function(res) {
-                    //location.reload();
                     $('#paiement-form .loading').hide(); 
                     $('#paiement-form .confirm-button').show();
+                    location.reload();
                 },
                 error: function(err) {
 
