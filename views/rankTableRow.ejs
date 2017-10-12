@@ -9,7 +9,7 @@
   <% } else { %>
     <% var date = new Date(bidder.bid_time) %>
     <% var day = Math.trunc(bidder.bid_time/24/3600/1000) %>
-    <% var hours = date.getHours()-1 %>
+    <% var hours = date.getHours() %>
     <% var seconds = date.getSeconds() %>
     <%= day > 0 ? day : '' %>
     <%= day = 1 && day > 0 ? ' jour' : '' %>
