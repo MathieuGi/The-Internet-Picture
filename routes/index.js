@@ -16,8 +16,8 @@ var returnRouter = function(io) {
 
     /* GET home page. */
     router.get('/', function(req, response, next) {
-        console.log(req.device.type + '---------------');
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
+        winston.info(FILE_NAME + ' - Request from ' + req.device.type);
 
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
@@ -53,12 +53,17 @@ var returnRouter = function(io) {
     // Load more element in rank-table
     router.get('/getBidsList', function(req, response, next) {
         winston.info(FILE_NAME + ' - Prepare to answer to /getBidsList request');
+        winston.info(FILE_NAME + ' - Request from ' + req.device.type);
 
         var query = req.query;
 
         bidService.getAll(10, parseInt(query.offset)).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
-            response.render('rankTableContent', {bidders: res});
+            if(req.device.type === "phone"){
+                response.render('mobile/rankTableContent', {bidders: res});
+            } else {
+                response.render('rankTableContent', {bidders: res});
+            }
         }).catch(err => {
             winston.error(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
         });

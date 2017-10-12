@@ -11,18 +11,10 @@
     <% var day = Math.trunc(bidder.bid_time/24/3600/1000) %>
     <% var hours = date.getHours()-1 %>
     <% var seconds = date.getSeconds() %>
-    <%= day > 0 ? day : '' %>
-    <%= day = 1 && day > 0 ? ' jour' : '' %>
-    <%= day > 1 && day > 0 ? ' jour' : '' %>
-    <%= day== 0 && hours == 0 ? '' : hours %>
-    <%= hours > 1 && hours > 0 ? ' heures' : '' %>
-    <%= hours == 1 && hours > 0 ? ' heure' : '' %>
-    <%= bidder.bid_time >= 60000 ? date.getMinutes() : '' %>
-    <%= date.getMinutes() > 1 && bidder.bid_time >= 60000 ? ' minutes' : '' %>
-    <%= date.getMinutes() == 1 && bidder.bid_time >= 60000 ? ' minute' : '' %>
-    <%= day == 0 && hours == 0 ? seconds : '' %>
-    <%= seconds > 1 && seconds > 0 ? ' secondes' : '' %>
-    <%= seconds == 1 && seconds > 0 ? ' seconde' : '' %>
+    <%= day > 0 ? day + ' j' : '' %>
+    <%= day == 0 && hours == 0 ? '' : hours + ' h' %>
+    <%= bidder.bid_time >= 60000 ? date.getMinutes() + ' min' : '' %>
+    <%= day == 0 && hours == 0 ? seconds + ' sec' : '' %>
   <% } %>
   </td>
 </tr>
