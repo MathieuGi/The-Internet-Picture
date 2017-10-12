@@ -137,11 +137,6 @@ background-color: #8389e2;
     display: none;
 }
 
-.rank-table {
-    overflow: auto;
-    max-height: 60vh;
-}
-
 .rank-header {
     max-height: 50px;
     padding: 14px;
