@@ -1,6 +1,10 @@
 /* Fonts */
 .rank-table table td, .rank-table table button {
-	font-size: 2.5em;
+	font-size: 4vw;
+}
+
+#paiement-form, #paiement-form .form-control {
+	font-size: 5vw;
 }
 
 
@@ -10,4 +14,9 @@
 .rank-table table td {
 	padding-bottom: 1.5rem;
 	padding-top: 1.5rem;
+}
+
+#paiement-form .form-group {
+	margin-bottom: 5vh;
+	margin-top: 5vh;
 }
