@@ -22,6 +22,10 @@
 
 /* Styles */
 
+header.main-header {
+    margin-bottom: 10vh;
+}
+
 /* Menu */
 #menu {
     position: absolute;
@@ -143,3 +147,6 @@
     word-break: break-all;
 }
 
+.main-area > .row {
+    margin-bottom: 10vh;
+}

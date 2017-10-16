@@ -2,7 +2,7 @@
     <% bidders.forEach(function(bidder, i) { %>
     <% if (i >= 3) return false %>
     <div class="row justify-content-center">
-      <div class="col-<%= (i == 0 ? 11 : (i == 1) ? 8 : 5) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>">
+      <div class="col-<%= (i == 0 ? 12 : (i == 1) ? 8 : 5) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>">
         <div class="row top-rank">
           <div class="col-12 text-center">
             <h2><%= i+1 %></h2>
