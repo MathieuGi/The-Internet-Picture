@@ -130,6 +130,29 @@ background-color: #8389e2;
 .thumbs {
     max-height: 50px;
     max-width: 50px;
+    cursor:pointer;
+}
+
+.black-container{
+    display:none;
+    position : fixed;
+    height : 100%;
+    width: 100%;
+    background-color : rgba(0,0,0,0.6);
+    z-index : 99999;
+}
+
+ tr{
+     cursor:pointer;
+ }
+
+#ranked-image-fullSize {
+    position: fixed;
+    height: 400;
+    width: 700;
+    top : calc(50vh - 200px);
+    right: calc(50vw - 350px);
+    z-index:99999;
 }
 
 .rank-table-area {

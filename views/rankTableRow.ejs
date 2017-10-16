@@ -1,9 +1,10 @@
 <% if(bidder.price != 0) { %>
-<tr>
-  <td class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature"></td>
-  <td class="align-middle text-truncate"><%= bidder.name %></td>
-  <td class="align-middle text-center"><%= bidder.price %> €</td>
-  <td class="align-middle text-center">
+<tr class="line-ranked-table" data-url="<%= bidder.url %>">
+  <td  class="align-middle"><img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image miniature" data-img="<%= bidder.img_path %>"></td>
+    <td class="align-middle text-truncate"><%= bidder.name %></td>
+    <td class="align-middle"><%= bidder.price %> €</td>
+    <td class="align-middle">
+
   <%if (bidder.bid_time == 0) { %>
     -
   <% } else { %>
@@ -26,4 +27,5 @@
   <% } %>
   </td>
 </tr>
+
 <% } %>

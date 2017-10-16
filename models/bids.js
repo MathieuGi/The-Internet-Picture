@@ -38,6 +38,6 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    // bids.sync();
+    //bids.sync();
     return bids;
 };
