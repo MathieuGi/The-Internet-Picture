@@ -22,8 +22,9 @@
                 <% var minutes = new Date(bidder.bid_time).getMinutes() %>
                 <% var seconds = new Date(bidder.bid_time).getSeconds() %>
                 <% var showDays = (days !== 0 ? '' : 'invisible') %>
-                <% var showHours = ((days !== 0 || hours !== 0)) ? '' : 'invisible' %>
-                <% var showMinutes = (days !== 0 || hours !== 0 || minutes !== 0) ? '' : 'invisible' %>
+                <% var showHours = (days !== 0 || hours !== 0) ? '' : 'invisible' %>
+                <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'invisible' %>
+                <% var showSeconds = (i === 0) || (days === 0 &&  hours === 0) ? true : false %>
                 <tr>
                   <td class="days <%= showDays %>">
                     <%= days %>
@@ -34,9 +35,11 @@
                   <td class="minutes <%= showMinutes %>">
                     <%= minutes %>
                   </td>
+                  <% if(showSeconds) { %>
                   <td class="seconds">
                     <%= seconds %>
                   </td>
+                  <% } %>
                 </tr>
                 <tr>
                   <th class="days <%= showDays %>">
@@ -48,9 +51,11 @@
                   <th class="minutes <%= showMinutes %>">
                     Minutes
                   </th>
-                  <th class="seconds">
+                  <% if(showSeconds) { %>
+                  <th class="seconds <%= showSeconds %>">
                     Secondes
                   </th>
+                  <% } %>
                 </tr>
               </tbody>
             </table>

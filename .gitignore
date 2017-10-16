@@ -32,3 +32,4 @@ npm-debug.log
 # Non static images
 public/images/fullsize
 public/images/thumbs
+public/images/static/open-iconic-master

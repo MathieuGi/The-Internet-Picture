@@ -23,6 +23,26 @@
     outline: none;
 }
 
+/* Menu */
+#menu .menu-item {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+#menu .menu-item.active {
+    border-bottom: 2px solid #cc0000;
+    color: #cc0000;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+#menu {
+    margin-bottom: 20px;
+}
+
+
+
 /* paiement confirmation */
 
 #bid-summary .confirm {
