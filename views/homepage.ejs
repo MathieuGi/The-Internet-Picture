@@ -59,8 +59,8 @@
         <% if(bidder.url != "") { %>
         <a href="<%= bidder.url %>" target="_blank">
         <% } %>
-          <div class="img">
-            <div>
+          <div class="img <%= bidder.text === "" ? 'align-items-center' : 'align-items-start' %>">
+            <div class="">
               <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>">              
             </div>
           </div>

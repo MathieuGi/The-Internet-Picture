@@ -52,3 +52,66 @@
 .text-truncate {
     max-width: 350px;
 }
+
+/* paiement confirmation */
+
+#bid-summary .confirm {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+#bid-summary .confirm button {
+    margin: 10px;
+}
+
+#bid-summary article{
+    min-height: 530px;
+}
+
+#bid-summary .top-rank {
+    margin-bottom: 25px;
+}
+
+#bid-summary td, th {
+    width: 40px;
+    text-align: center;
+}
+
+#bid-summary table {
+    width: 200px;
+}
+
+#bid-summary table {
+    width: 135px;
+}
+
+#bid-summary .block-image .img, #bid-summary .block-image img {
+    max-height: 400px;
+    width: 100%;
+}
+#bid-summary .block-image .img {
+    min-height: 250px;
+}
+
+#bid-summary .block-image header {
+    height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#bid-summary .richest-text {
+    position: relative;
+    height: 60px;
+    top: -60px;
+    background-color: white;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#bid-summary .richest-text span {
+    word-break: break-all;
+}

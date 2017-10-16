@@ -75,6 +75,71 @@ $(document).ready(function() {
     // Timer
     startTime();
 
+    /******************* Stripe *********************/
+
+    card.mount('#card-element');
+
+    function setOutcome(result) {
+        var successElement = document.querySelector('.success');
+        var errorElement = document.querySelector('.error');
+        successElement.classList.remove('visible');
+        errorElement.classList.remove('visible');
+
+        if (result.token) {
+            // Use the token to create a charge or a customer
+            // https://stripe.com/docs/charges
+            var stripeToken = result.token.id;
+            successElement.querySelector('.token').textContent = result.token.id;
+            successElement.classList.add('visible');
+            sendForm(stripeToken);
+        } else if (result.error) {
+
+            $('#paiement-form .loading').hide();
+            $('#paiement-form .confirm-button').show();
+            errorElement.textContent = result.error.message;
+            errorElement.classList.add('visible');
+        }
+    }
+
+    card.on('change', function(event) {
+        setOutcome(event);
+    });
+
+    /******************* Paiement confirmation ****************/
+    $('#bid-summary-container').on('click', '.reload-image', function(e){
+        $('#bid-summary .img img').replaceWith($('#bid-summary .img div').html());
+    });
+
+    $('#bid-summary-container').on('click', '#bid-summary .confirm .paye', function(e){
+        var url = '/confirmBid';
+        var id = $('#bid-summary').data('id');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {id: id},
+            success: function(res) {
+               location.reload();
+            },
+            error: function(err) {
+                if(err.responseJSON.error === "PriceTooLow"){
+                    alert('Un nouvel encherisseur vous a pris de vitesse !');
+                    $('#menu').show();
+                    $('.bid-more').show();
+                    $('#bid-summary-container').hide();
+                } else {
+                    alert('Une erreur est survenue lors du paiement. Votre carte n\'a pas été débitée.');
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    $('#bid-summary-container').on('click', '#bid-summary .confirm .modify', function(e){
+        $('#menu').show();
+        $('.bid-more').show();
+        $('#bid-summary-container').hide();
+    });
+
     /******************* Socket.io *******************/
 
     var socket = io.connect(window.location.host);
@@ -201,13 +266,20 @@ $(document).ready(function() {
                 success: function(res) {
                     $('#paiement-form .loading').hide(); 
                     $('#paiement-form .confirm-button').show();
-                    location.reload();
+                    $('#bid-summary-container').html(res);
+                    $('#menu').hide();
+                    $('.bid-more').hide();
+                    $('#bid-summary-container').show();
+                    $(window).scrollTop(0);
                 },
                 error: function(err) {
 
                     // On error show button and hide loading
                     $('#paiement-form .loading').hide(); 
                     $('#paiement-form .confirm-button').show();
+
+                    console.log(err);
+                   
 
                     // Add paiementFailed
                     if (err.responseJSON.error == "wrongType") {

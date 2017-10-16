@@ -25,7 +25,8 @@ module.exports = {
                 type: Sequelize.TEXT
             },
             price: {
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                allowNull: false
             },
             bid_time: {
                 type: Sequelize.BIGINT,
@@ -34,6 +35,9 @@ module.exports = {
             is_active: {
                 type: Sequelize.BOOLEAN,
                 defaultValue: false
+            },
+            transaction_id: {
+                type: Sequelize.TEXT
             },
             createdAt: {
                 allowNull: false,

@@ -7,9 +7,17 @@ const FILE_NAME = 'services/bids.js';
 
 module.exports = {
 
+    // This function is used to get a bid by his id
+    getById: function(id){
+        return bid.findById(id).then(res => res);
+    },
+
     // This function is used to get the best bid
     getBest: function() {
         return bid.findOne({
+            where: {
+                is_active: true
+            },
             order: [
                 ['price', 'DESC'],
                 ['createdAt', 'DESC']
@@ -30,6 +38,9 @@ module.exports = {
     // This function is used to get all bids
     getAll: function(limit, offset) {
         return bid.findAll({
+            where: {
+                is_active: true
+            },
             order: [
                 ['price', 'DESC'],
                 ['createdAt', 'DESC']
@@ -49,7 +60,7 @@ module.exports = {
     },
 
     // This function is used to create a new bid
-    create: function(name, img_path, url, text, price) {
+    create: function(name, img_path, url, text, price, token) {
         if (!checkTypes.integer(price) || price <= 0) {
             throw 'Price must be an integer greater than 0'
         } else if (!checkTypes.string(name) || name == "") {
@@ -65,7 +76,8 @@ module.exports = {
                 img_path: img_path,
                 url: url,
                 text: text,
-                price: price
+                price: price,
+                transaction_id: token
             }).save().then(res => {
                 winston.info(FILE_NAME + ' - New bid created successfully! ');
                 return res;
@@ -87,10 +99,10 @@ module.exports = {
     // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
     setBidTime: function() {
 
-        return this.getAll(1,1).then(function(res) {
+        return this.getBest().then(function(res) {
             // Transform date object into timestamp object
             
-            var createdAt = res[0].createdAt.getTime();
+            var createdAt = res.createdAt.getTime();
             var nowDate = Date.now();
             var bidTime = (nowDate - createdAt);
 
@@ -98,7 +110,7 @@ module.exports = {
                 bid_time: bidTime
             }, {
                 where: {
-                    id: res[0].id
+                    id: res.id
                 }
             }).then(function(res) {
                 return res;
@@ -108,6 +120,20 @@ module.exports = {
         }).catch(function(err) {
             throw err;
         })
+    },
+
+    setActive: function(id) {
+        return bid.update({
+            is_active: true
+        }, {
+            where: {
+                id: id
+            }
+        }).then(function(res) {
+            return res;
+        }).catch(function(err) {
+            throw err;
+        });
     }
 
 }

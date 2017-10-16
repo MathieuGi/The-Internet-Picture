@@ -4,7 +4,6 @@ var path = require('path');
 var fs = require('fs');
 var jimp = require('jimp');
 var bidService = require('./bids');
-var buttonBuyService = require('./buttonBuys');
 var ejs = require('ejs');
 var sizeOf = require('image-size');
 
@@ -43,7 +42,7 @@ module.exports = {
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
         var toDeletePath = 'public/images/fullsize/' + name; // first file to delete at the end
 
-        jimp.read(filePath).then(img => {
+        return jimp.read(filePath).then(img => {
 
             // First call to this function
             if(quality === 100) {
@@ -125,7 +124,11 @@ module.exports = {
         
         winston.info(FILE_NAME + ' - Image will be resized : ' + fullPath);
 
-       _this.transformImage(file.path, name, 100);
+       return _this.transformImage(file.path, name, 100).then(function(){
+        return;
+       }).catch(function(){
+        winston.error(FILE_NAME + ' - Fail to transform image');
+       });
     },
 
     // Function use to send a socket message with every new information on bestBid and buttons

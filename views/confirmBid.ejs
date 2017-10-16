@@ -1,0 +1,40 @@
+<div id="bid-summary" data-id="<%= bidder.id %>" class="col-5">
+  <h3 class="text-center">Recapitulatif</h3>
+  <hr>
+  <p>Prévisualisation : <a class="reload-image">cliquez ici si l'image ne s'affiche pas correctement</a></p>
+  <article class="block-image">
+    <header class="header">
+      <div class="name">
+        <span><%= bidder.name %></span>
+      </div>
+    </header>
+    <% if(bidder.url != "") { %>
+    <a href="<%= bidder.url %>" target="_blank">
+    <% } %>
+      <div class="img <%= bidder.text === "" ? 'align-items-center' : 'align-items-start' %>">
+        <div>
+          <img src="images/fullsize/<%= bidder.img_path %>">              
+        </div>
+      </div>
+    <% if(bidder.url != "") { %>
+    </a>
+    <% } %> 
+    <% if(bidder.text != "") { %>
+    <div class="richest-text text-center">
+      <span>
+        <%= bidder.text %>
+      </span>
+    </div>
+    <% } %>
+
+    <div class="price" <%= bidder.text === "" ? 'style=margin-top:60px;' : '' %> >
+      <span>Montant : <%= bidder.price %> €</span>
+    </div>    
+
+    <footer class="confirm">
+      <button class="modify">Modifier</button>
+      <button class="paye">Confirmer</button>  
+    </footer>
+  </article>
+
+</div>

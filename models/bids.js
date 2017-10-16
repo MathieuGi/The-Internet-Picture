@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         price: {
             type: DataTypes.INTEGER,
+            allowNull: false
         },
         bid_time: {
             type: DataTypes.BIGINT,
@@ -26,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        transaction_id: {
+            type: DataTypes.STRING
+        }
     }, {
         classMethods: {
             associate: function(models) {
@@ -33,5 +37,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
+
+    // bids.sync();
     return bids;
 };

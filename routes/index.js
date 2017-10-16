@@ -2,16 +2,15 @@
 var express = require('express');
 var router = express.Router();
 var bidService = require('../services/bids');
-var buttonBuyService = require('../services/buttonBuys');
-var winston = require('winston');
 var sharedService = require('../services/shared');
+var winston = require('winston');
 const FILE_NAME = "routes/index.js";
 var multer = require('multer');
 var fileExt = require('file-extension');
 var checkType = require('check-types');
 var stripe = require("stripe")("sk_test_XAfsNpri7WZmRNUlmmpopsBS");
 var ejs = require('ejs');
-
+var sequelize = require('sequelize')
 var returnRouter = function(io) {
 
     /* GET home page. */
@@ -28,6 +27,7 @@ var returnRouter = function(io) {
             }
         }).catch(err => {
             winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
+            response.render('error');
         });
 
 
@@ -66,6 +66,45 @@ var returnRouter = function(io) {
             }
         }).catch(err => {
             winston.error(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
+        });
+    });
+
+    router.post('/confirmBid', function(req, res, next){
+
+        // Variables settings
+        var body = req.body;
+        bidService.getById(body.id).then(bidder => {
+            bidService.getBest().then(bestBidder => {
+
+                if(bidder.price <= bestBidder.price) {
+                    return res.status(500).json({error: "PriceTooLow"})
+                } else {
+                    stripe.charges.create({
+                        // Send price in centimes
+                        amount: bidder.price * 100,
+                        currency: "eur",
+                        description: "new Bid",
+                        source: bidder.transaction_id,
+                    }, function(err, charge) {
+                        if (err) {
+                            winston.error(FILE_NAME + ' - Paiement failed:' + err);
+                            return res.status(500).json({ error: 'paiementFailed' });
+                        } else {
+                            bidService.setBidTime().then(() => {
+                                bidService.setActive(bidder.id).then(function(){
+                                    sharedService.emitNewBidder(io);
+                                    return res.status(200).json({ result: 'success' });      
+                                });                      
+                            });
+                        }
+                    });
+                }
+            }).catch(err => {
+                winston.info(FILE_NAME + ' - Fail to use bidService.getBest() function: ' + err);
+            });
+        }).catch(err => {
+            winston.info(FILE_NAME + ' - Fail to use bidService.getById() function: ' + err);
+            return res.status(500).json({ error: 'IdNotFound'})
         });
     });
 
@@ -118,41 +157,25 @@ var returnRouter = function(io) {
                 return res.status(500).json({ error: "wrongFieldsType" });
             }
 
-            try {
-                // Save image in folder (fullsize and resized)
-                sharedService.saveImage(req.file, req.file.filename);
-
-
+            // Save image in folder (fullsize and resized)
+            sharedService.saveImage(req.file, req.file.filename).then(function(){
                 // Create the new bid
-                bidService.create(body.name, newName, body.url, body.text, parseInt(body.price)).then(function(newBid) {
-                    stripe.charges.create({
-                        // Send price in centimes
-                        amount: newBid.price * 100,
-                        currency: "eur",
-                        description: "new Bid",
-                        source: body.token,
-                    }, function(err, charge) {
-                        if (err) {
-                            bidService.delete(newBid.id);
-                            return res.status(500).json({ error: 'paiementFailed' });
-                        } else {
-                            bidService.setBidTime().then(() => {
-                                sharedService.emitNewBidder(io);
-                                return res.status(200).json({ result: 'success' });                            
-                            });
-
-                        }
-                    });
+                bidService.create(body.name, newName, body.url, body.text, parseInt(body.price), body.token).then(function(newBid) {
+                    if(req.device.type === "phone"){
+                        return res.status(200).render('mobile/confirmBid', {bidder: newBid});
+                    } else {
+                        return res.status(200).render('confirmBid', {bidder: newBid});
+                    }
                 }).catch(function(err) {
                     winston.error(FILE_NAME + ' - Fail to add new bid in database');
                     winston.error(FILE_NAME + ' - create bid: ' + err)
                     return res.status(500).json({ error: 'creationFailed' });
                 });
-            } catch (err) {
+            }).catch(err => {
                 // Error when trying to save image and resize it
                 winston.error(FILE_NAME + ' - ' + err);
                 return res.status(500).json({ error: err });
-            }
+            });
         }
     });
 
