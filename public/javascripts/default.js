@@ -200,11 +200,19 @@ $(document).ready(function() {
         addToTimer('minutes', m);
         addToTimer('seconds', s);
 
+        if(d !== 0){
+            $('.richest-area .days').removeClass('invisible');
+        }
+        if(h !== 0){
+            $('.richest-area .hours').removeClass('invisible');
+        }
+        if(m !== 0){
+            $('.richest-area .minutes').removeClass('invisible');
+        }
+
         if(d == 0 && h == 0){
-            $('.richest-area .hours').hide();
             $('.richest-area table').css('width', '100px');
             if(m == 0){
-                $('.richest-area .minutes').hide();
                 $('.richest-area table').css('width', '50px');
             }
         }
@@ -230,14 +238,6 @@ $(document).ready(function() {
     // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
     function addToTimer(type, value) {
         $('.richest-area td.' + type).html(value);
-        if (!$('.richest-area .' + type).is(':visible')) {
-            $('.richest-area .' + type).show();
-        }
-    
-        if (type == 'days' && value == 0) {
-            $('.richest-area .' + type).hide();
-            $('.richest-area table').css('width', '150px');
-        }
     }
 
     // Send all information to create and paye a new bid
