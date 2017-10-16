@@ -11,10 +11,37 @@
 	font-size: 5vw;
 }
 
+#menu .menu-item {
+    font-size: 3em;
+}
 
+.main-title h1 {
+    font-size: 6em;
+}
 
 
 /* Styles */
+
+/* Menu */
+#menu {
+    position: absolute;
+    left: 30px;
+    top: 25px;
+}
+
+#menu img {
+    height: 70px;
+    width: 70px;
+}
+
+#menu .menu-item {
+    padding: 25px;
+}
+
+#dropdownMenuButton {
+    background: url(public/images/static/open-iconic-master/svg/menu.svg) no-repeat;
+}
+
 .rank-table table td {
 	padding-bottom: 1.5rem;
 	padding-top: 1.5rem;
@@ -115,3 +142,4 @@
 #bid-summary .richest-text span {
     word-break: break-all;
 }
+

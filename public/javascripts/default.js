@@ -78,7 +78,7 @@ $(document).ready(function() {
     /******************* Stripe *********************/
 
     card.mount('#card-element');
-
+    var stripeToken = ""
     function setOutcome(result) {
         var successElement = document.querySelector('.success');
         var errorElement = document.querySelector('.error');
@@ -88,7 +88,7 @@ $(document).ready(function() {
         if (result.token) {
             // Use the token to create a charge or a customer
             // https://stripe.com/docs/charges
-            var stripeToken = result.token.id;
+            stripeToken = result.token.id;
             successElement.querySelector('.token').textContent = result.token.id;
             successElement.classList.add('visible');
             sendForm(stripeToken);
@@ -116,7 +116,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: url,
-            data: {id: id},
+            data: {id: id, token: stripeToken},
             success: function(res) {
                location.reload();
             },
