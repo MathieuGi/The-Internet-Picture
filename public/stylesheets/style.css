@@ -310,6 +310,11 @@ background-color: #8389e2;
 
 
 /* Bid more part */
+.bid-more .info-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
 
 .bid-more {
     display: none;
