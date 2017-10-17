@@ -7,6 +7,10 @@
     max-width: 90px;
 }
 
+/* Bid more part */
+.bid-more .info-icon {
+    font-size: 20px;
+}
 
 #paiement-form button {
     background: #666EE8;

@@ -3,6 +3,11 @@
 	font-size: 4vw;
 }
 
+/* Bid more part */
+.bid-more .info-icon {
+    font-size: 5vw;
+}
+
 #paiement-form {
 	font-size: 4vw;
 }
@@ -49,6 +54,10 @@ header.main-header {
 .rank-table table td {
 	padding-bottom: 1.5rem;
 	padding-top: 1.5rem;
+}
+
+.rank-table {
+    margin-bottom: 4vh;
 }
 
 #paiement-form .form-group {

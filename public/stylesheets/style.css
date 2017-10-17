@@ -342,6 +342,8 @@ background-color: #8389e2;
     position: absolute;
     right: 15px;
     top: 15px;
+    color: gainsboro;
+    cursor: pointer;
 }
 
 .bid-more {
@@ -355,17 +357,25 @@ background-color: #8389e2;
     border: 1px solid #e6e6e6;
     padding: 25px;
     background-color: white;
+    position: relative;
 }
 
 #paiement-form .star-legend {
     position: relative;
     text-align: right;
+    bottom: -15px;
     margin-right: 5px;
+    margin-top: 15px;
 }
 
 #paiement-form .terms {
     color: #666EE8;
     text-decoration: underline;
+    cursor: pointer;
+}
+
+#paiement-form .checkbox {
+    margin-bottom: 20px;
 }
 
 #paiement-form button:focus {
