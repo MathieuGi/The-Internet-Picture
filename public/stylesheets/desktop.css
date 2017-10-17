@@ -1,3 +1,14 @@
+/* Font */
+#menu .menu-item {
+    font-size: 5vh;
+}
+
+/* Style */
+
+#menu .menu-item {
+    color: grey;
+}
+
 .rank-table {
     overflow: auto;
     max-height: 60vh;

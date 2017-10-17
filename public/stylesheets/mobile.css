@@ -3,7 +3,10 @@
 	font-size: 4vw;
 }
 
-/* Bid more part */
+.rank-table .see-more {
+    font-size: 6vh;
+}
+
 .bid-more .info-icon {
     font-size: 5vw;
 }
@@ -32,14 +35,23 @@
 /* Styles */
 
 header.main-header {
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
 }
 
 /* Menu */
 
+#menu {
+    margin-bottom: 3vh;
+}
+
 #menu .menu-item {
     padding: 25px;
-    border: 5px solid #446084;
+    border-bottom: 1px solid #446084;
+    color: grey;
+}
+
+#menu .menu-item.active {
+    color: #446084;
 }
 
 .rank-table table td {
@@ -48,7 +60,12 @@ header.main-header {
 }
 
 .rank-table {
-    margin-bottom: 4vh;
+    margin-bottom: 5vh;
+}
+
+.rank-table .see-more {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 #paiement-form .form-group {
