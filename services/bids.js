@@ -12,6 +12,16 @@ module.exports = {
         return bid.findById(id).then(res => res);
     },
 
+    // This function is used to get a bid by his id and his token
+    getByIdAndToken: function(id, token){
+        return bid.findOne({
+            where: {
+                id: id,
+                transaction_id: token
+            },
+        }).then(res => res);
+    },
+
     // This function is used to get the best bid
     getBest: function() {
         return bid.findOne({

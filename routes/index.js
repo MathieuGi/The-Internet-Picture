@@ -73,7 +73,7 @@ var returnRouter = function(io) {
 
         // Variables settings
         var body = req.body;
-        bidService.getById(body.id).then(bidder => {
+        bidService.getByIdAndToken(body.id, body.token).then(bidder => {
             bidService.getBest().then(bestBidder => {
 
                 if(bidder.price <= bestBidder.price) {
