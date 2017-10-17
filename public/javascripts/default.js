@@ -419,3 +419,10 @@ $(document).ready(function() {
         // window.open( $('.line-ranked-table').data('url') );
         // return false;
     });
+
+    // JS for the footer
+
+    // When clicking on the "twitter"
+    $('.btn-twitter').on('click', function(){
+        alert("ok");
+    })
