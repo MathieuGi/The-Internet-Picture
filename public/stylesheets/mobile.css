@@ -17,7 +17,11 @@
 }
 
 #menu .menu-item {
-    font-size: 3em;
+    font-size: 4vw;
+}
+
+#menu .fa {
+    font-size: 6vw;
 }
 
 .main-title h1 {
@@ -32,23 +36,10 @@ header.main-header {
 }
 
 /* Menu */
-#menu {
-    position: absolute;
-    left: 30px;
-    top: 25px;
-}
-
-#menu img {
-    height: 70px;
-    width: 70px;
-}
 
 #menu .menu-item {
     padding: 25px;
-}
-
-#dropdownMenuButton {
-    background: url(public/images/static/open-iconic-master/svg/menu.svg) no-repeat;
+    border: 5px solid #446084;
 }
 
 .rank-table table td {
