@@ -85,6 +85,7 @@ $(document).ready(function() {
     // On clicking on trump button, show payement form
     $("#trump").click(function(e){
         
+        $(':focus').blur();
         if ($("#paiement").is(":visible")){
             $(".paiement").hide();
         }
@@ -104,6 +105,7 @@ $(document).ready(function() {
 
     form.submit(function(e) {
         e.preventDefault();
+        $(':focus').blur();
         if (! validateForm(2)) {
             e.preventDefault();
             e.stopPropagation();
@@ -156,6 +158,8 @@ $(document).ready(function() {
     });
 
     $('#bid-summary-container').on('click', '#bid-summary .confirm .paye', function(e){
+        e.preventDefault();
+        $(':focus').blur();
         $('#bid-summary .confirm .paye').hide();
         $('#bid-summary .confirm .loading').show();
         var url = '/confirmBid';
@@ -182,9 +186,11 @@ $(document).ready(function() {
     });
 
     $('#bid-summary-container').on('click', '#bid-summary .confirm .modify', function(e){
+        e.preventDefault();
+        $(':focus').blur();
         $('#menu').show();
-        $('.bid-more').show();
         $('#bid-summary-container').hide();
+        $('.bid-more').show();
     });
 
     /******************* Socket.io *******************/
