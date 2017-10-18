@@ -2,63 +2,67 @@
     <% bidders.forEach(function(bidder, i) { %>
     <% if (i >= 3) return false %>
     <div class="col-<%= (i == 0 ? 5 : 3) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>">
-      <div class="row top-rank">
+      <div class="row top-rank">  
         <div class="col-12 text-center">
-          <h2><%= i+1 %></h2>
-          <span><%= bidder.price %> €</span>
+          <% if(i==0){ %>
+            <div class="time timer-part text-center ">
+              <input id="richest-time" type="hidden" value="<%= bidder.createdAt.getTime() %>"/>
+              <table>
+                <tbody>
+                  <% var days = Math.trunc(bidder.bid_time / (24 * 60 * 60 * 1000)) %>
+                  <% var hours = new Date(bidder.bid_time).getHours() %>
+                  <% var minutes = new Date(bidder.bid_time).getMinutes() %>
+                  <% var seconds = new Date(bidder.bid_time).getSeconds() %>
+                  <% var showDays = (days !== 0 ? '' : 'hide-timer') %>
+                  <% var showHours = (days !== 0 || hours !== 0) ? '' : 'hide-timer' %>
+                  <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'hide-timer' %>
+                  <% var showSeconds = (i === 0) || (days === 0 &&  hours === 0) ? true : false %>
+                  <tr>
+                    <td class="days <%= showDays %>">
+                      <%= days %>
+                    </td> 
+                    <td class="hours <%= showHours %>">
+                      <%= hours %>
+                    </td>
+                    <td class="minutes <%= showMinutes %>">
+                      <%= minutes %>
+                    </td>
+                    <% if(showSeconds) { %>
+                    <td class="seconds">
+                      <%= seconds %>
+                    </td>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <th class="days <%= showDays %>">
+                      Jours
+                    </th>
+                    <th class="hours <%= showHours %>">
+                      Heures
+                    </th>
+                    <th class="minutes <%= showMinutes %>">
+                      Minutes
+                    </th>
+                    <% if(showSeconds) { %>
+                    <th class="seconds <%= showSeconds %>">
+                      Secondes
+                    </th>
+                    <% } %>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <% } %>
+          </div>
         </div>
-      </div>
+
       <article class="block-image">
         <header class="header">
           <div class="name">
             <span><%= bidder.name %></span>
           </div>
-          <div class="time timer-part text-center">
-            <input id="richest-time" type="hidden" value="<%= bidder.createdAt.getTime() %>"/>
-            <table>
-              <tbody>
-                <% var days = Math.trunc(bidder.bid_time / (24 * 60 * 60 * 1000)) %>
-                <% var hours = new Date(bidder.bid_time).getHours() %>
-                <% var minutes = new Date(bidder.bid_time).getMinutes() %>
-                <% var seconds = new Date(bidder.bid_time).getSeconds() %>
-                <% var showDays = (days !== 0 ? '' : 'invisible') %>
-                <% var showHours = (days !== 0 || hours !== 0) ? '' : 'invisible' %>
-                <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'invisible' %>
-                <% var showSeconds = (i === 0) || (days === 0 &&  hours === 0) ? true : false %>
-                <tr>
-                  <td class="days <%= showDays %>">
-                    <%= days %>
-                  </td> 
-                  <td class="hours <%= showHours %>">
-                    <%= hours %>
-                  </td>
-                  <td class="minutes <%= showMinutes %>">
-                    <%= minutes %>
-                  </td>
-                  <% if(showSeconds) { %>
-                  <td class="seconds">
-                    <%= seconds %>
-                  </td>
-                  <% } %>
-                </tr>
-                <tr>
-                  <th class="days <%= showDays %>">
-                    Jours
-                  </th>
-                  <th class="hours <%= showHours %>">
-                    Heures
-                  </th>
-                  <th class="minutes <%= showMinutes %>">
-                    Minutes
-                  </th>
-                  <% if(showSeconds) { %>
-                  <th class="seconds <%= showSeconds %>">
-                    Secondes
-                  </th>
-                  <% } %>
-                </tr>
-              </tbody>
-            </table>
+          <div class="price">
+           <span><%= bidder.price %> €</span>
           </div>
         </header>
         <% if(bidder.url != "") { %>

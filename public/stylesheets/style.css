@@ -88,7 +88,7 @@ table td {
 }
 
 .footer {
-    text-align:right;
+    
     width:100%;
     background-color: #446084;
     padding-top:10px;
@@ -219,6 +219,12 @@ background-color: #8389e2;
 
 /* Homepage part */
 
+.price{
+    display: inline-flex;
+    width:20%;
+    justify-content: flex-end;
+
+}
 .richest-area .top-rank {
 	margin-bottom: 25px;
 }
@@ -234,7 +240,7 @@ background-color: #8389e2;
 .block-image .name {
     display: inline-flex;
     justify-content: flex-start;
-    width: 55%;
+    width: 80%;
 }
 
 .block-image .time {
@@ -248,8 +254,14 @@ background-color: #8389e2;
     text-align: center;
 }
 
+.richest-area table .hide-timer{
+    display:none;
+}
+
 .richest-area table {
     width: 200px;
+    display: inline-flex;
+    justify-content: center;
 }
 
 .others-area table {

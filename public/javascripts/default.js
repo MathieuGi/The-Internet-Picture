@@ -235,13 +235,13 @@ $(document).ready(function() {
         addToTimer('seconds', s);
 
         if(d !== 0){
-            $('.richest-area .days').removeClass('invisible');
+            $('.richest-area .days').show();
         }
         if(h !== 0){
-            $('.richest-area .hours').removeClass('invisible');
+            $('.richest-area .hours').show();
         }
         if(m !== 0){
-            $('.richest-area .minutes').removeClass('invisible');
+            $('.richest-area .minutes').show();
         }
 
         if(d == 0 && h == 0){
@@ -414,7 +414,7 @@ $(document).ready(function() {
        window.open($(this).data('url'),'_blank');
 
         // if(($(this).attr("class"))==='noNewWindow'){return true;}
-        // console.log($('.line-ranked-table').data('url'));
+        // console.log($('.line-ranked-table'<).data('url'));
         // console.log('ok');
         // window.open( $('.line-ranked-table').data('url') );
         // return false;
