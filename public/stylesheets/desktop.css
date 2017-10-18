@@ -91,7 +91,7 @@
     width: 135px;
 }
 
-#bid-summary .block-image .img, #bid-summary .block-image img {
+#bid-summary .block-image .img, #bid-summary .block-image .img img {
     max-height: 400px;
     width: 100%;
 }

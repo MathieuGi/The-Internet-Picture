@@ -150,6 +150,8 @@ $(document).ready(function() {
     });
 
     $('#bid-summary-container').on('click', '#bid-summary .confirm .paye', function(e){
+        $('#bid-summary .confirm .paye').hide();
+        $('#bid-summary .confirm .loading').show();
         var url = '/confirmBid';
         var id = $('#bid-summary').data('id');
         $.ajax({

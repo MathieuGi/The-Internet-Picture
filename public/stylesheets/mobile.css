@@ -134,8 +134,8 @@ header.main-header {
     width: 135px;
 }
 
-#bid-summary .block-image .img, #bid-summary .block-image img {
-    max-height: 400px;
+#bid-summary .block-image .img, #bid-summary .block-image .img img {
+    max-height: 800px;
     width: 100%;
 }
 #bid-summary .block-image .img {

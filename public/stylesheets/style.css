@@ -443,3 +443,10 @@ background-color: #8389e2;
     cursor: pointer;
     color: #666EE8;
 }
+
+#bid-summary .confirm div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+}
