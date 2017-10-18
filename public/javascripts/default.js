@@ -1,4 +1,4 @@
-$(document).ready(function() {
+ $(document).ready(function() {
 
     //popover
     $(function () {
@@ -230,6 +230,7 @@ $(document).ready(function() {
 
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
+        updateDomAfterNewBid(data);
     });
 
 
