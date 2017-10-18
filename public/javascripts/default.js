@@ -399,41 +399,6 @@ $(document).ready(function() {
     }
 });
 
- // Show the picture in full size when clicking on the thumbs one 
-    $(".thumbs").click(function(event){
-        var img = $('<img />', { 
-        id: 'ranked-image-fullSize',
-        src:  "images/fullsize/"+$(this).data('img'),
-        alt:  $(this).data('url')
-        });
-        img.appendTo($('.black-container'));
-        $('.black-container').show();
-        event.stopPropagation();
-    });
-
-    // When click on the black-container, hide him and the picture
-    $('.black-container').on("click",function(){
-        $('#ranked-image-fullSize').remove();
-        $('.black-container').hide();
-         
-    });
-
-    $('.black-container').on('click', '#ranked-image-fullSize', function(event){
-        event.stopPropagation();
-    });
-      
-   $('.rank-table').on('click','.line-ranked-table',function(){
-       console.log($(this).data('url'));
-       var url = $(this).data('url')  ? 'www.lol.fr': $(this).data('url');
-       window.open($(this).data('url'),'_blank');
-
-        // if(($(this).attr("class"))==='noNewWindow'){return true;}
-        // console.log($('.line-ranked-table'<).data('url'));
-        // console.log('ok');
-        // window.open( $('.line-ranked-table').data('url') );
-        // return false;
-    });
-
     // JS for the footer
 
     // When clicking on the "twitter"
