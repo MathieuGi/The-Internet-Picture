@@ -6,12 +6,15 @@ $(document).ready(function() {
     })
 
     // Navigation menu
-    $('.menu-item').click(function() {
+    $('.menu-item').click(function(e) {
         var menu = $(this).attr("id");
         $('.menu-item').removeClass('active');
         $(this).addClass('active');
         $('.main-area').hide();
         $('.' + menu).show();
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        e.stopPropagation();
     });
 
     // Open page effect
