@@ -72,7 +72,6 @@ $(document).ready(function() {
     });
       
    $('.rank-table').on('click','.line-ranked-table',function(){
-       console.log($(this).data('url'));
        var url = $(this).data('url')  ? 'www.lol.fr': $(this).data('url');
        window.open($(this).data('url'),'_blank');
 
@@ -325,8 +324,6 @@ $(document).ready(function() {
                     // On error show button and hide loading
                     $('#paiement-form .loading').hide(); 
                     $('#paiement-form .confirm-button').show();
-
-                    console.log(err);
                    
 
                     // Add paiementFailed
