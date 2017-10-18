@@ -37,6 +37,10 @@ module.exports = {
     transformImage: function(filePath, name, quality){
         var _this = this;
         var weight = 120000; // Weight max of the final picture wanted
+        var minWidth = 1000;
+        var minHeight = 800;
+        var miniatureWidth = 80;
+        var miniatureHeight = 50;
         var thumbsPath = 'public/images/thumbs/' + name + '.jpg'; // Path of the thumbs picture
         var modelePath = 'public/images/fullsize/' + name + 'modele.jpg'; // Path of the modele picture (700-400 with quality 100)
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
@@ -49,15 +53,15 @@ module.exports = {
 
                 // Check if we need to resize
                 var dimensions = sizeOf(filePath);
-                if(dimensions.width > 700 || dimensions.height > 400){
+                if(dimensions.width > minWidth || dimensions.height > minHeight){
 
                     // Resize image
                     winston.info(FILE_NAME + ' - transformImage: Resizing image in 700x400')
-                    img.contain(700, 400);
+                    img.scaleToFit(minWidth, minHeight);
                 }
 
                 // Save model image
-                img.background(0xFFFFFFFF).write(modelePath, function(){
+                img.write(modelePath, function(){
                     // check image weight 
                     var stats = fs.statSync(modelePath);
                     winston.info(FILE_NAME + ' - get stats for image: ' + modelePath);
@@ -75,7 +79,7 @@ module.exports = {
                         delete the modele picture and delete the picture without an extension */
                         winston.info(FILE_NAME + ' - Image created with quality = '+ quality + ': ' +modelePath);
                         img.write(fullPath); 
-                        img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
+                        img.scaleToFit(miniatureWidth, miniatureHeight).quality(60).write(thumbsPath);
                         fs.unlink(modelePath);
                         fs.unlink(toDeletePath);
                         return;
@@ -100,7 +104,7 @@ module.exports = {
 
                         // Create the thumbs picture, delete the modele picture and the 'without extension' picture
                         winston.info(FILE_NAME + ' - Image created with quality : '+ quality + ': ' +modelePath);
-                        img.contain(50, 50).quality(60).background(0xFFFFFFFF).write(thumbsPath);
+                        img.scaleToFit(miniatureWidth, miniatureHeight).quality(60).write(thumbsPath);
                         fs.unlink(modelePath); 
                         fs.unlink(toDeletePath);
                         return;
