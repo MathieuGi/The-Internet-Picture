@@ -41,15 +41,22 @@ $(document).ready(function() {
 
 
     });
- // Show the picture in full size when clicking on the thumbs one 
+
+    // Show the picture in full size when clicking on the thumbs one 
     $(".thumbs").click(function(event){
         var img = $('<img />', { 
         id: 'ranked-image-fullSize',
         src:  "images/fullsize/"+$(this).data('img'),
         alt:  $(this).data('url')
         });
-        img.appendTo($('.black-container'));
+        var cross = $('<span>', {
+            class: "close",
+            html: "X"
+        });
+        $('.black-container').html(img);
+        $('.black-container').prepend(cross);
         $('.black-container').show();
+        $('.black-container').css('display', 'flex');
         event.stopPropagation();
     });
 
@@ -182,10 +189,8 @@ $(document).ready(function() {
     });
 
     /******************* Socket.io *******************/
-
-    var socket = io.connect(window.location.host);
-    socket.on('newBidder', function(data) {
-
+    
+    function updateDomAfterNewBid(data){
         if($('.picture-area').is(':visible')){
             $('.picture-area').fadeTo(400, 0, function(){
                 $('.picture-area').html(data.newHomepage);
@@ -213,9 +218,11 @@ $(document).ready(function() {
         $('#paiement-form .min-bid-value').html(data.bestBid.price + 1);
         $('.min-price').val(data.bestBid.price + 1);
         $('.paiement-success').show().delay(2500).fadeOut(2000);
- 
-    });
+    }
 
+    var socket = io.connect(window.location.host);
+    socket.on('newBidder', function(data) {
+    });
 
 
     /*********************** Functions **********************/
