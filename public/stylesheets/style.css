@@ -296,11 +296,14 @@ background-color: #8389e2;
 .richest-area .top-rank {
 	color: #e8d254;
 }
-.others-area.order-1 .top-rank {
-	color: #dadace;
+.richest-area .header {
+	background-color: #e8d254;
 }
-.others-area.order-3 .top-rank {
-	color: #edab60;
+.others-area.order-1 .header {
+	background-color: #cecece;
+}
+.others-area.order-3 .header{
+	background-color: #edab60;
 }
 
 .richest-area .block-image header {
