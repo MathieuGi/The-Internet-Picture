@@ -271,12 +271,7 @@ background-color: #8389e2;
 	background: gainsboro;
 }
 
-.richest-area .block-image .img {
-    min-height: 250px;
-    max-height: 400px;
-}
-
-.block-image img {
+.block-image .img img {
 	border: solid #e6e6e6;
     border-width: 1px;
     position: relative;
@@ -333,17 +328,6 @@ background-color: #8389e2;
 	display: flex;
 	flex-direction: column;
 }
-
-.others-area.order-1 .block-image .img, .others-area.order-1 .block-image img{
-    min-height: 150px;
-    max-height: 250px;
-}
-
-.others-area.order-3 .block-image .img, .others-area.order-3 .block-image img{
-    min-height: 100px;
-    max-height: 200px;
-}
-
 
 /* Bid more part */
 .bid-more .info-icon {

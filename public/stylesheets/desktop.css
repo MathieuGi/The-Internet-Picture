@@ -120,3 +120,23 @@
 #bid-summary .richest-text span {
     word-break: break-all;
 }
+
+/* Homepage */
+.main-area [data-rank="1"] img {
+    min-height: 250px;
+    max-height: 500px;
+}
+
+.main-area [data-rank="2"] img {
+    min-height: 150px;
+    max-height: 350px;
+}
+
+.main-area [data-rank="3"] img {
+    min-height: 100px;
+    max-height: 250px;
+}
+
+.main-area [data-rank="3"] {
+    max-width: 20%;
+}

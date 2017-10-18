@@ -1,7 +1,7 @@
 <!-- Richest -->
     <% bidders.forEach(function(bidder, i) { %>
     <% if (i >= 3) return false %>
-    <div class="col-<%= (i == 0 ? 5 : 3) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>">
+    <div class="col-<%= (i == 0 ? 5 : 3) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
       <div class="row top-rank">
         <div class="col-12 text-center">
           <h2><%= i+1 %></h2>

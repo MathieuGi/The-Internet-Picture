@@ -167,3 +167,18 @@ header.main-header {
 .main-area > .row {
     margin-bottom: 10vh;
 }
+
+.main-area [data-rank="1"] img{
+    min-height: 500px;
+    max-height: 800px;
+}
+
+.main-area [data-rank="2"] img{
+    min-height: 300px;
+    max-height: 600px;
+}
+
+.main-area [data-rank="3"] img{
+    min-height: 150px;
+    max-height: 400px;
+}
