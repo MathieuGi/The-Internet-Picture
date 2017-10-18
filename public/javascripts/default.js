@@ -1,4 +1,4 @@
-$(document).ready(function() {
+ $(document).ready(function() {
 
     //popover
     $(function () {
@@ -46,7 +46,8 @@ $(document).ready(function() {
     });
 
     // Show the picture in full size when clicking on the thumbs one 
-    $(".thumbs").click(function(event){
+    $(".rank-table").on('click', '.thumbs', function(event){
+        event.preventDefault();
         var img = $('<img />', { 
         id: 'ranked-image-fullSize',
         src:  "images/fullsize/"+$(this).data('img'),
@@ -64,8 +65,7 @@ $(document).ready(function() {
     });
 
     // When click on the black-container, hide him and the picture
-    $('.black-container').on("click",function(){
-        $('#ranked-image-fullSize').remove();
+    $('.black-container').on("click", function(){
         $('.black-container').hide();
          
     });
@@ -75,7 +75,6 @@ $(document).ready(function() {
     });
       
    $('.rank-table').on('click','.line-ranked-table',function(){
-       console.log($(this).data('url'));
        var url = $(this).data('url')  ? 'www.lol.fr': $(this).data('url');
        window.open($(this).data('url'),'_blank');
 
@@ -89,6 +88,7 @@ $(document).ready(function() {
     // On clicking on trump button, show payement form
     $("#trump").click(function(e){
         
+        $(':focus').blur();
         if ($("#paiement").is(":visible")){
             $(".paiement").hide();
         }
@@ -108,6 +108,7 @@ $(document).ready(function() {
 
     form.submit(function(e) {
         e.preventDefault();
+        $(':focus').blur();
         if (! validateForm(2)) {
             e.preventDefault();
             e.stopPropagation();
@@ -160,6 +161,8 @@ $(document).ready(function() {
     });
 
     $('#bid-summary-container').on('click', '#bid-summary .confirm .paye', function(e){
+        e.preventDefault();
+        $(':focus').blur();
         $('#bid-summary .confirm .paye').hide();
         $('#bid-summary .confirm .loading').show();
         var url = '/confirmBid';
@@ -186,9 +189,11 @@ $(document).ready(function() {
     });
 
     $('#bid-summary-container').on('click', '#bid-summary .confirm .modify', function(e){
+        e.preventDefault();
+        $(':focus').blur();
         $('#menu').show();
-        $('.bid-more').show();
         $('#bid-summary-container').hide();
+        $('.bid-more').show();
     });
 
     /******************* Socket.io *******************/
@@ -225,6 +230,7 @@ $(document).ready(function() {
 
     var socket = io.connect(window.location.host);
     socket.on('newBidder', function(data) {
+        updateDomAfterNewBid(data);
     });
 
 
@@ -328,8 +334,6 @@ $(document).ready(function() {
                     // On error show button and hide loading
                     $('#paiement-form .loading').hide(); 
                     $('#paiement-form .confirm-button').show();
-
-                    console.log(err);
                    
 
                     // Add paiementFailed
@@ -401,41 +405,6 @@ $(document).ready(function() {
         }
     }
 });
-
- // Show the picture in full size when clicking on the thumbs one 
-    $(".thumbs").click(function(event){
-        var img = $('<img />', { 
-        id: 'ranked-image-fullSize',
-        src:  "images/fullsize/"+$(this).data('img'),
-        alt:  $(this).data('url')
-        });
-        img.appendTo($('.black-container'));
-        $('.black-container').show();
-        event.stopPropagation();
-    });
-
-    // When click on the black-container, hide him and the picture
-    $('.black-container').on("click",function(){
-        $('#ranked-image-fullSize').remove();
-        $('.black-container').hide();
-         
-    });
-
-    $('.black-container').on('click', '#ranked-image-fullSize', function(event){
-        event.stopPropagation();
-    });
-      
-   $('.rank-table').on('click','.line-ranked-table',function(){
-       console.log($(this).data('url'));
-       var url = $(this).data('url')  ? 'www.lol.fr': $(this).data('url');
-       window.open($(this).data('url'),'_blank');
-
-        // if(($(this).attr("class"))==='noNewWindow'){return true;}
-        // console.log($('.line-ranked-table'<).data('url'));
-        // console.log('ok');
-        // window.open( $('.line-ranked-table').data('url') );
-        // return false;
-    });
 
     // JS for the footer
 

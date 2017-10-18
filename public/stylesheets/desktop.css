@@ -5,6 +5,7 @@
 
 /* Style */
 
+
 #menu .menu-item {
     color: grey;
 }
@@ -137,6 +138,6 @@
     max-height: 250px;
 }
 
-.main-area [data-rank="3"] {
-    max-width: 20%;
+.main-area [data-rank="3"] .block-image {
+    max-width: 80%;
 }
