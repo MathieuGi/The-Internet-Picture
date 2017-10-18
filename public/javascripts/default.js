@@ -43,7 +43,8 @@ $(document).ready(function() {
     });
 
     // Show the picture in full size when clicking on the thumbs one 
-    $(".thumbs").click(function(event){
+    $(".rank-table").on('click', '.thumbs', function(event){
+        event.preventDefault();
         var img = $('<img />', { 
         id: 'ranked-image-fullSize',
         src:  "images/fullsize/"+$(this).data('img'),
@@ -61,8 +62,7 @@ $(document).ready(function() {
     });
 
     // When click on the black-container, hide him and the picture
-    $('.black-container').on("click",function(){
-        $('#ranked-image-fullSize').remove();
+    $('.black-container').on("click", function(){
         $('.black-container').hide();
          
     });
