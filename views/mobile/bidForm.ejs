@@ -8,6 +8,9 @@
 
         <!-- Form first part -->
         <div class="information">
+          
+          <!-- Information bubble -->
+          <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Seules les données de la première partie du formulaire seront concervées. Aucune information bancaire n'est concervée sur notre site."></span>
 
           <!-- Name -->
           <div class="form-group">
@@ -47,11 +50,19 @@
               <span class="error-message" id="must-be-integer">Seuls les valeurs entières sont acceptées</span>
           </div>
 
-          <p class="star-legend"><span class="star">*</span> Champ obligatoire</p>
+          <!-- User terms -->
+          <div class="checkbox">
+            <label for="form-terms">
+                <input id="form-terms" type="checkbox"> J'accepte les <a class="terms" data-toggle="modal" data-target="#terms-modal">conditions générales d'utilisation</a>
+            </label>
+            <br>
+            <span class="error-message" id="missing-terms">Merci d'accepter les conditions générales d'utilisation</span>
+          </div>
 
           <!-- Go to the pay part -->
           <input type="button" id="trump" value="Renchérir" href="#paiement" />
-            
+
+          <p class="star-legend"><span class="star">*</span> Champ obligatoire</p>
           
         </div>
       </div></br>
@@ -66,15 +77,6 @@
           <div class="form-group">
             <label for="card-element">Card</label>
             <div id="card-element" class="form-control form-control-lg"></div>
-          </div>
-
-          <!-- User terms -->
-          <div class="checkbox">
-            <label for="form-terms">
-                <input id="form-terms" type="checkbox" checked> J'accepte les <a href="#" class="terms">conditions générales d'utilisation</a>
-            </label>
-            <br>
-            <span class="error-message" id="missing-terms">Merci d'accepter les conditions générales d'utilisation</span>
           </div>
 
           <!-- Missing fields message -->
@@ -99,5 +101,27 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+
+
+<!-- Terms modal -->
+<div class="modal fade" id="terms-modal" tabindex="-1" role="dialog" aria-labelledby="termsModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModal">Conditions Générales de Vente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

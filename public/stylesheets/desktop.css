@@ -1,3 +1,14 @@
+/* Font */
+#menu .menu-item {
+    font-size: 5vh;
+}
+
+/* Style */
+
+#menu .menu-item {
+    color: grey;
+}
+
 .rank-table {
     overflow: auto;
     max-height: 60vh;
@@ -7,6 +18,10 @@
     max-width: 90px;
 }
 
+/* Bid more part */
+.bid-more .info-icon {
+    font-size: 20px;
+}
 
 #paiement-form button {
     background: #666EE8;

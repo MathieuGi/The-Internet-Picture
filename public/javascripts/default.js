@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    //popover
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+
     // Navigation menu
     $('.menu-item').click(function() {
         var menu = $(this).attr("id");
@@ -373,7 +378,7 @@ $(document).ready(function() {
             return false;
         } 
 
-        else if ( (validationNumber == 2) && (!$('#form-terms').prop('checked')) ){
+        else if ( (!$('#form-terms').prop('checked')) ){
             $('#missing-terms').show();
             $(window).scrollTop($("#form-terms").offset().top - 40);
             return false;
