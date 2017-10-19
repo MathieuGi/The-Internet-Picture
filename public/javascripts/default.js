@@ -162,7 +162,7 @@
         e.preventDefault();
         $(':focus').blur();
         $('#bid-summary .confirm .paye').hide();
-        $('#bid-summary .confirm .loading').show();
+        $('#bid-summary .confirm .loading').css("display", "inline-flex");
         var url = '/confirmBid';
         var id = $('#bid-summary').data('id');
         $.ajax({
