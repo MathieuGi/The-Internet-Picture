@@ -11,12 +11,11 @@
 }
 
 .rank-table {
-    overflow: auto;
     max-height: 60vh;
 }
 
 .text-truncate {
-    max-width: 90px;
+    max-width: 350px;
 }
 
 /* Bid more part */
