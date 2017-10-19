@@ -32,10 +32,8 @@
             url: "/getBidsList",
             data: { offset: offset },
             success: function(res) {
-                setTimeout(function() {
-                    $('#load-more').replaceWith(res);
-                    $('.rank-table .see-more').data('offset', offset + 10);
-                }, 800);
+                $('#load-more').replaceWith(res);
+                $('.rank-table .see-more').data('offset', offset + 10);
             },
             error: function(err) {
                 console.log('error')
