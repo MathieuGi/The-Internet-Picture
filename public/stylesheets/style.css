@@ -373,6 +373,12 @@ background-color: #8389e2;
 }
 
 /* Bid more part */
+
+.img-input input:disabled{
+    background-color:white;  
+}
+
+
 .bid-more .info-icon {
     position: absolute;
     right: 15px;
@@ -381,8 +387,29 @@ background-color: #8389e2;
     cursor: pointer;
 }
 
+.icone-field .fa{
+    font-size:20px;
+    color:#868e96;
+}
+
+.icone-field{
+    position:relative;
+}
+
+.icone-field-icone{
+    position:absolute;
+    left:10px;
+    top:calc(50% - 10px);
+}
+
+.icone-field-field{
+    padding-left: 35px;
+}
+
 .bid-more {
     display: none;
+    font-family: "Trebuchet MS", Arial, Verdana;
+
 }
 
 /* Form */
@@ -391,7 +418,7 @@ background-color: #8389e2;
 #paiement-form .paiement {
     border: 1px solid #e6e6e6;
     padding: 25px;
-    background-color: white;
+    background-color: gainsboro;
     position: relative;
 }
 
