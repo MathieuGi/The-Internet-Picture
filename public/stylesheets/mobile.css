@@ -180,10 +180,10 @@ header.main-header {
 
 .main-area [data-rank="2"] img{
     min-height: 300px;
-    max-height: 600px;
+    max-height: 500px;
 }
 
 .main-area [data-rank="3"] img{
     min-height: 150px;
-    max-height: 400px;
+    max-height: 300px;
 }
