@@ -3,6 +3,13 @@
     font-size: 5vh;
 }
 
+.menu-label{
+    font-size: 11px;
+}
+
+.icone-field .fa{
+    font-size:20px;
+}
 /* Style */
 
 
@@ -135,4 +142,16 @@
 
 .main-area [data-rank="3"] .block-image {
     max-width: 80%;
+}
+
+/* Bid part */
+
+.icone-field-field{
+    padding-left: 35px;
+}
+
+.icone-field-icone{
+    position:absolute;
+    left:10px;
+    top:calc(50% - 10px);
 }

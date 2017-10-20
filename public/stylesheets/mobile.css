@@ -35,6 +35,9 @@
     font-size: 6em;
 }
 
+.icone-field .fa{
+    font-size:40px;
+}
 
 /* Styles */
 
@@ -182,4 +185,16 @@ header.main-header {
 .main-area [data-rank="3"] img{
     min-height: 150px;
     max-height: 300px;
+}
+
+/* Bid part */
+
+.icone-field-field{
+    padding-left: 55px;
+}
+
+.icone-field-icone{
+    position:absolute;
+    left:10px;
+    top:calc(50% - 20px);
 }

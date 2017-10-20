@@ -12,39 +12,52 @@
           <!-- Information bubble -->
           <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Seules les données de la première partie du formulaire seront concervées. Aucune information bancaire n'est concervée sur notre site."></span>
 
-          <!-- Name -->
+
+
           <div class="form-group">
-              <label for="form-name">Nom <span class="star">*</span></label>
-              <input type="text" class="form-control form-control-lg" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
+            <label for="form-name">Nom *</label>
+            <div class="icone-field">
+              <span class="icone-field-icone fa fa-user-o"></span>
+              <input type="text" class="form-control icone-field-field" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
               <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
+            </div>
           </div>
 
           <!-- Image -->
-          <div class="form-group">
-              <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 4Mo) <span class="star">*</span></label>
-              <input type="file" class="form-control form-control-lg" id="form-image" accept=".jpeg, .jpg, .png, .gif" required>
+            <div class="form-group img-input">
+              <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 4Mo) *</label>
+              <input type="file" id="form-image" class="filestyle" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
               <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
               <span id="noImage" class="error-message"> Merci de selectionner une image </span>
               <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
           </div>
        
-          <!-- Link -->
+                 <!-- Link -->
           <div class="form-group">
               <label for="form-url">Lien url</label>
-              <input type="url" class="form-control form-control-lg" id="form-url" placeholder="Entrez un lien">
+                <div class="icone-field">
+                <span class="icone-field-icone fa fa-external-link"></span>
+                <input type="url" class="form-control icone-field-field" id="form-url" placeholder="Entrez un lien">
+              </div>
           </div>
 
           <!-- Text -->
           <div class="form-group">
               <label for="form-text">Texte complémentaire (130 caractères)</label>
-              <input type="text" class="form-control form-control-lg" id="form-text" maxlength="130" placeholder="Entrez un text complémentaire">
+              <div class="icone-field">
+                <span class="icone-field-icone fa fa-file-text-o"></span>
+                <input type="text" class="form-control icone-field-field" id="form-text" maxlength="130" placeholder="Entrez un text complémentaire">
+              </div>
           </div>
 
           <!-- Selected price -->
           <div class="form-group">
-              <label for="form-price">Montant (€) <span class="star">*</span></label> - Enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €
+              <label for="form-price">Montant</label> (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €)
               <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
-              <input type="number" class="form-control form-control-lg form-price" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+               <div class="icone-field">
+                <span class="icone-field-icone fa fa-eur"></span>
+                <input type="number" class="form-control form-price icone-field-field" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+              </div>
               <span class="error-message" id="price-too-low">L'enchère minimum est de <span class="min-bid-value"><%= bidders[0].price + 1 %></span> €</span>
               <span class="error-message" id="missing-price">Merci de renseigner un prix</span>
               <span class="error-message" id="must-be-integer">Seuls les valeurs entières sont acceptées</span>
