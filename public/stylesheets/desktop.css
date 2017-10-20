@@ -18,12 +18,11 @@
 }
 
 .rank-table {
-    overflow: auto;
     max-height: 60vh;
 }
 
 .text-truncate {
-    max-width: 90px;
+    max-width: 350px;
 }
 
 /* Bid more part */
@@ -131,18 +130,18 @@
 
 /* Homepage */
 .main-area [data-rank="1"] img {
-    min-height: 250px;
+    min-height: 280px;
     max-height: 500px;
 }
 
 .main-area [data-rank="2"] img {
-    min-height: 150px;
-    max-height: 350px;
+    min-height: 180px;
+    max-height: 250px;
 }
 
 .main-area [data-rank="3"] img {
-    min-height: 100px;
-    max-height: 250px;
+    min-height: 80px;
+    max-height: 150px;
 }
 
 .main-area [data-rank="3"] .block-image {

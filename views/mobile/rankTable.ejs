@@ -2,19 +2,21 @@
 <div class="row main-area rank-table-area">
 	<div class="col-12 mx-auto">
 
-	  <!-- Header part -->
-	  <div class="rank-header">
-	    <span>Classement</span>
-	    <img src="images/static/arrow-down.png" alt="down-arrow"/>
-	  </div>
-
-	  <!-- Rank table -->
-	  <div class="rank-table">
-	    <table class="table table-hover table-striped">
-	      <tbody>
-	      	 <% include rankTableContent %>
-	      </tbody>
-	    </table>
-	  </div>
+		<!-- Rank table -->
+		<div class="rank-table">
+		  <table class="table table-hover">
+	    	<thead>
+	    	 <tr>
+			    <th class="text-left"></th>
+			    <th class="text-left">Nom</th>
+			    <th>Enchère</th>
+			    <th>Temps</th>
+			  </tr>
+	    	</thead>
+		    <tbody>
+		    	<% include rankTableContent %>
+		    </tbody>
+		  </table>
+		</div>
 	</div>
 </div>

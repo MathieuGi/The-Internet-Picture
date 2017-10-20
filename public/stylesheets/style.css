@@ -16,7 +16,6 @@
 }
 
 body { 
-    padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -25,7 +24,7 @@ h1 {
     font-family: "CormorantGaramond_Light";
 }
 
-.rank-header,
+
 .richest-name {
     font-family: "CormorantGaramond_Bold";
 }
@@ -51,7 +50,7 @@ h1 {
 }
 
 table td {
-    font-family: "CormorantGaramond_Light";
+    font-family: "Trebuchet MS","Myriad Pro",Arial,"sans-serif";
     font-size: 1em;
 }
 
@@ -95,12 +94,39 @@ table td {
     padding-bottom: 10px;
     padding-right: 10px;
 }
+
 body {
     min-width: 1000px;
     background-color: #fafafa;
     min-height: 100%;
     margin: 0;
-    padding: 0;
+    padding-bottom: 10vh;
+}
+
+.black-container{
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.black-container img {
+    max-height: 80vh;
+    max-width: 80vw;
+}
+
+.black-container .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: 100;
+    cursor: pointer;
 }
 
 .main-title a {
@@ -108,6 +134,7 @@ body {
     color: #446084;
     cursor: pointer;
 }
+
 .error-message, .invalid-feedback {
     display: none;
 	color: #E4584C;
@@ -156,59 +183,60 @@ background-color: #8389e2;
 /* Rank table part */
 
 .thumbs {
-    max-height: 50px;
-    max-width: 50px;
-    cursor:pointer;
-}
-
-.black-container{
-    display:none;
-    position : fixed;
-    height : 100%;
-    width: 100%;
-    background-color : rgba(0,0,0,0.6);
-    z-index : 99999;
-}
-
- tr{
-     cursor:pointer;
- }
-
-.black-container {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index:99999;
-}
-
-.black-container .close {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    font-weight: 100;
+    max-width: 80px;
+    max-height: 50px; 
     cursor: pointer;
 }
 
+ tr.line-ranked-table{
+     cursor: pointer;
+ }
+
 .rank-table-area {
     display: none;
+} 
+
+.rank-table-area .header h2 {
+    margin-top: 35px;
+    margin-bottom: 25px;
 }
 
-.rank-header {
-    max-height: 50px;
-    padding: 14px;
-    border: solid #e6e6e6;
-    border-width: 1px 1px 0px 1px;
+.rank-table .fa {
+    margin-right: 10px;
 }
 
-.rank-header img {
-    position: absolute;
-    right: 25px;
+.rank-table .index {
+    width: 20px;
+    font-weight: bold;
+}
+
+.rank-table .name-container {
+    display: flex;
+    align-items: center;
+}
+
+.rank-table .name {
+    display: inline-flex;
+}
+
+.rank-table .thumb {
+    display: inline-flex;
+    align-items: center;
+    width: 80px;
+    height: 50px;
+    margin-right: 15px;
 }
 
 .rank-table .see-more {
     cursor: pointer;
+}
+
+#load-more:hover {
+    background-color: transparent;
+}
+
+#bid-summary .confirm .loading {
+    display: none;
 }
 
 .loading {

@@ -32,10 +32,8 @@
             url: "/getBidsList",
             data: { offset: offset },
             success: function(res) {
-                setTimeout(function() {
-                    $('#load-more').replaceWith(res);
-                    $('.rank-table .see-more').data('offset', offset + 10);
-                }, 800);
+                $('#load-more').replaceWith(res);
+                $('.rank-table .see-more').data('offset', offset + 10);
             },
             error: function(err) {
                 console.log('error')
@@ -164,7 +162,7 @@
         e.preventDefault();
         $(':focus').blur();
         $('#bid-summary .confirm .paye').hide();
-        $('#bid-summary .confirm .loading').show();
+        $('#bid-summary .confirm .loading').css("display", "inline-flex");
         var url = '/confirmBid';
         var id = $('#bid-summary').data('id');
         $.ajax({

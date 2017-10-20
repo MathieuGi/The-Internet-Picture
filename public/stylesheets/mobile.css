@@ -1,10 +1,14 @@
 /* Fonts */
-.rank-table table td, .rank-table table button {
+.rank-table table td {
 	font-size: 4vw;
 }
 
+.rank-table table th {
+    font-size: 5vw;
+}
+
 .rank-table .see-more {
-    font-size: 6vh;
+    font-size: 4vh;
 }
 
 .bid-more .info-icon {
@@ -60,10 +64,11 @@ header.main-header {
 .rank-table table td {
 	padding-bottom: 1.5rem;
 	padding-top: 1.5rem;
+    height: 150px;
 }
 
 .rank-table {
-    margin-bottom: 5vh;
+    margin-bottom: 10vh;
 }
 
 .rank-table .see-more {
@@ -178,12 +183,12 @@ header.main-header {
 
 .main-area [data-rank="2"] img{
     min-height: 300px;
-    max-height: 600px;
+    max-height: 500px;
 }
 
 .main-area [data-rank="3"] img{
     min-height: 150px;
-    max-height: 400px;
+    max-height: 300px;
 }
 
 /* Bid part */

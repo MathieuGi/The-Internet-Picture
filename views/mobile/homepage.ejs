@@ -5,16 +5,8 @@
     <div class="top-rich col-<%= (i == 0 ? 11 : (i == 1) ? 8 : 5) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
       <div class="row top-rank">
         <div class="col-12 text-center">
-          <h2><%= i+1 %></h2>
-          <span><%= bidder.price %> €</span>
-        </div>
-      </div>
-      <article class="block-image">
-        <header class="header">
-          <div class="name">
-            <span><%= bidder.name %></span>
-          </div>
-          <div class="time timer-part text-center">
+          <% if(i==0){ %>
+          <div class="time timer-part text-center ">
             <input id="richest-time" type="hidden" value="<%= bidder.createdAt.getTime() %>"/>
             <table>
               <tbody>
@@ -22,9 +14,9 @@
                 <% var hours = new Date(bidder.bid_time).getHours() %>
                 <% var minutes = new Date(bidder.bid_time).getMinutes() %>
                 <% var seconds = new Date(bidder.bid_time).getSeconds() %>
-                <% var showDays = (days !== 0 ? '' : 'invisible') %>
-                <% var showHours = (days !== 0 || hours !== 0) ? '' : 'invisible' %>
-                <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'invisible' %>
+                <% var showDays = (days !== 0 ? '' : 'hide-timer') %>
+                <% var showHours = (days !== 0 || hours !== 0) ? '' : 'hide-timer' %>
+                <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'hide-timer' %>
                 <% var showSeconds = (i === 0) || (days === 0 &&  hours === 0) ? true : false %>
                 <tr>
                   <td class="days <%= showDays %>">
@@ -60,6 +52,17 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <article class="block-image">
+        <header class="header">
+          <div class="name">
+            <span><%= bidder.name %></span>
+          </div>
+          <div class="price">
+           <span><%= bidder.price %> €</span>
           </div>
         </header>
         <% if(bidder.url != "") { %>

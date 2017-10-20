@@ -55,14 +55,14 @@ var returnRouter = function(io) {
         winston.info(FILE_NAME + ' - Prepare to answer to /getBidsList request');
         winston.info(FILE_NAME + ' - Request from ' + req.device.type);
 
-        var query = req.query;
+        var offset = parseInt(req.query.offset);
 
-        bidService.getAll(10, parseInt(query.offset)).then(res => {
+        bidService.getAll(10, offset).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
             if(req.device.type === "phone"){
-                response.render('mobile/rankTableContent', {bidders: res});
+                response.render('mobile/rankTableContent', {bidders: res, offset: offset});
             } else {
-                response.render('rankTableContent', {bidders: res});
+                response.render('rankTableContent', {bidders: res, offset: offset});
             }
         }).catch(err => {
             winston.error(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
