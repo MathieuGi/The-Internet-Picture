@@ -172,10 +172,6 @@ header.main-header {
     word-break: break-all;
 }
 
-.main-area > .row {
-    margin-bottom: 10vh;
-}
-
 .main-area [data-rank="1"] img{
     min-height: 500px;
     max-height: 800px;
