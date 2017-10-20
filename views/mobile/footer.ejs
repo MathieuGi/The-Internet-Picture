@@ -1,0 +1,45 @@
+<div class="footer ">
+
+<% var tabSentence = [
+  '"Si t\'as pas une rolex à 50ans.. t\'as raté ta vie" .. A part si ta photo est ici.',
+  '"Tu vois le monde se divise en deux catégories: ceux qui sont sur cette page.. et les autres"'
+  ];
+  var number = Math.floor(Math.random() * (tabSentence.length )); 
+%>
+  <span style="color:white; padding-left:15px"><%= tabSentence[number] %></span>
+  <div class="social_div pull-right">
+    <a href="" data-toggle="modal" data-target="#contact" class="contact">NOUS CONTACTER</a> 
+    <a class="btn btn-social-icon btn-facebook btn-xs">
+      <span class="fa fa-facebook "></span>
+    </a>
+    <a class="btn btn-social-icon btn-twitter btn-xs">
+      <span class="fa fa-twitter"></span>
+    </a>
+  </div>
+
+  <!--
+          <div class="fb-like" data-href="https://www.facebook.com/Qui-est-le-plus-riche--1460273424068550/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+        <a class="twitter-share-button"
+        href="https://quiestleplusriche.fr"
+        data-text="C'est qui le boss ? "
+        data-hashtags="jesuisleplusriche"
+        data-via="quiestleplusriche">
+        </a> -->
+</div>
+ <div id="contact" class="modal fade">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <div class="modal-header">
+      <h6>Nous contacter par mail</h6>
+    </div>
+      <div class="modal-body" >
+      <i class="fa fa-envelope" aria-hidden="true"></i> : amgproject@outlook.fr</p>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
