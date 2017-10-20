@@ -360,22 +360,11 @@ background-color: #8389e2;
 }
 
 .icone-field .fa{
-    font-size:20px;
     color:#868e96;
 }
 
 .icone-field{
     position:relative;
-}
-
-.icone-field-icone{
-    position:absolute;
-    left:10px;
-    top:calc(50% - 10px);
-}
-
-.icone-field-field{
-    padding-left: 35px;
 }
 
 .bid-more {
