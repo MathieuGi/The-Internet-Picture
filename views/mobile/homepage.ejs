@@ -1,91 +1,83 @@
 <!-- Richest -->
-<div class="row justify-content-center">
-  <% bidders.forEach(function(bidder, i) { %>
-  <% if (i >= 3) return false %>
-    <div class="top-rich col-<%= (i == 0 ? 11 : (i == 1) ? 8 : 5) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
-      <div class="row top-rank">
-        <div class="col-12 text-center">
-          <% if(i==0){ %>
-          <div class="time timer-part text-center ">
-            <input id="richest-time" type="hidden" value="<%= bidder.createdAt.getTime() %>"/>
-            <table>
-              <tbody>
-                <% var days = Math.trunc(bidder.bid_time / (24 * 60 * 60 * 1000)) %>
-                <% var hours = new Date(bidder.bid_time).getHours() %>
-                <% var minutes = new Date(bidder.bid_time).getMinutes() %>
-                <% var seconds = new Date(bidder.bid_time).getSeconds() %>
-                <% var showDays = (days !== 0 ? '' : 'hide-timer') %>
-                <% var showHours = (days !== 0 || hours !== 0) ? '' : 'hide-timer' %>
-                <% var showMinutes = (i === 0) || (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'hide-timer' %>
-                <% var showSeconds = (i === 0) || (days === 0 &&  hours === 0) ? true : false %>
-                <tr>
-                  <td class="days <%= showDays %>">
-                    <%= days %>
-                  </td> 
-                  <td class="hours <%= showHours %>">
-                    <%= hours %>
-                  </td>
-                  <td class="minutes <%= showMinutes %>">
-                    <%= minutes %>
-                  </td>
-                  <% if(showSeconds) { %>
-                  <td class="seconds">
-                    <%= seconds %>
-                  </td>
-                  <% } %>
-                </tr>
-                <tr>
-                  <th class="days <%= showDays %>">
-                    Jours
-                  </th>
-                  <th class="hours <%= showHours %>">
-                    Heures
-                  </th>
-                  <th class="minutes <%= showMinutes %>">
-                    Minutes
-                  </th>
-                  <% if(showSeconds) { %>
-                  <th class="seconds <%= showSeconds %>">
-                    Secondes
-                  </th>
-                  <% } %>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <% } %>
+<div class="top-rich col-11 %> richest-area <%= (bidders[0].text !='' ? 'hasText' : '') %>">
+  <div class="row top-rank">
+    <div class="col-12 text-center">
+      <div class="time timer-part text-center ">
+        <input id="richest-time" type="hidden" value="<%= bidders[0].createdAt.getTime() %>"/>
+        <table>
+          <tbody>
+            <% var days = Math.trunc(bidders[0].bid_time / (24 * 60 * 60 * 1000)) %>
+            <% var hours = new Date(bidders[0].bid_time).getHours() %>
+            <% var minutes = new Date(bidders[0].bid_time).getMinutes() %>
+            <% var seconds = new Date(bidders[0].bid_time).getSeconds() %>
+            <% var showDays = (days !== 0 ? '' : 'hide-timer') %>
+            <% var showHours = (days !== 0 || hours !== 0) ? '' : 'hide-timer' %>
+            <% var showMinutes = (days === 0 && (minutes !== 0 || hours !== 0)) ? '' : 'hide-timer' %>
+            <% var showSeconds = (days === 0 &&  hours === 0) ? true : false %>
+            <tr>
+              <td class="days <%= showDays %>">
+                <%= days %>
+              </td> 
+              <td class="hours <%= showHours %>">
+                <%= hours %>
+              </td>
+              <td class="minutes <%= showMinutes %>">
+                <%= minutes %>
+              </td>
+              <% if(showSeconds) { %>
+              <td class="seconds">
+                <%= seconds %>
+              </td>
+              <% } %>
+            </tr>
+            <tr>
+              <th class="days <%= showDays %>">
+                Jours
+              </th>
+              <th class="hours <%= showHours %>">
+                Heures
+              </th>
+              <th class="minutes <%= showMinutes %>">
+                Minutes
+              </th>
+              <% if(showSeconds) { %>
+              <th class="seconds <%= showSeconds %>">
+                Secondes
+              </th>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <article class="block-image">
+    <header class="header">
+      <div class="name">
+        <span><%= bidders[0].name %></span>
+      </div>
+      <div class="price">
+       <span><%= bidders[0].price %> €</span>
+      </div>
+    </header>
+    <% if(bidders[0].url != "") { %>
+    <a href="<%= bidders[0].url %>" target="_blank">
+    <% } %>
+      <div class="img">
+        <div>
+          <img class="img-fluid" src="images/fullsize/<%= bidders[0].img_path %>">              
         </div>
       </div>
-      <article class="block-image">
-        <header class="header">
-          <div class="name">
-            <span><%= bidder.name %></span>
-          </div>
-          <div class="price">
-           <span><%= bidder.price %> €</span>
-          </div>
-        </header>
-        <% if(bidder.url != "") { %>
-        <a href="<%= bidder.url %>" target="_blank">
-        <% } %>
-          <div class="img">
-            <div>
-              <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>">              
-            </div>
-          </div>
-        <% if(bidder.url != "") { %>
-        </a>
-        <% } %> 
-        <% if(bidder.text != "" && i == 0) { %>
-        <div class="richest-text text-center">
-          <span>
-            <%= bidder.text %>
-          </span>
-        </div>
-        <% } %>
-        
-      </article>  
-    </div>  
-    <div class="w-100"></div>
-  <% }) %>
-</div>
+    <% if(bidders[0].url != "") { %>
+    </a>
+    <% } %> 
+    <% if(bidders[0].text != "") { %>
+    <div class="richest-text text-center">
+      <span>
+        <%= bidders[0].text %>
+      </span>
+    </div>
+    <% } %>
+    
+  </article>  
+</div>  
