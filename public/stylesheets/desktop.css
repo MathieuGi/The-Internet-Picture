@@ -1,15 +1,6 @@
 /* Font */
-#menu .menu-item {
-    font-size: 5vh;
-}
 
-.menu-label{
-    font-size: 11px;
-}
 
-.icone-field .fa{
-    font-size:20px;
-}
 /* Style */
 
 
@@ -39,6 +30,10 @@
     height: 40px;
     line-height: 38px;
     outline: none;
+}
+
+#paiement label {
+    margin-top: 5px;
 }
 
 /* Menu */
