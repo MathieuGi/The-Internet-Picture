@@ -23,14 +23,19 @@
             <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
           </div>
 
-          <!-- Image -->
-          <div class="form-group img-input">
-              <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 4Mo) *</label>
-              <input type="file" id="form-image" class="filestyle" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
-          </div>
+          
+            <!-- Image -->
+            <div class="form-group img-input">
+              <label for="form-image">Image </label> <!-- (jpeg, png, jpg, gif - Maximum 4Mo) -->
+              <input type="file" id="form-image" class="form-control" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
+              <div id="button-form-image">
+                <label for="form-image" class="btn btn-form-image">Parcourir </label>
+                <span id="form-image-text"></span>
+              </div>
               <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
               <span id="noImage" class="error-message"> Merci de selectionner une image </span>
               <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
+          </div>
        
           <!-- Link -->
           <div class="form-group">

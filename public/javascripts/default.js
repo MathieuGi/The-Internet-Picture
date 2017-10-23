@@ -402,6 +402,15 @@
             return true;
         }
     }
+
+    //  Update name when change file
+
+    var input = $("#form-image")[0];
+    
+    input.onchange = function () {
+        var filename = this.value.replace(/C:\\fakepath\\/i, '')
+        $("#form-image-text").html(filename);
+    };
 });
 
     // JS for the footer
