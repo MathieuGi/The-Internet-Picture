@@ -308,7 +308,8 @@ background-color: #8389e2;
 	display: flex;
 	justify-content: center;
     align-items: center;
-	background: gainsboro;
+	background: white;
+    border: 1px solid gainsboro;
 }
 
 .block-image .img img {
