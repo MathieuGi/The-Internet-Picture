@@ -353,10 +353,31 @@ background-color: #8389e2;
 .bid-more {
     display: none;
     font-family: "Trebuchet MS", Arial, Verdana;
+}
 
+#form-image{
+    display:none;
+}
+#button-form-image{
+    text-align:left;
+    background-color:white;
+    border: 1px solid rgba(0,0,0,.15);
+    height:fit-content;
+}
+#button-form-image label{
+    margin-bottom: 0;  
+}
+.btn-form-image{
+    background-color:grey;
+    cursor:pointer;
+}
+.btn-form-image:hover{
+    background-color:lightgray;
 }
 
 /* Form */
+
+
 
 #paiement-form .information,
 #paiement-form .paiement {

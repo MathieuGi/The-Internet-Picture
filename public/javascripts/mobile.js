@@ -17,7 +17,7 @@ var card = elements.create('card', {style: style});
 
 $(document).ready(function() {
 
-
-
+  $('.group-span-filestyle > label').css('padding','2.5rem')
+  $('.group-span-filestyle > label > .buttonText').css('font-size','2rem');
 
 });
