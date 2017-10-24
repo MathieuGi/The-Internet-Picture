@@ -351,6 +351,7 @@ body {
     border-top: 10px solid #446084;
     color: white;
     font-size: 100px;
+    box-shadow: 0px 0px 5px 2px #666666;
 }
 
 .podium.rank-1 {
@@ -358,7 +359,6 @@ body {
     top: 5px;
     height: 200px;
     z-index: 99;
-    box-shadow: 0px 0px 5px 2px #666666;
 }
 
 .podium.rank-2 {
@@ -537,4 +537,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 170px;
+}
+
+#bid-summary .recap {
+    margin-top: 20px;
 }

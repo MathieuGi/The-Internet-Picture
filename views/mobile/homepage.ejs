@@ -52,14 +52,6 @@
     </div>
   </div>
   <article class="block-image">
-    <header class="header">
-      <div class="name">
-        <span><%= bidders[0].name %></span>
-      </div>
-      <div class="price">
-       <span><%= bidders[0].price %> €</span>
-      </div>
-    </header>
     <% if(bidders[0].url != "") { %>
     <a href="<%= bidders[0].url %>" target="_blank">
     <% } %>
@@ -79,5 +71,12 @@
     </div>
     <% } %>
     
-  </article>  
+  </article> 
+
+  <div class="header-podium text-center">
+    <span><%= bidders[0].name %> - <%= bidders[0].price %> €</span>
+  </div>
 </div>  
+
+
+<% include footer %>

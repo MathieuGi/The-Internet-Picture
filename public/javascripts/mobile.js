@@ -13,7 +13,7 @@ var style = {
   }
 };
 
-var card = elements.create('card', {style: style});
+var card = elements.create('card', {hidePostalCode: true, style: style});
 
 $(document).ready(function() {
 
