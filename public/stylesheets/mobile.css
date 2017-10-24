@@ -177,7 +177,7 @@ header.main-header {
 
 .icone-field-field{
     font-size:3rem;
-    padding-left: 55px;
+    padding-left: 68px;
 }
 
 .icone-field-icone{
@@ -196,5 +196,15 @@ header.main-header {
 }
 
 #button-form-image span{
-    font-size:2rem;
+    font-size: var(--font-size-normal)
+}
+
+#paiement label {
+    margin-top: 10px;
+}
+
+#form-image-text{
+    padding-left:15px;
+    position: relative;
+    top: 7px;
 }
