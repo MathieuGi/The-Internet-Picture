@@ -298,13 +298,9 @@ body {
 	display: flex;
 	justify-content: center;
     align-items: center;
-	background: white;
-    border: 1px solid gainsboro;
 }
 
 .block-image .img img {
-	border: solid #e6e6e6;
-    border-width: 1px;
     position: relative;
 }
 
