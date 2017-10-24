@@ -1,66 +1,26 @@
 /************************* Fonts ****************************/
 
 @font-face {
-    font-family: "CormorantGaramond_Light";
-    src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Light.ttf');
+    font-family: "Raleway-Italic";
+    src: url('..\\fonts\\Raleway\\Raleway-Italic.ttf');
 }
 
 @font-face {
-    font-family: "CormorantGaramond_Bold";
-    src: url('..\\fonts\\Cormorant_Garamond\\CormorantGaramond-Bold.ttf');
+    font-family: "Raleway-Regular";
+    src: url('..\\fonts\\Raleway\\Raleway-Regular.ttf');
 }
 
-@font-face {
-    font-family: "Raleway_ExtraLight";
-    src: url('..\\fonts\\Raleway\\Raleway-ExtraLight.ttf');
+h1, .block-image .richest-text, #paiement-form .error-message, .popover {
+    font-family: "Raleway-Italic", sans-serif;
 }
 
-body { 
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body, #menu, .rank-table table, #paiement-form, #bid-summary {
+    font-family: "Raleway-Regular", sans-serif;
 }
 
-h1 {
-    font-size: 4em;
-    font-family: "CormorantGaramond_Light";
-}
-
-
-.richest-name {
-    font-family: "CormorantGaramond_Bold";
-}
-
-.richest-text,
-.clock,
-.bid-more,
-.menu-item,
-.timer-part span {
-    font-family: "Raleway_ExtraLight";
-}
-
-.clock {
-    font-size: 1.5em;
-}
-
-.timer-part span {
-    font-size: 0.8em;
-}
-
-.richest-text {
-    font-weight: 600;
-}
-
-table td {
-    font-family: "Trebuchet MS","Myriad Pro",Arial,"sans-serif";
-    font-size: 1em;
-}
-
-.block-image .time table th {
-	font-weight: normal;
-	font-size: 8px;
-}
-
-.top-rank h2 {
-	font-size: 3.5em;
+.block-image header {
+    font-family: "Raleway-Regular", sans-serif;
+    font-weight: bold;
 }
 
 
@@ -201,10 +161,6 @@ background-color: #8389e2;
     margin-bottom: 25px;
 }
 
-.rank-table .fa {
-    margin-right: 10px;
-}
-
 .rank-table .index {
     width: 20px;
     font-weight: bold;
@@ -247,11 +203,6 @@ background-color: #8389e2;
 	margin-top: 1vh;
     margin-bottom: 2vh;
 }
-
-.main-title h1 {
-    font-weight: bold;
-}
-
 
 /* Homepage part */
 
@@ -379,12 +330,15 @@ background-color: #8389e2;
     background-color:white;  
 }
 
+.bid-more .information .form-group {
+    position: relative;
+}
 
 .bid-more .info-icon {
     position: absolute;
-    right: 15px;
-    top: 15px;
-    color: gainsboro;
+    right: 3px;
+    top: 3px;
+    color: white;
     cursor: pointer;
 }
 
@@ -460,11 +414,7 @@ background-color: #8389e2;
 }
 
 #paiement-form .outcome {
-    float: left;
-    width: 100%;
-    padding-top: 8px;
     min-height: 24px;
-    text-align: center;
 }
 
 #paiement-form .success,

@@ -1,5 +1,5 @@
 <div id="bid-summary" data-id="<%= bidder.id %>" class="col-11">
-  <h3 class="text-center">Recapitulatif</h3>
+  <h2 class="text-center">Recapitulatif</h2>
   <hr>
   <p>Prévisualisation : <a class="reload-image">cliquez ici si l'image ne s'affiche pas correctement</a></p>
   <article class="block-image">
@@ -37,7 +37,7 @@
     </div>
     <% } %>
 
-    <div class="price" <%= bidder.text === "" ? 'style=margin-top:60px;' : '' %> >
+    <div class="recap" <%= bidder.text === "" ? 'style=margin-top:60px;' : '' %> >
       <span>Montant : <%= bidder.price %> €</span>
     </div>    
 

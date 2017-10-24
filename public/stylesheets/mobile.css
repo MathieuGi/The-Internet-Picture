@@ -1,43 +1,5 @@
 /* Fonts */
-.rank-table table td {
-	font-size: 4vw;
-}
 
-.rank-table table th {
-    font-size: 5vw;
-}
-
-.rank-table .see-more {
-    font-size: 4vh;
-}
-
-.bid-more .info-icon {
-    font-size: 5vw;
-}
-
-#paiement-form {
-	font-size: 4vw;
-}
-
-#paiement-form .form-control {
-	font-size: 5vw;
-}
-
-#menu .menu-item {
-    font-size: 4vw;
-}
-
-#menu .fa {
-    font-size: 6vw;
-}
-
-.main-title h1 {
-    font-size: 6em;
-}
-
-.icone-field .fa{
-    font-size:40px;
-}
 
 /* Styles */
 
