@@ -33,9 +33,18 @@ header.main-header {
     margin-bottom: 10vh;
 }
 
+.rank-table th .fa {
+    margin-right: 15px;
+}
+
 .rank-table .see-more {
     padding-top: 1vh;
     padding-bottom: 1vh;
+}
+
+.rank-table .picto-medal {
+    height: 150px;
+    width: 150px;
 }
 
 #paiement-form .form-group {

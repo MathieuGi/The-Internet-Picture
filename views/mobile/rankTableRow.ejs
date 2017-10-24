@@ -1,6 +1,12 @@
 <% if(bidder.price != 0) { %>
 <tr class="line-ranked-table" data-url="<%= bidder.url %>">
-  <td class="align-middle index"><%= index + 1 + (locals.offset ? offset : 0) %>.</td>
+  <td class="align-middle index text-center">
+        <% if(index + (locals.offset ? offset : 0) < 3) { %>
+            <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png" alt='Le plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>'>
+        <% } else { %>
+            <%= index + 1 + (locals.offset ? offset : 0) %>.
+        <% } %>
+    </td>
   <td class="align-middle text-truncate">
     <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image" data-img="<%= bidder.img_path %>">
     <%= bidder.name %>
