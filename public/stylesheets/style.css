@@ -100,7 +100,7 @@ body {
 
 .main-title a {
     text-decoration: none;
-    color: #446084;
+    color: #c9b25f;
     cursor: pointer;
 }
 
@@ -245,6 +245,8 @@ body {
 .main-title {
 	margin-top: 1vh;
     margin-bottom: 2vh;
+    padding-top:10px;
+    padding-bottom:5px;
 }
 
 /* Homepage part */
