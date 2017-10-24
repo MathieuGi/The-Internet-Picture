@@ -541,3 +541,7 @@ body {
 #bid-summary .recap {
     margin-top: 20px;
 }
+
+#bid-summary .recap td, #bid-summary .recap th {
+    border: 0px;
+}

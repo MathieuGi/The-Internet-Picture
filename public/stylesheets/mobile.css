@@ -116,6 +116,15 @@ header.main-header {
     word-break: break-all;
 }
 
+#bid-summary .recap {
+    margin-top: 50px;
+}
+
+#bid-summary .recap table{
+    display: flex;
+    justify-content: center;
+}
+
 #bid-summary .confirm div {
     display: flex;
     justify-content: center;
