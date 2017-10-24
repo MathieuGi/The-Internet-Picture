@@ -8,10 +8,6 @@
     color: grey;
 }
 
-.rank-table {
-    max-height: 60vh;
-}
-
 .rank-table .picto-medal {
     height: 50px;
     width: 50px;
@@ -138,10 +134,6 @@
 .main-area [data-rank="3"] img {
     min-height: 80px;
     max-height: 150px;
-}
-
-.main-area [data-rank="3"] .block-image {
-    max-width: 80%;
 }
 
 /* Bid part */

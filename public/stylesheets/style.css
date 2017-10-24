@@ -58,9 +58,16 @@ body, #menu, .rank-table table, #paiement-form, #bid-summary {
 body {
     min-width: 1000px;
     background-color: #fafafa;
-    min-height: 100%;
+    min-height: 101vh;
     margin: 0;
-    padding-bottom: 10vh;
+}
+
+.rights {
+    margin-top: 150px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .container-fluid {
@@ -69,7 +76,7 @@ body {
 }
 
 .container-fluid > header {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .black-container{
@@ -156,19 +163,22 @@ body {
 
 .main-area.background-picto {
     position: absolute;
-    font-size: 900px;
     color: #f2f2f2;
     z-index: -999;
 }
 
 .background-picto.bid-more {
-    left: -50px;
-    top: -110px;
+    left: -60px;
+    top: 50px;
 }
 
 .background-picto.rank-table-area {
     left: -350px;
-    top: -100px;
+    top: 60px;
+}
+
+.background-picto .fa {
+    font-size: 900px;
 }
 
 /* Rank table part */
