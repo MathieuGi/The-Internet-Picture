@@ -185,6 +185,7 @@ background-color: #8389e2;
 
 .rank-table .see-more {
     cursor: pointer;
+    padding: 13px 30px;
 }
 
 #load-more:hover {
