@@ -155,3 +155,11 @@
     left:10px;
     top:calc(50% - 10px);
 }
+
+#paiement-form .information,
+#paiement-form .paiement {
+    border: 2px solid #c9b25f;
+    border-radius: 6px;
+    padding: 25px;
+}
+

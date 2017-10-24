@@ -9,9 +9,6 @@
         <!-- Form first part -->
         <div class="information">
           
-          <!-- Information bubble -->
-          <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Seules les données de la première partie du formulaire seront concervées. Aucune information bancaire n'est concervée sur notre site."></span>
-
           <div class="form-group">
             <label for="form-name">Nom *</label>
             <div class="icone-field">
@@ -34,7 +31,7 @@
                 <span id="form-image-text"></span>
               </div>
               
-              <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
+              <span id="wrongImageType" class="error-message"> Seules les type jpeg, jpg, png et gif sont acceptés </span>
               <span id="noImage" class="error-message"> Merci de selectionner une image </span>
               <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
           </div>
@@ -63,7 +60,7 @@
 
           <!-- Selected price -->
           <div class="form-group">
-              <label for="form-price">Montant</label> (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €)
+              <label for="form-price">Montant (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €) </label>
               <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
                <div class="icone-field">
                 <span class="icone-field-icone fa fa-eur"></span>

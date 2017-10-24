@@ -151,7 +151,32 @@ header.main-header {
 
 /* Bid part */
 
+:root{
+    --font-size-normal: 2rem;
+}
+
+#paiement-form .information,
+#paiement-form .paiement {
+    border: 4px solid #c9b25f;
+    border-radius: 10px;
+    padding: 25px;
+
+}
+
+.bid-more label{
+    font-size: var(--font-size-normal);
+}
+.bid-more .fa{
+    font-size:40px;
+}
+
+.info-icone{
+    font-size:20px;
+    padding-bottom:20px;
+}
+
 .icone-field-field{
+    font-size:3rem;
     padding-left: 55px;
 }
 
@@ -161,6 +186,15 @@ header.main-header {
     top:calc(50% - 20px);
 }
 
-.btn-form-image{
+.bid-more .btn-form-image{
     font-size:3rem;
+}
+
+#trump{
+    font-size:3rem;
+    border-radius : 8px;
+}
+
+#button-form-image span{
+    font-size:2rem;
 }
