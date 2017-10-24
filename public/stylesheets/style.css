@@ -271,7 +271,7 @@ body {
     width: 45%;
 }
 
-.richest-area td, th {
+.richest-area td, .richest-area th {
     text-align: center;
 }
 
