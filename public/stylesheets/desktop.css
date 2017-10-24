@@ -37,22 +37,22 @@
 }
 
 /* Menu */
-#menu .menu-item {
+.main-title{
     border-bottom: 1px solid #e6e6e6;
+    background-color:white;
+}
+
+#menu .menu-item {
     padding-bottom: 5px;
     cursor: pointer;
 }
 
 #menu .menu-item.active {
-    border-bottom: 2px solid #446084;
     color: #446084;
     padding-bottom: 5px;
     font-weight: bold;
 }
 
-#menu {
-    margin-bottom: 20px;
-}
 
 
 
