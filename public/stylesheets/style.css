@@ -63,6 +63,10 @@ body {
     padding-bottom: 10vh;
 }
 
+header {
+    margin-bottom: 50px;
+}
+
 .black-container{
     display: none;
     position: fixed;
