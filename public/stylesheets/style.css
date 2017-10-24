@@ -63,6 +63,11 @@ body {
     padding-bottom: 10vh;
 }
 
+.container-fluid {
+    position: relative;
+    top: -10px;
+}
+
 .container-fluid > header {
     margin-bottom: 50px;
 }
@@ -149,6 +154,23 @@ body {
     z-index: 9999;
 }
 
+.main-area.background-picto {
+    position: absolute;
+    font-size: 900px;
+    color: #f2f2f2;
+    z-index: -999;
+}
+
+.background-picto.bid-more {
+    left: -50px;
+    top: -110px;
+}
+
+.background-picto.rank-table-area {
+    left: -350px;
+    top: -100px;
+}
+
 /* Rank table part */
 
 .thumbs {
@@ -168,6 +190,11 @@ body {
 .rank-table-area .header h2 {
     margin-top: 35px;
     margin-bottom: 25px;
+}
+
+.rank-table thead th {
+    border-bottom: 2px solid #c9b25f;
+    border-top: 2px solid #c9b25f; 
 }
 
 .rank-table .index {
@@ -194,7 +221,13 @@ body {
 
 .rank-table .see-more {
     cursor: pointer;
-    padding: 13px 30px;
+    background: #c9b25f;
+    color: white;
+    opacity: 0.8;
+}
+
+.rank-table .see-more:hover {
+    opacity: 1;
 }
 
 #load-more:hover {

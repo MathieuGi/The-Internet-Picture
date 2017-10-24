@@ -12,6 +12,11 @@
     max-height: 60vh;
 }
 
+.rank-table .picto-medal {
+    height: 50px;
+    width: 50px;
+}
+
 /* Bid more part */
 .bid-more .info-icon {
     font-size: 20px;
