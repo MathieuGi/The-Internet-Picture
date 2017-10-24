@@ -1,37 +1,7 @@
 <!-- Richest -->
 <% bidders.forEach(function(bidder, i) { %>
 <% if (i >= 3) return false %>
-<div class="col-<%= (i == 0 ? 5 : 3) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
-
-  <article class="block-image">
-    <header class="header">
-      <div class="name text-truncate">
-        <span><%= bidder.name %></span>
-      </div>
-      <div class="price">
-       <span><%= bidder.price %> €</span>
-      </div>
-    </header>
-    <% if(bidder.url != "") { %>
-    <a href="<%= bidder.url %>" target="_blank">
-    <% } %>
-      <div class="img <%= bidder.text === "" ? 'align-items-center' : 'align-items-start' %>">
-        <div class="">
-          <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>">              
-        </div>
-      </div>
-    <% if(bidder.url != "") { %>
-    </a>
-    <% } %> 
-    <% if(bidder.text != "" && i == 0) { %>
-    <div class="richest-text text-center">
-      <span>
-        <%= bidder.text %>
-      </span>
-    </div>
-    <% } %>
-    
-  </article>  
+<div class="col-<%= (i == 0 ? 5 : (i == 1 ? 3 : 2)) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
 
   <div class="row top-rank">
     <div class="col-12 text-center">
@@ -86,7 +56,45 @@
       <% } %>
     </div>
   </div>
+
+  <article class="block-image">
+    <% if(bidder.url != "") { %>
+    <a href="<%= bidder.url %>" target="_blank">
+    <% } %>
+      <div class="img <%= bidder.text === "" ? 'align-items-center' : 'align-items-start' %>">
+        <div class="">
+          <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>">              
+        </div>
+      </div>
+    <% if(bidder.url != "") { %>
+    </a>
+    <% } %> 
+    <% if(bidder.text != "" && i == 0) { %>
+    <div class="richest-text text-center">
+      <span>
+        <%= bidder.text %>
+      </span>
+    </div>
+    <% } %>
+    
+  </article>  
+
+  <div class="header-podium text-truncate text-center">
+    <span><%= bidder.name %> - <%= bidder.price %> €</span>
+  </div>
+
+  <div class="podium rank-<%= i + 1 %> align-middle">
+    <%= i + 1 %>
+  </div>
+
+  <div class="shadow"></div>
   
 </div>  
 
 <% }) %>
+
+<div class="homepage-information col-6 order-4">
+  <img src="images/static/picto_info.png" class="info-picto float-left">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into.
+</div>
+
