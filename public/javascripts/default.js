@@ -11,6 +11,7 @@
         $('.menu-item').removeClass('active');
         $(this).addClass('active');
         $('.main-area').hide();
+        $('.background-picto').hide();
         $('.' + menu).show();
         var selection = window.getSelection();
         selection.removeAllRanges();
