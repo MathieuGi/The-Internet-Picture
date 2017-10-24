@@ -1,4 +1,4 @@
-<div class="footer ">
+<div class="footer row justify-content-center align-items-center text-center">
 
 <% var tabSentence = [
   '"Si t\'as pas une rolex à 50ans.. t\'as raté ta vie" .. A part si ta photo est ici.',
@@ -6,17 +6,21 @@
   ];
   var number = Math.floor(Math.random() * (tabSentence.length )); 
 %>
-  <span style="color:white; padding-left:15px"><%= tabSentence[number] %></span>
-  <div class="social_div pull-right">
+  <div class="col-6"><%= tabSentence[number] %></div>
+  <div class="w-100"></div>
+  <div class="col-3">
     <a href="" data-toggle="modal" data-target="#contact" class="contact">NOUS CONTACTER</a> 
+
+  </div>
+  <div class="w-100"></div>
+    <div class="col-3">
     <a class="btn btn-social-icon btn-facebook btn-xs">
       <span class="fa fa-facebook "></span>
     </a>
     <a class="btn btn-social-icon btn-twitter btn-xs">
       <span class="fa fa-twitter"></span>
     </a>
-  </div>
-
+</div>
   <!--
           <div class="fb-like" data-href="https://www.facebook.com/Qui-est-le-plus-riche--1460273424068550/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
