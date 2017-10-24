@@ -77,17 +77,9 @@
     margin-bottom: 25px;
 }
 
-#bid-summary td, th {
-    width: 40px;
-    text-align: center;
-}
-
-#bid-summary table {
-    width: 200px;
-}
-
-#bid-summary table {
-    width: 135px;
+#bid-summary th, #bid-summary td {
+    text-align: left;
+    min-width: 230px;
 }
 
 #bid-summary .block-image .img, #bid-summary .block-image .img img {
