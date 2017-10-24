@@ -290,6 +290,10 @@ body {
     width: 135px;
 }
 
+.block-image {
+    position: relative;
+}
+
 .block-image .img {
 	display: flex;
 	justify-content: center;
@@ -313,9 +317,10 @@ body {
 }
 
 .richest-area .richest-text {
-	position: relative;
+	position: absolute;
 	height: 60px;
-	top: -60px;
+    width: 100%;
+	bottom: 0;
 	background-color: white;
 	opacity: 0.8;
 	display: flex;
@@ -326,10 +331,6 @@ body {
 
 .richest-area .richest-text span {
 	word-break: break-all;
-}
-
-.others-area.hasText {
-	margin-bottom: 60px;
 }
 
 .others-area .top-rank{
