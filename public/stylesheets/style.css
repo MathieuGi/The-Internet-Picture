@@ -106,22 +106,27 @@ body {
 	font-family: "Raleway_ExtraLight";
 }
 
+#buy-button{
+    background-color: #c9b25f !important; 
+    opacity:0.8 !important;
+}
 #buy-button:hover{
     cursor:pointer;
-    background-color: #8389e2;
+    opacity:1 !important;
 }
 
 #trump, .confirm button {
   color: #ffffff;
-  background-color: #666EE8;
+  background-color: #c9b25f;
   border-radius : 4px;
   border: none;
   padding: 15px 32px;
   cursor : pointer;
+  opacity:0.8;
 }
 
 #trump:hover, .confirm button:hover {
-background-color: #8389e2;
+    opacity:1;
 }
 
 .paiement {
@@ -331,6 +336,10 @@ background-color: #8389e2;
 
 /* Bid more part */
 
+
+.bid-more .form-control{
+    border:0;   
+}
 .img-input input:disabled{
     background-color:white;  
 }
@@ -348,11 +357,14 @@ background-color: #8389e2;
 }
 
 .icone-field .fa{
-    color:#868e96;
+    color:#9bacc2;
 }
 
 .icone-field{
     position:relative;
+    border: 2px solid #9bacc2;
+    border-radius: 6px;
+    padding:0;
 }
 
 .bid-more {
@@ -366,15 +378,18 @@ background-color: #8389e2;
 #button-form-image{
     text-align:left;
     background-color:white;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 2px solid #9bacc2;
+    border-radius:6px;
     height:fit-content;
 }
 #button-form-image label{
     margin-bottom: 0;  
 }
 .btn-form-image{
-    background-color:grey;
+    background-color:#9bacc2;
     cursor:pointer;
+    border-radius:0px;
+    border-right: 2px solid #9bacc2;
 }
 .btn-form-image:hover{
     background-color:lightgray;
@@ -386,9 +401,10 @@ background-color: #8389e2;
 
 #paiement-form .information,
 #paiement-form .paiement {
-    border: 1px solid #e6e6e6;
+    border: 2px solid #c9b25f;
+    border-radius: 6px;
     padding: 25px;
-    background-color: gainsboro;
+    background-color: white;
     position: relative;
 }
 

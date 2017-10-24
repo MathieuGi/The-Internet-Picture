@@ -15,7 +15,7 @@
 
             <label for="form-name">Nom *</label>
             <div class="icone-field">
-              <span class="icone-field-icone fa fa-user-o"></span>
+              <span class="icone-field-icone fa fa-user"></span>
               <input type="text" class="form-control icone-field-field" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
             </div>
             <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
@@ -59,7 +59,7 @@
             
             <label for="form-text">Texte complémentaire (130 caractères)</label>
             <div class="icone-field">
-              <span class="icone-field-icone fa fa-file-text-o"></span>
+              <span class="icone-field-icone fa fa-file-text"></span>
               <input type="text" class="form-control icone-field-field" id="form-text" maxlength="130" placeholder="Entrez un text complémentaire">
             </div>
           </div>
@@ -107,8 +107,11 @@
             <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Aucune des informations suivantes ne seront concervées sur notre site"></span>
 
           <div class="form-group row">
-            <label class="col-3 text-left" for="form-card-name">Nom sur la carte *</label>
-            <input class="form-control col-9" type="text" name="card-name" id="form-card-name">
+            <label class="col-3 text-left" for="form-card-name">Nom *</label>
+            <div class="icone-field col-9">
+              <span class="icone-field-icone fa fa-user"></span>
+              <input class="form-control icone-field-field" type="text" name="card-name" id="form-card-name">
+            </div>
             <div class="col-3"></div>
             <span class="error-message" id="missing-card-name">Merci de renseigner le nom inscrit sur votre carte</span>
             
@@ -116,7 +119,10 @@
 
           <div class="form-group row">
             <label class="col-3 text-left" for="form-email">Email</label>
-            <input class="form-control col-9" type="email" name="form-email" id="form-email"> 
+            <div class="icone-field col-9">
+              <span class="icone-field-icone fa fa-envelope"></span>
+              <input class="form-control icone-field-field" type="email" name="form-email" id="form-email">
+            </div> 
             <div class="col-3"></div>
             <span class="error-message" id="wrong-email">
               Le format de l'email est invalide
@@ -126,7 +132,9 @@
           <!-- Card number -->
           <div class="form-group row">
             <label class="col-3 text-left" for="card-element">Carte *</label>
-            <div id="card-element" class="form-control col-9"></div>
+            <div class="col-9 icone-field">
+              <div id="card-element" class="form-control col-9"></div>
+            </div>
 
             <div class="col-3"></div>
 
