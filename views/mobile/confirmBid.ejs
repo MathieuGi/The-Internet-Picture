@@ -3,18 +3,6 @@
   <hr>
   <p>Prévisualisation : <a class="reload-image">cliquez ici si l'image ne s'affiche pas correctement</a></p>
   <article class="block-image">
-    <header class="header">
-
-      <div class="name">
-        <span><%= bidder.name %></span>
-      </div>
-
-      <div class="price">
-        <span><%= bidder.price %> €</span>
-      </div>
-
-    </header>
-
     <% if(bidder.url != "") { %>
     <a href="<%= bidder.url %>" target="_blank">
     <% } %>
@@ -37,8 +25,34 @@
     </div>
     <% } %>
 
-    <div class="recap" <%= bidder.text === "" ? 'style=margin-top:60px;' : '' %> >
-      <span>Montant : <%= bidder.price %> €</span>
+    <div class="recap">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Nom : </th>
+            <td><%= bidder.name %></td>
+          </tr>
+
+          <% if (bidder.url !== "") { %>
+          <tr>
+            <th>Url : </th>
+            <td><%= bidder.url %></td>
+          </tr>
+          <% } %>
+
+          <% if (bidder.text !== "") { %>
+          <tr>
+            <th>Texte complémentaire : </th>
+            <td><%= bidder.text %></td>
+          </tr>
+          <% } %>
+
+          <tr>
+            <th>Montant de votre enchère : </th>
+            <td><%= bidder.price %> €</td>
+          </tr>
+        </tbody>
+      </table>
     </div>    
 
     <footer class="confirm">

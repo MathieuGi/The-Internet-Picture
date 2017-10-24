@@ -91,38 +91,20 @@ header.main-header {
     margin-bottom: 25px;
 }
 
-#bid-summary td, th {
-    width: 40px;
-    text-align: center;
-}
-
-#bid-summary table {
-    width: 200px;
-}
-
-#bid-summary table {
-    width: 135px;
-}
-
 #bid-summary .block-image .img, #bid-summary .block-image .img img {
     max-height: 800px;
     width: 100%;
 }
+
 #bid-summary .block-image .img {
     min-height: 250px;
 }
 
-#bid-summary .block-image header {
-    height: 60px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 #bid-summary .richest-text {
-    position: relative;
+    position: absolute;
     height: 60px;
-    top: -60px;
-    background-color: white;
+    width: 100%;
+    bottom: 0;
     opacity: 0.8;
     display: flex;
     align-items: center;
@@ -134,19 +116,15 @@ header.main-header {
     word-break: break-all;
 }
 
+#bid-summary .confirm div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .main-area [data-rank="1"] img{
     min-height: 500px;
     max-height: 800px;
-}
-
-.main-area [data-rank="2"] img{
-    min-height: 300px;
-    max-height: 500px;
-}
-
-.main-area [data-rank="3"] img{
-    min-height: 150px;
-    max-height: 300px;
 }
 
 /* Bid part */
