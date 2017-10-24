@@ -58,9 +58,16 @@ body, #menu, .rank-table table, #paiement-form, #bid-summary {
 body {
     min-width: 1000px;
     background-color: #fafafa;
-    min-height: 100%;
+    min-height: 101vh;
     margin: 0;
-    padding-bottom: 10vh;
+}
+
+.rights {
+    margin-top: 150px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .container-fluid {
@@ -69,7 +76,7 @@ body {
 }
 
 .container-fluid > header {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .black-container{
@@ -156,19 +163,22 @@ body {
 
 .main-area.background-picto {
     position: absolute;
-    font-size: 900px;
     color: #f2f2f2;
     z-index: -999;
 }
 
 .background-picto.bid-more {
-    left: -50px;
-    top: -110px;
+    left: -60px;
+    top: 50px;
 }
 
 .background-picto.rank-table-area {
     left: -350px;
-    top: -100px;
+    top: 60px;
+}
+
+.background-picto .fa {
+    font-size: 900px;
 }
 
 /* Rank table part */
@@ -251,28 +261,8 @@ body {
 
 /* Homepage part */
 
-.price{
-    display: inline-flex;
-    width:20%;
-    justify-content: flex-end;
-
-}
 .richest-area .top-rank {
 	margin-bottom: 25px;
-}
-
-.block-image header {
-	display: flex;
-	align-items: center;
-	background: white;
-	border: solid #e6e6e6;
-    border-width: 1px 1px 0px 1px;
-}
-
-.block-image .name {
-    display: inline-flex;
-    justify-content: flex-start;
-    width: 80%;
 }
 
 .block-image .time {
@@ -321,21 +311,6 @@ body {
 .richest-area .top-rank {
 	color: #e8d254;
 }
-.richest-area .header {
-	background-color: #e8d254;
-}
-.others-area.order-1 .header {
-	background-color: #cecece;
-}
-.others-area.order-3 .header{
-	background-color: #edab60;
-}
-
-.richest-area .block-image header {
-	height: 60px;
-	padding-left: 15px;
-	padding-right: 15px;
-}
 
 .richest-area .richest-text {
 	position: relative;
@@ -357,16 +332,66 @@ body {
 	margin-bottom: 60px;
 }
 
-.others-area .block-image header {
-	height: 50px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
 .others-area .top-rank{
 	height: 100px;
 	display: flex;
 	flex-direction: column;
+}
+
+.header-podium {
+    margin-top: 15px;
+}
+
+.podium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: -15px;
+    width: calc(100% + 30px);
+    background-color: #c9b25f;
+    padding-bottom: 15px;
+    border-top: 10px solid #446084;
+    color: white;
+    font-size: 100px;
+}
+
+.podium.rank-1 {
+    position: relative;
+    top: 5px;
+    height: 200px;
+    z-index: 99;
+    box-shadow: 0px 0px 5px 2px #666666;
+}
+
+.podium.rank-2 {
+    height: 150px;
+}
+
+.podium.rank-3 {
+    height: 130px;
+}
+
+.shadow {
+    -moz-box-shadow: 0px 7px 47px 26px #cccccc;;
+    -webkit-box-shadow: 0px 7px 47px 26px #cccccc;;
+}
+
+.homepage-information {
+    margin-top: 85px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px white;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.homepage-information .info-picto {
+    position: relative;
+    left: -60px;
+    margin-right: -40px;
+    height: 130px;
 }
 
 /* Bid more part */
