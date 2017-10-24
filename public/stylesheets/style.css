@@ -107,7 +107,7 @@ body {
 
 .main-title a {
     text-decoration: none;
-    color: #446084;
+    color: #c9b25f;
     cursor: pointer;
 }
 
@@ -255,6 +255,8 @@ body {
 .main-title {
 	margin-top: 1vh;
     margin-bottom: 2vh;
+    padding-top:10px;
+    padding-bottom:5px;
 }
 
 /* Homepage part */
@@ -410,7 +412,7 @@ body {
     position: absolute;
     right: 3px;
     top: 3px;
-    color: white;
+    color: #9bacc2;
     cursor: pointer;
 }
 
@@ -447,7 +449,7 @@ body {
     background-color:#9bacc2;
     cursor:pointer;
     border-radius:0px;
-    border-right: 2px solid #9bacc2;
+    border-right: 1px solid #9bacc2;
 }
 .btn-form-image:hover{
     background-color:lightgray;
