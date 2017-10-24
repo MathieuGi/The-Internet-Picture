@@ -416,7 +416,6 @@ background-color: #8389e2;
 .btn-form-image{
     background-color:grey;
     cursor:pointer;
-    font-size:3rem;
 }
 .btn-form-image:hover{
     background-color:lightgray;
