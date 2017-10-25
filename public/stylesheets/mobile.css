@@ -210,3 +210,8 @@ header.main-header {
     justify-content: center;
     background-color: #446084;
 }
+
+.popover {
+    width: 300px;
+    font-size:30px;
+}
