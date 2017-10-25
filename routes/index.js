@@ -169,6 +169,7 @@ var returnRouter = function(io) {
             sharedService.saveImage(req.file, req.file.filename).then(function(){
                 // Create the new bid
                 bidService.create(body.name, newName, body.url, body.text, parseInt(body.price), body.token).then(function(newBid) {
+                    winston.info('this is the smiley : ' + newBid.name);
                     if(req.device.type === "phone"){
                         return res.status(200).render('mobile/confirmBid', {bidder: newBid});
                     } else {
