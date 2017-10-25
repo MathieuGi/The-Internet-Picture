@@ -245,9 +245,62 @@ body {
     background-color: transparent;
 }
 
+/* paiement confirmation */
 #bid-summary .confirm .loading {
     display: none;
 }
+
+#bid-summary .richest-text span {
+    word-break: break-all;
+}
+
+#bid-summary .recap {
+    margin-top: 50px;
+}
+
+#bid-summary .recap table{
+    display: flex;
+    justify-content: center;
+}
+
+#bid-summary .confirm div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bid-summary .richest-text {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background-color: white;
+    color: #446084;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#bid-summary .confirm {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#bid-summary .confirm button {
+    margin: 10px;
+}
+
+#bid-summary .top-rank {
+    margin-bottom: 25px;
+}
+
+#bid-summary .block-image .img {
+    min-height: 250px;
+}
+
 
 .loading {
     display: none;
