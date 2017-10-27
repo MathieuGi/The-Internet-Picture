@@ -19,8 +19,15 @@
     });
 
     // Open page effect
-    $('.main-title, #menu, .rich1 .header, .rich2, .rich3').fadeTo(3500, 1);
-    $('.rich1 .richest-text').fadeTo(3500, 0.9)
+    $(`.footer,
+    header, 
+    .rights, 
+    .others-area, 
+    .richest-area .header-podium, 
+    .richest-area .podium, 
+    .richest-area .shadow, 
+    .homepage-information`).fadeTo(3500, 1);
+    $('.richest-area .richest-text').fadeTo(3500, 0.8)
 
     // Load more in rank table
     $('.rank-table').on("click", ".see-more", function() {
