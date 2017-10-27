@@ -3,7 +3,8 @@
 <% if (i >= 3) return false %>
 <div class="col-<%= (i == 0 ? 5 : (i == 1 ? 3 : 2)) %> order-<%= (i == 0 ? 2 : (i == 2 ? 3 : 1)) %> <%= (i == 0 ? 'richest-area' : 'others-area') %> <%= (bidders[0].text !='' ? 'hasText' : '') %>" data-rank="<%= i+1 %>">
 
-  <div class="row top-rank">
+<!-- Remove "if" statement if timer is needed -->
+<% if(false) { %> <div class="row top-rank">
     <div class="col-12 text-center">
       <% if(i==0){ %>
       <div class="time timer-part text-center ">
@@ -56,6 +57,8 @@
       <% } %>
     </div>
   </div>
+
+ <% } %>
 
   <article class="block-image">
     <% if(bidder.url != "") { %>

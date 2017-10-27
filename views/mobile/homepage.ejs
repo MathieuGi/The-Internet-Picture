@@ -1,5 +1,8 @@
 <!-- Richest -->
 <div class="top-rich col-11 %> richest-area <%= (bidders[0].text !='' ? 'hasText' : '') %>">
+
+  <!-- Remove "if" statement if timer is needed -->
+  <% if(false) { %>
   <div class="row top-rank">
     <div class="col-12 text-center">
       <div class="time timer-part text-center ">
@@ -51,6 +54,8 @@
       </div>
     </div>
   </div>
+
+  <% } %>
   <article class="block-image">
     <% if(bidders[0].url != "") { %>
     <a href="<%= bidders[0].url %>" target="_blank">
