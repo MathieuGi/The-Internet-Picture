@@ -23,6 +23,130 @@ body, #menu, .rank-table table, #paiement-form, #bid-summary {
     font-weight: bold;
 }
 
+/* Modals */
+.modal .modal-title {
+    font-size: 2rem;
+}
+
+.modal h6 {
+    font-size: 1.7rem;
+}
+
+.modal .close {
+    font-size: 3rem;
+}
+
+.modal .modal-body {
+    font-size: 1.4rem;
+}
+
+/* First bar */
+.footer > span {
+    font-size: 1.2rem;
+}
+
+/* Menu */
+.main-title h1 {
+    font-size: 4rem;
+}
+
+#menu .fa {
+    font-size: 2.6rem;
+}
+
+#menu .menu-item {
+    font-size: 1.3rem
+}
+
+/* Homepage */
+.richest-text {
+    font-size: 1.4rem;
+}
+
+.header-podium span {
+    font-size: 1.4rem; 
+    font-weight: bold;
+}
+
+.podium.rank-1{
+    font-size: 16rem;
+}
+
+.podium.rank-2{
+    font-size: 13rem;
+}
+
+.podium.rank-3{
+    font-size: 10rem;
+}
+
+.homepage-information {
+    font-size: 1.2rem;
+}
+
+/* Rank table */
+.rank-table th, .rank-table .index {
+    font-size: 1.4rem;
+}
+
+.rank-table td {
+    font-size: 1.3rem;
+}
+
+.rank-table .see-more {
+    font-size: 2rem;
+}
+
+/* Bid more form */
+#paiement-form label {
+    font-size: 1.4rem; 
+}
+
+.icone-field-field{
+    padding-left: 3.5rem;
+}
+
+.icone-field input, #button-form-image {
+    font-size: 1.6rem;
+}
+
+.icone-field .fa {
+    font-size: 2rem;
+}
+
+#paiement-form .error-message, #paiement-form .outcome, .invalid-feedback{
+    font-size: 1.1rem;
+}
+
+#paiement-form button, #trump {
+    font-size: 1.6rem;
+}
+
+.bid-more .info-icon{
+    font-size: 1.7rem;
+}
+
+.popover {
+    font-size: 1.4rem;
+}
+
+/* Confirm bid */
+#bid-summary h2 {
+    font-size: 3rem;
+}
+
+#bid-summary p {
+    font-size: 1.5rem;
+}
+
+.recap {
+    font-size: 1.7rem;
+}
+
+#bid-summary button {
+    font-size: 1.5rem;
+}
+
 
 /************************* CSS ****************************/
 
@@ -35,9 +159,9 @@ body, #menu, .rank-table table, #paiement-form, #bid-summary {
 }
 .contact{
     color : #dadace;
-    font-size: 11px;
     cursor: pointer;
 }
+
 .contact:hover{
     color : white;
     text-decoration:none;
@@ -72,7 +196,7 @@ body {
 
 .container-fluid {
     position: relative;
-    top: -10px;
+    top: -5px;
 }
 
 .container-fluid > header {
@@ -100,7 +224,6 @@ body {
     top: 30px;
     right: 30px;
     color: white;
-    font-size: 40px;
     font-weight: 100;
     cursor: pointer;
 }
@@ -114,16 +237,24 @@ body {
 .error-message, .invalid-feedback {
     display: none;
 	color: #E4584C;
-	font-size: 13px;
 	font-family: "Raleway_ExtraLight";
+}
+
+#menu .menu-item {
+    color: #9bacc2;
+}
+
+#menu .menu-item.active {
+    color: #c9b25f;
+    font-weight: bold;
 }
 
 #buy-button{
     background-color: #c9b25f !important; 
-    opacity:0.8 !important;
+    opacity: 0.8 !important;
 }
 #buy-button:hover{
-    cursor:pointer;
+    cursor: pointer;
     opacity:1 !important;
 }
 
@@ -177,10 +308,6 @@ body {
     top: 60px;
 }
 
-.background-picto .fa {
-    font-size: 900px;
-}
-
 /* Rank table part */
 
 .thumbs {
@@ -197,6 +324,10 @@ body {
 .rank-table-area {
     display: none;
 } 
+
+.rank-table {
+    color: #446084;
+}
 
 .rank-table-area .header h2 {
     margin-top: 35px;
@@ -290,7 +421,7 @@ body {
 }
 
 #bid-summary .confirm button {
-    margin: 10px;
+    margin: 1.3rem
 }
 
 #bid-summary .top-rank {
@@ -315,14 +446,13 @@ body {
 
 /* Homepage part */
 
-.richest-area .top-rank {
-	margin-bottom: 25px;
+.picture-area {
+    margin-top: 50px;
 }
 
-.block-image .time {
-    display: inline-flex;
-    justify-content: flex-end;
-    width: 45%;
+.richest-area .top-rank {
+	margin-bottom: 25px;
+    color: #446084;
 }
 
 .richest-area td, .richest-area th {
@@ -337,10 +467,6 @@ body {
     width: 200px;
     display: inline-flex;
     justify-content: center;
-}
-
-.others-area table {
-    width: 135px;
 }
 
 .block-image {
@@ -359,10 +485,6 @@ body {
 
 .richest-area {
 	position: relative;
-}
-
-.richest-area .top-rank {
-	color: #e8d254;
 }
 
 .richest-area .richest-text {
@@ -390,6 +512,7 @@ body {
 
 .header-podium {
     margin-top: 15px;
+    margin-bottom: 2px;
 }
 
 .podium {
@@ -403,7 +526,6 @@ body {
     padding-bottom: 15px;
     border-top: 10px solid #446084;
     color: white;
-    font-size: 100px;
     box-shadow: 0px 0px 5px 2px #666666;
 }
 
@@ -435,6 +557,7 @@ body {
     border: 1px white;
     border-radius: 3px;
     overflow: hidden;
+    color: #c9b25f;
 }
 
 .homepage-information .info-picto {
@@ -460,8 +583,8 @@ body {
 
 .bid-more .info-icon {
     position: absolute;
-    right: 3px;
-    top: 3px;
+    right: 0.7rem;
+    top: 0.3rem;
     color: #9bacc2;
     cursor: pointer;
 }
@@ -546,7 +669,6 @@ body {
 #paiement-form .success,
 #paiement-form .error {
     display: none;
-    font-size: 13px;
 }
 
 #paiement-form .success.visible,

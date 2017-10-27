@@ -1,21 +1,18 @@
 /* Font */
 
+html{
+    font-size: 62.5%;
+}
+
+.background-picto .fa {
+    font-size: 900px;
+}
 
 /* Style */
-
-
-#menu .menu-item {
-    color: grey;
-}
 
 .rank-table .picto-medal {
     height: 50px;
     width: 50px;
-}
-
-/* Bid more part */
-.bid-more .info-icon {
-    font-size: 20px;
 }
 
 #paiement-form button {
@@ -25,7 +22,6 @@
     border-radius: 4px;
     border: 0;
     margin-top: 20px;
-    font-size: 15px;
     font-weight: 400;
     width: 100%;
     height: 40px;
@@ -48,19 +44,9 @@
     cursor: pointer;
 }
 
-#menu .menu-item.active {
-    color: #c9b25f;
-    padding-bottom: 5px;
-    font-weight: bold;
-}
-
-
-
-
 /* paiement confirmation */
 #bid-summary .block-image .img, #bid-summary .block-image .img img {
     max-height: 400px;
-    width: 100%;
 }
 
 
@@ -82,14 +68,10 @@
 
 /* Bid part */
 
-.icone-field-field{
-    padding-left: 35px;
-}
-
 .icone-field-icone{
     position:absolute;
     left:10px;
-    top:calc(50% - 10px);
+    top:calc(50% - 1rem);
 }
 
 #paiement-form .information,
@@ -97,5 +79,26 @@
     border: 2px solid #c9b25f;
     border-radius: 6px;
     padding: 25px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+}
+
+.footer > span{
+    color: white;
+    margin-left: 15px;
+}
+
+.footer .social-div {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+}
+
+.footer .social-div a {
+    margin-left: 7px;
 }
 
