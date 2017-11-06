@@ -45,10 +45,15 @@ device.enableViewRouting(app);
 app.use('/', index);
 app.use('/users', users);
 
-// simplify import of jquery and bootstrap in view
+// simplify import of jquery, bootstrap and popper in view
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
+
+// Redirect all request to /
+app.use(function (req, res) {
+  res.redirect("https://localhost:3000/");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
