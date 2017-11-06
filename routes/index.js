@@ -79,13 +79,21 @@ var returnRouter = function(io) {
                 if(bidder.price <= bestBidder.price) {
                     return res.status(500).json({error: "PriceTooLow"})
                 } else {
-                    stripe.charges.create({
+                    var params = body.email !== "" ? {
                         // Send price in centimes
                         amount: bidder.price * 100,
                         currency: "eur",
-                        description: "new Bid",
+                        receipt_email: body.email,
+                        description: "Nouvelle enchère",
                         source: bidder.transaction_id,
-                    }, function(err, charge) {
+                    } : {
+                        // Send price in centimes
+                        amount: bidder.price * 100,
+                        currency: "eur",
+                        description: "Nouvelle enchère",
+                        source: bidder.transaction_id,
+                    }
+                    stripe.charges.create(params, function(err, charge) {
                         if (err) {
                             winston.error(FILE_NAME + ' - Paiement failed:' + err);
                             return res.status(500).json({ error: 'paiementFailed' });
@@ -161,6 +169,7 @@ var returnRouter = function(io) {
             sharedService.saveImage(req.file, req.file.filename).then(function(){
                 // Create the new bid
                 bidService.create(body.name, newName, body.url, body.text, parseInt(body.price), body.token).then(function(newBid) {
+                    winston.info('this is the smiley : ' + newBid.name);
                     if(req.device.type === "phone"){
                         return res.status(200).render('mobile/confirmBid', {bidder: newBid});
                     } else {

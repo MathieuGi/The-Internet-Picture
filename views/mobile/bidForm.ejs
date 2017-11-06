@@ -9,31 +9,39 @@
         <!-- Form first part -->
         <div class="information">
           
-          <!-- Information bubble -->
-          <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Seules les données de la première partie du formulaire seront concervées. Aucune information bancaire n'est concervée sur notre site."></span>
-
-
-
           <div class="form-group">
             <label for="form-name">Nom *</label>
             <div class="icone-field">
               <span class="icone-field-icone fa fa-user-o"></span>
               <input type="text" class="form-control icone-field-field" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
-              <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
             </div>
+            <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
           </div>
 
-          <!-- Image -->
+            <!-- Image -->
             <div class="form-group img-input">
-              <label for="form-image">Image (jpeg, png, jpg, gif - Maximum 4Mo) *</label>
-              <input type="file" id="form-image" class="filestyle" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
-              <span id="wrongImageType" class="error-message"> Seuls les type jpeg, jpg, png et gif sont acceptés </span>
+
+              <!-- Information bubble -->
+              <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" data-content="Types acceptés : jpeg, png, jpg, gif. Taille maximum : 4 Mo."></span>
+
+              <label for="form-image">Image </label> <!-- (jpeg, png, jpg, gif - Maximum 4Mo) -->
+              <input type="file" id="form-image" class="form-control" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
+              <div id="button-form-image">
+                <label for="form-image" class="btn btn-form-image">Parcourir </label>
+                <span id="form-image-text"></span>
+              </div>
+              
+              <span id="wrongImageType" class="error-message"> Seules les type jpeg, jpg, png et gif sont acceptés </span>
               <span id="noImage" class="error-message"> Merci de selectionner une image </span>
               <span id="imageToBig" class="error-message"> La taille de l'image est trop importante </span>
           </div>
        
-                 <!-- Link -->
+            <!-- Link -->
           <div class="form-group">
+
+              <!-- Information bubble -->
+              <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" data-content="Choisissez un lien vers lequel sera rediriger les utilisateurs cliquant sur votre image."></span>
+
               <label for="form-url">Lien url</label>
                 <div class="icone-field">
                 <span class="icone-field-icone fa fa-external-link"></span>
@@ -52,7 +60,7 @@
 
           <!-- Selected price -->
           <div class="form-group">
-              <label for="form-price">Montant</label> (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €)
+              <label for="form-price">Montant (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €) </label>
               <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
                <div class="icone-field">
                 <span class="icone-field-icone fa fa-eur"></span>
@@ -86,11 +94,50 @@
         <!-- Form second part -->
         <div class="paiement" id="paiement">
 
-          <!-- Card number -->
-          <div class="form-group">
-            <label for="card-element">Card</label>
-            <div id="card-element" class="form-control form-control-lg"></div>
+          <!-- Information bubble -->
+          <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" title="Informations" data-content="Seules les données de la première partie du formulaire seront concervées. Aucune information bancaire n'est concervée sur notre site."></span>
+
+
+          <div class="form-group row">
+            <label class="col-2 text-left" for="form-card-name">Nom *</label>
+            <div class="icone-field col-10">
+              <span class="icone-field-icone fa fa-user"></span>
+              <input class="form-control icone-field-field" type="text" name="card-name" id="form-card-name">
+            </div>
+            <div class="col-2"></div>
+            <span class="error-message" id="missing-card-name">Merci de renseigner le nom inscrit sur votre carte</span>
           </div>
+
+          <div class="form-group row">
+            <label class="col-2 text-left" for="form-email">Email</label>
+            <div class="icone-field col-10">
+              <span class="icone-field-icone fa fa-envelope"></span>
+              <input class="form-control icone-field-field" type="email" name="form-email" id="form-email">
+            </div> 
+            <div class="col-2"></div>
+            <span class="error-message" id="wrong-email">
+              Le format de l'email est invalide
+            </span>
+          </div>
+
+          <!-- Card number -->
+          <div class="form-group row">
+            <label class="col-2 text-left" for="card-element">Carte *</label>
+            <div class="col-10 icone-field">
+              <div id="card-element" class="form-control col-10"></div>
+            </div>
+
+            <div class="col-2"></div>
+
+            <!-- Outcome for stripe -->
+            <div class="outcome">
+              <div class="error" role="alert"></div>
+              <div class="success">
+                <span class="token"></span>
+              </div>
+            </div>
+          </div>
+          
 
           <!-- Missing fields message -->
           <div class="invalid-feedback">
@@ -105,21 +152,11 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
-
-          <!-- Outcome for stripe -->
-          <div class="outcome">
-            <div class="error" role="alert"></div>
-            <div class="success">
-              <span class="token"></span>
-            </div>
-          </div>
-
         </div>
       </div>
     </form>
   </div>
 </div>
-
 
 
 <!-- Terms modal -->

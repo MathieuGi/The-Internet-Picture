@@ -57,7 +57,7 @@ module.exports = {
 
                     // Resize image
                     winston.info(FILE_NAME + ' - transformImage: Resizing image in 700x400')
-                    img.scaleToFit(minWidth, minHeight);
+                    img.background(0xFFFFFFFF).scaleToFit(minWidth, minHeight);
                 }
 
                 // Save model image

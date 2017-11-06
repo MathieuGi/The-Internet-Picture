@@ -1,42 +1,7 @@
 /* Fonts */
-.rank-table table td {
-	font-size: 4vw;
-}
 
-.rank-table table th {
-    font-size: 5vw;
-}
-
-.rank-table .see-more {
-    font-size: 4vh;
-}
-
-.bid-more .info-icon {
-    font-size: 5vw;
-}
-
-#paiement-form {
-	font-size: 4vw;
-}
-
-#paiement-form .form-control {
-	font-size: 5vw;
-}
-
-#menu .menu-item {
-    font-size: 4vw;
-}
-
-#menu .fa {
-    font-size: 6vw;
-}
-
-.main-title h1 {
-    font-size: 6em;
-}
-
-.icone-field .fa{
-    font-size:40px;
+html{
+    font-size: 150%;
 }
 
 /* Styles */
@@ -54,11 +19,6 @@ header.main-header {
 #menu .menu-item {
     padding: 25px;
     border-bottom: 1px solid #446084;
-    color: grey;
-}
-
-#menu .menu-item.active {
-    color: #446084;
 }
 
 .rank-table table td {
@@ -71,9 +31,18 @@ header.main-header {
     margin-bottom: 10vh;
 }
 
+.rank-table th .fa {
+    margin-right: 15px;
+}
+
 .rank-table .see-more {
     padding-top: 1vh;
     padding-bottom: 1vh;
+}
+
+.rank-table .picto-medal {
+    height: 150px;
+    width: 150px;
 }
 
 #paiement-form .form-group {
@@ -88,7 +57,6 @@ header.main-header {
     border-radius: 4px;
     border: 0;
     margin-top: 20px;
-    font-size: 5vw;
     padding-top: 20px;
     padding-bottom: 20px;
     font-weight: 400;
@@ -101,75 +69,15 @@ header.main-header {
 	height: 40px;
 }
 
-#paiement-form .error-message {
-	font-size: 3.5vw;
-}
+
 
 .text-truncate {
     max-width: 350px;
 }
 
 /* paiement confirmation */
-
-#bid-summary .confirm {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 40px;
-}
-
-#bid-summary .confirm button {
-    margin: 10px;
-}
-
-#bid-summary article{
-    min-height: 530px;
-}
-
-#bid-summary .top-rank {
-    margin-bottom: 25px;
-}
-
-#bid-summary td, th {
-    width: 40px;
-    text-align: center;
-}
-
-#bid-summary table {
-    width: 200px;
-}
-
-#bid-summary table {
-    width: 135px;
-}
-
 #bid-summary .block-image .img, #bid-summary .block-image .img img {
     max-height: 800px;
-    width: 100%;
-}
-#bid-summary .block-image .img {
-    min-height: 250px;
-}
-
-#bid-summary .block-image header {
-    height: 60px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-#bid-summary .richest-text {
-    position: relative;
-    height: 60px;
-    top: -60px;
-    background-color: white;
-    opacity: 0.8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-#bid-summary .richest-text span {
-    word-break: break-all;
 }
 
 .main-area [data-rank="1"] img{
@@ -177,24 +85,72 @@ header.main-header {
     max-height: 800px;
 }
 
-.main-area [data-rank="2"] img{
-    min-height: 300px;
-    max-height: 500px;
+#bid-summary .modify {
+    margin-right: 2rem !important;
 }
 
-.main-area [data-rank="3"] img{
-    min-height: 150px;
-    max-height: 300px;
+#bid-summary .paye {
+    margin-left: 2rem !important;
 }
 
 /* Bid part */
 
-.icone-field-field{
-    padding-left: 55px;
+#paiement-form .information,
+#paiement-form .paiement {
+    border: 4px solid #c9b25f;
+    border-radius: 10px;
+    padding: 25px;
+
+}
+
+.info-icone{
+    padding-bottom:20px;
 }
 
 .icone-field-icone{
     position:absolute;
     left:10px;
-    top:calc(50% - 20px);
+    top:calc(50% - 1rem);
+}
+
+#trump{
+    border-radius : 8px;
+}
+
+#paiement label {
+    margin-top: 10px;
+}
+
+#form-image-text{
+    padding-left:15px;
+    position: relative;
+    top: 7px;
+}
+
+.footer {
+    margin-top: 100px;
+    padding: 0;
+    background-color: transparent;
+    color: #c9b25f;
+}
+
+.footer .w-100 {
+    height: 20px;
+}
+
+.footer .contact {
+    color: #446084;
+}
+
+.footer .btn-social-icon {
+    width: 80px;
+    height: 80px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #446084;
+}
+
+.popover {
+    width: 300px;
 }
