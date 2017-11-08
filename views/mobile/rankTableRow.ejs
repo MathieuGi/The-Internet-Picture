@@ -12,7 +12,7 @@
     <%= bidder.name %>
   </td>
   
-  <td class="align-middle text-center"><%= bidder.price %> €</td>
+  <td class="align-middle text-center"><%= bidder.price / 100 %> €</td>
     <td class="align-middle text-center">
       <% var date = new Date(bidder.createdAt); %>
       <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> %>
