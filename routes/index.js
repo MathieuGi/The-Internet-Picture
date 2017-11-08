@@ -81,14 +81,14 @@ var returnRouter = function (io) {
                 } else {
                     var params = body.email !== "" ? {
                         // Send price in centimes
-                        amount: bidder.price * 100,
+                        amount: bidder.price,
                         currency: "eur",
                         receipt_email: body.email,
                         description: "Nouvelle enchère",
                         source: bidder.transaction_id,
                     } : {
                             // Send price in centimes
-                            amount: bidder.price * 100,
+                            amount: bidder.price,
                             currency: "eur",
                             description: "Nouvelle enchère",
                             source: bidder.transaction_id,
@@ -153,7 +153,7 @@ var returnRouter = function (io) {
                 checkType.string(body.url) &&
                 checkType.string(body.text) &&
                 checkType.string(body.token) &&
-                checkType.integer(parseInt(body.price, 10)))
+                checkType.positive(parseInt(body.price * 100, 10)))
             ) {
 
                 winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
@@ -168,7 +168,7 @@ var returnRouter = function (io) {
             // Save image in folder (fullsize and resized)
             sharedService.saveImage(req.file, req.file.filename).then(function () {
                 // Create the new bid
-                bidService.create(body.name, newName, body.url, body.text, parseInt(body.price), body.token).then(function (newBid) {
+                bidService.create(body.name, newName, body.url, body.text, parseInt(body.price * 100), body.token).then(function (newBid) {
                     winston.info('this is the smiley : ' + newBid.name);
                     if (req.device.type === "phone") {
                         return res.status(200).render('mobile/confirmBid', { bidder: newBid });
