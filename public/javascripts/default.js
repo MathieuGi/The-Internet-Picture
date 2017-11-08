@@ -8,6 +8,14 @@ $(document).ready(function () {
   // Navigation menu
   $('.menu-item').click(function (e) {
     var menu = $(this).attr('id');
+
+    // show social icons only on homepage
+    if (menu !== "picture-area") {
+      $('.social-div').hide();
+    } else {
+      $('.social-div').show();
+    }
+
     $('.menu-item').removeClass('active');
     $(this).addClass('active');
     $('.main-area').hide();
