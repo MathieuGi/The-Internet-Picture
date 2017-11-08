@@ -75,7 +75,6 @@ $(document).ready(function () {
   $('#paiement-form .form-price').keyup(function () {
     var price = $('#paiement-form .form-price');
     var priceArray = $('#paiement-form .form-price').val().split(".");
-    console.log(price)
     var priceDecimals = "";
     if (priceArray.length === 2) {
       priceDecimals = priceArray[1].slice(0, 2);
