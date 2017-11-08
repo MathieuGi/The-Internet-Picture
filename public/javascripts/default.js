@@ -227,9 +227,9 @@ $(document).ready(function () {
     $('.rank-table .table tbody').prepend(data.changeTableRow);
     $('.rank-table .table tbody').prepend(data.newTableRow);
 
-    $('.bid-value').html(data.bestBid.price);
-    $('#paiement-form .min-bid-value').html(data.bestBid.price + 1);
-    $('.min-price').val(data.bestBid.price + 1);
+    $('.bid-value').html(data.bestBid.price / 100);
+    $('#paiement-form .min-bid-value').html((data.bestBid.price + 1) / 100);
+    $('.min-price').val((data.bestBid.price + 1) / 100);
     $('.paiement-success').show().delay(2500).fadeOut(2000);
   }
 
@@ -392,7 +392,7 @@ $(document).ready(function () {
     //     return false
     // }  
 
-    else if (parseInt($('#form-price').val(), 10) < parseInt($('.min-price').val(), 10)) {
+    else if (Number($('#form-price').val(), 10) < Number($('.min-price').val(), 10)) {
       $('#price-too-low').show();
       $(window).scrollTop($('#form-price').offset().top - 40);
       return false;

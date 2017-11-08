@@ -71,7 +71,7 @@
           <div class="form-group">
 
             <label for="form-price">Montant (enchère actuelle : <span class="bid-value"><%= bidders[0].price / 100 %></span> €) </label>
-            <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
+            <input type='hidden' class="min-price" value='<%= (bidders[0].price + 1) / 100 %>'/>
             <div class="icone-field">
               <span class="icone-field-icone fa fa-eur"></span>
               <input type="number" class="form-control form-price icone-field-field" id="form-price" placeholder="Entrez un montant" required> 
