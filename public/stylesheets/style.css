@@ -730,21 +730,6 @@ tr.line-ranked-table {
 }
 
 
-/* Open page effect */
-
-.footer,
-header,
-.rights,
-.others-area,
-.richest-area .richest-text,
-.richest-area .header-podium,
-.richest-area .podium,
-.richest-area .shadow,
-.homepage-information {
-    opacity: 0;
-}
-
-
 /* Confirm bid */
 
 #bid-summary .reload-image {
