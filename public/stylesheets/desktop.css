@@ -109,3 +109,20 @@ html {
 .messageBar .contact-us a {
     margin-left: 7px;
 }
+
+.social-div {
+    background: #446084;
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 110px;
+}
+
+.social-div .fb-share-button {
+    margin-right: 30px;
+}
+
+.rights span {
+    color: white;
+}

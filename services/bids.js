@@ -8,12 +8,12 @@ const FILE_NAME = 'services/bids.js';
 module.exports = {
 
     // This function is used to get a bid by his id
-    getById: function(id){
+    getById: function (id) {
         return bid.findById(id).then(res => res);
     },
 
     // This function is used to get a bid by his id and his token
-    getByIdAndToken: function(id, token){
+    getByIdAndToken: function (id, token) {
         return bid.findOne({
             where: {
                 id: id,
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     // This function is used to get the best bid
-    getBest: function() {
+    getBest: function () {
         return bid.findOne({
             where: {
                 is_active: true
@@ -32,13 +32,13 @@ module.exports = {
                 ['price', 'DESC'],
                 ['createdAt', 'DESC']
             ]
-        }).then(function(res) {
+        }).then(function (res) {
             if (res == null) {
                 throw 'No result from database';
             } else {
                 return res;
             }
-        }).catch(function(err) {
+        }).catch(function (err) {
             winston.error(FILE_NAME + ' - function "getBest" - Query failure: ' + err);
             throw 'Query failure: ' + err
         });
@@ -46,7 +46,7 @@ module.exports = {
 
 
     // This function is used to get all bids
-    getAll: function(limit, offset) {
+    getAll: function (limit, offset) {
         return bid.findAll({
             where: {
                 is_active: true
@@ -57,20 +57,20 @@ module.exports = {
             ],
             limit: limit,
             offset: offset
-        }).then(function(res) {
+        }).then(function (res) {
             if (res == null) {
                 throw 'No result from database';
             } else {
                 return res;
             }
-        }).catch(function(err) {
+        }).catch(function (err) {
             winston.error(FILE_NAME + ' - function "getAll" - Query failure: ' + err);
             throw 'Query failure: ' + err
         });
     },
 
     // This function is used to create a new bid
-    create: function(name, img_path, url, text, price, token) {
+    create: function (name, img_path, url, text, price, token) {
         if (!checkTypes.integer(price) || price <= 0) {
             throw 'Price must be an integer greater than 0'
         } else if (!checkTypes.string(name) || name == "") {
@@ -98,20 +98,20 @@ module.exports = {
         }
     },
 
-    delete: function(id) {
+    delete: function (id) {
         return bid.destroy({
             where: {
                 id: id
             }
         })
     },
-    
-    // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
-    setBidTime: function() {
 
-        return this.getBest().then(function(res) {
+    // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
+    setBidTime: function () {
+
+        return this.getBest().then(function (res) {
             // Transform date object into timestamp object
-            
+
             var createdAt = res.createdAt.getTime();
             var nowDate = Date.now();
             var bidTime = (nowDate - createdAt);
@@ -119,31 +119,31 @@ module.exports = {
             return bid.update({
                 bid_time: bidTime
             }, {
-                where: {
-                    id: res.id
-                }
-            }).then(function(res) {
-                return res;
-            }).catch(function(err) {
-                throw err;
-            })
-        }).catch(function(err) {
+                    where: {
+                        id: res.id
+                    }
+                }).then(function (res) {
+                    return res;
+                }).catch(function (err) {
+                    throw err;
+                })
+        }).catch(function (err) {
             throw err;
         })
     },
 
-    setActive: function(id) {
+    setActive: function (id) {
         return bid.update({
             is_active: true
         }, {
-            where: {
-                id: id
-            }
-        }).then(function(res) {
-            return res;
-        }).catch(function(err) {
-            throw err;
-        });
+                where: {
+                    id: id
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                throw err;
+            });
     }
 
 }
