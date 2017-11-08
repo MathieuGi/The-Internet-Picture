@@ -16,7 +16,7 @@
             <label for="form-name">Nom *</label>
             <div class="icone-field">
               <span class="icone-field-icone fa fa-user"></span>
-              <input type="text" class="form-control icone-field-field" id="form-name" maxlength="40" aria-describedby="name" placeholder="Entrez votre nom" required>
+              <input type="text" class="form-control icone-field-field" id="form-name" maxlength="40" aria-describedby="name" placeholder="Choisisser un nom" required>
             </div>
             <span class="error-message" id="mandatoryFields">Merci de renseigner un nom</span>
           </div>
@@ -70,13 +70,13 @@
           <!-- Selected price -->
           <div class="form-group">
 
-            <label for="form-price">Montant (enchère actuelle : <span class="bid-value"><%= bidders[0].price %></span> €) </label>
+            <label for="form-price">Montant (enchère actuelle : <span class="bid-value"><%= bidders[0].price / 100 %></span> €) </label>
             <input type='hidden' class="min-price" value='<%= bidders[0].price + 1 %>'/>
             <div class="icone-field">
               <span class="icone-field-icone fa fa-eur"></span>
-              <input type="number" class="form-control form-price icone-field-field" id="form-price" value="<%= bidders[0].price + 1 %>" required> 
+              <input type="number" class="form-control form-price icone-field-field" id="form-price" placeholder="Entrez un montant" required> 
             </div>
-            <span class="error-message" id="price-too-low">L'enchère minimum est de <span class="min-bid-value"><%= bidders[0].price + 1 %></span> €</span>
+            <span class="error-message" id="price-too-low">L'enchère minimum est de <span class="min-bid-value"><%= (bidders[0].price + 1) / 100 %></span> €</span>
             <span class="error-message" id="missing-price">Merci de renseigner un montant correct</span>
           </div>
 
