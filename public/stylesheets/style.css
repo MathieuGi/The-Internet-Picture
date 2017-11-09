@@ -155,6 +155,13 @@ body,
 }
 
 
+/* Terms */
+
+#terms-modal h5 {
+    font-size: 2rem;
+}
+
+
 /* Confirm bid */
 
 #bid-summary h2 {
@@ -728,6 +735,32 @@ tr.line-ranked-table {
 
 #paiement-form .success .token {
     display: none;
+}
+
+
+/* Terms */
+
+#terms-modal .modal-body {
+    height: 60vh;
+    overflow-y: auto;
+}
+
+#terms-modal .modal-dialog {
+    overflow-y: initial !important;
+}
+
+#terms-modal h5 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#terms-modal h6 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+#terms-modal button {
+    cursor: pointer;
 }
 
 

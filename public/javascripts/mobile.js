@@ -13,11 +13,11 @@ var style = {
   }
 };
 
-var card = elements.create('card', {hidePostalCode: true, style: style});
+var card = elements.create('card', { hidePostalCode: true, style: style });
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $('.group-span-filestyle > label').css('padding','2.5rem')
-  $('.group-span-filestyle > label > .buttonText').css('font-size','2rem');
+  $('.group-span-filestyle > label').css('padding', '2.5rem')
+  $('.group-span-filestyle > label > .buttonText').css('font-size', '2rem');
 
 });

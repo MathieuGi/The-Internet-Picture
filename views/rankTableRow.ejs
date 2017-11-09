@@ -2,7 +2,7 @@
 <tr class="line-ranked-table" data-url="<%= bidder.url %>">
     <td class="align-middle index text-center">
         <% if(index + (locals.offset ? offset : 0) < 3) { %>
-            <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png" alt='Le plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>'>
+            <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png">
         <% } else { %>
             <%= index + 1 + (locals.offset ? offset : 0) %>.
         <% } %>
@@ -11,7 +11,7 @@
         
         <div class="name-container">
             <div class="thumb">
-                <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="image" data-img="<%= bidder.img_path %>">
+                <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="Image miniature du plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>" data-img="<%= bidder.img_path %>">
             </div>
             <div class="name">
                 <%= bidder.name %>
