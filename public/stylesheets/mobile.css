@@ -1,14 +1,16 @@
 /* Fonts */
 
-html{
+html {
     font-size: 150%;
 }
+
 
 /* Styles */
 
 header.main-header {
     margin-bottom: 5vh;
 }
+
 
 /* Menu */
 
@@ -21,9 +23,12 @@ header.main-header {
     border-bottom: 1px solid #446084;
 }
 
+
+/* Rank table */
+
 .rank-table table td {
-	padding-bottom: 1.5rem;
-	padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
     height: 150px;
 }
 
@@ -45,9 +50,19 @@ header.main-header {
     width: 150px;
 }
 
+
+/* Thumbs */
+
+.thumbs {
+    margin-right: 20px;
+    max-width: 140px;
+    max-height: 110px;
+    cursor: pointer;
+}
+
 #paiement-form .form-group {
-	margin-bottom: 5vh;
-	margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
 }
 
 #paiement-form button {
@@ -65,22 +80,23 @@ header.main-header {
 }
 
 #paiement-form #form-terms {
-	width: 40px;
-	height: 40px;
+    width: 40px;
+    height: 40px;
 }
-
-
 
 .text-truncate {
     max-width: 350px;
 }
 
+
 /* paiement confirmation */
-#bid-summary .block-image .img, #bid-summary .block-image .img img {
+
+#bid-summary .block-image .img,
+#bid-summary .block-image .img img {
     max-height: 800px;
 }
 
-.main-area [data-rank="1"] img{
+.main-area [data-rank="1"] img {
     min-height: 500px;
     max-height: 800px;
 }
@@ -93,6 +109,7 @@ header.main-header {
     margin-left: 2rem !important;
 }
 
+
 /* Bid part */
 
 #paiement-form .information,
@@ -100,29 +117,28 @@ header.main-header {
     border: 4px solid #c9b25f;
     border-radius: 10px;
     padding: 25px;
-
 }
 
-.info-icone{
-    padding-bottom:20px;
+.info-icone {
+    padding-bottom: 20px;
 }
 
-.icone-field-icone{
-    position:absolute;
-    left:10px;
-    top:calc(50% - 1rem);
+.icone-field-icone {
+    position: absolute;
+    left: 10px;
+    top: calc(50% - 1rem);
 }
 
-#trump{
-    border-radius : 8px;
+#trump {
+    border-radius: 8px;
 }
 
 #paiement label {
     margin-top: 10px;
 }
 
-#form-image-text{
-    padding-left:15px;
+#form-image-text {
+    padding-left: 15px;
     position: relative;
     top: 7px;
 }

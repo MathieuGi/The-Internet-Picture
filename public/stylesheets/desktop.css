@@ -11,9 +11,22 @@ html {
 
 /* Style */
 
+
+/* Rank table */
+
 .rank-table .picto-medal {
     height: 50px;
     width: 50px;
+}
+
+
+/* Thumbs */
+
+.thumbs {
+    margin-right: 20px;
+    max-width: 80px;
+    max-height: 50px;
+    cursor: pointer;
 }
 
 #paiement-form button {
