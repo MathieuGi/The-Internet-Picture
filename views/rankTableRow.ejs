@@ -1,31 +1,31 @@
 <% if(bidder.price != 0) { %>
-<tr class="line-ranked-table" data-url="<%= bidder.url %>">
-    <td class="align-middle index text-center">
-        <% if(index + (locals.offset ? offset : 0) < 3) { %>
-            <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png">
-        <% } else { %>
-            <%= index + 1 + (locals.offset ? offset : 0) %>.
-        <% } %>
-    </td>
-    <td class="align-middle text-truncate">
+    <tr class="line-ranked-table" data-url="<%= bidder.url %>">
+        <td class="align-middle index text-center">
+            <% if(index + (locals.offset ? offset : 0) < 3) { %>
+                <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png">
+            <% } else { %>
+                <%= index + 1 + (locals.offset ? offset : 0) %>.
+            <% } %>
+        </td>
+        <td class="align-middle text-truncate">
+            
+            <div class="name-container">
+                <div class="thumb">
+                    <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="Image miniature du plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>" data-img="<%= bidder.img_path %>">
+                </div>
+                <div class="name">
+                    <%= bidder.name %>
+                </div>
+            </div>
         
-        <div class="name-container">
-            <div class="thumb">
-                <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="Image miniature du plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>" data-img="<%= bidder.img_path %>">
-            </div>
-            <div class="name">
-                <%= bidder.name %>
-            </div>
-        </div>
-       
-    </td>
-    
-    <td class="align-middle text-center"><%= bidder.price / 100 %> €</td>
+        </td>
+        
+        <td class="align-middle text-center"><%= bidder.price / 100 %> €</td>
 
-    <td class="align-middle text-center">
-        <% var date = new Date(bidder.createdAt); %>
-        <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> - <%= date.getUTCFullYear(); %>
-    </td>
-</tr>
+        <td class="align-middle text-center">
+            <% var date = new Date(bidder.createdAt); %>
+            <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> - <%= date.getUTCFullYear(); %>
+        </td>
+    </tr>
 
 <% } %>

@@ -82,8 +82,11 @@ $(document).ready(function () {
   });
 
   $('.rank-table').on('click', '.line-ranked-table', function () {
-    var url = $(this).data('url') ? 'www.lol.fr' : $(this).data('url');
-    window.open($(this).data('url'), '_blank');
+    var url = $(this).data('url');
+
+    if (url !== "") {
+      window.open(url, '_blank');
+    }
   });
 
   // Display only 2 decimals in price
