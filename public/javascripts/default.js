@@ -8,19 +8,31 @@ $(document).ready(function () {
   // Navigation menu
   $('.menu-item').click(function (e) {
     var menu = $(this).attr('id');
-
-    // show social icons only on homepage
-    if (menu !== "picture-area") {
-      $('.social-div').hide();
-    } else {
-      $('.social-div').show();
-    }
+    var rights = $('.rights');
+    var rightsPosition;
+    var bodyHeight;
+    var marginTop;
 
     $('.menu-item').removeClass('active');
     $(this).addClass('active');
     $('.main-area').hide();
     $('.background-picto').hide();
     $('.' + menu).show();
+
+    // show social icons only on homepage
+    rights.css('margin-top', 0);
+    if (menu !== "picture-area") {
+      $('.social-div').hide();
+      rightsPosition = $('.rights').position();
+      bodyHeight = $('body').height();
+      marginTop = bodyHeight - rightsPosition.top;
+      rights.css('margin-top', marginTop);
+    } else {
+      $('.rights').css('margin-top', '0');
+      $('.social-div').show();
+    }
+
+    // Unselect the page after changing page
     var selection = window.getSelection();
     selection.removeAllRanges();
     e.stopPropagation();
