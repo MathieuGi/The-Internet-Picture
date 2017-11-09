@@ -350,13 +350,6 @@ body {
 
 /* Rank table part */
 
-.thumbs {
-    margin-right: 20px;
-    max-width: 80px;
-    max-height: 50px;
-    cursor: pointer;
-}
-
 tr.line-ranked-table {
     cursor: pointer;
 }
