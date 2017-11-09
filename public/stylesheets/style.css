@@ -183,6 +183,10 @@ body,
 
 /************************* CSS ****************************/
 
+.meta-description{
+    display:none;
+}
+
 .fa-envelope {
     color: #446084;
 }
