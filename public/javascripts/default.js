@@ -59,7 +59,7 @@ $(document).ready(function () {
     var img = $('<img />', {
       id: 'ranked-image-fullSize',
       src: 'images/fullsize/' + $(this).data('img'),
-      alt: $(this).data('url')
+      alt: "Image plein écran"
     });
     var cross = $('<span>', {
       class: 'close',
