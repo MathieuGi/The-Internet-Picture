@@ -57,11 +57,11 @@ module.exports = {
 
                     // Resize image
                     winston.info(FILE_NAME + ' - transformImage: Resizing image in 700x400')
-                    img.background(0xFFFFFFFF).scaleToFit(minWidth, minHeight);
+                    img.background(0xFAFAFAFF).scaleToFit(minWidth, minHeight);
                 }
 
                 // Save model image
-                img.write(modelePath, function () {
+                img.background(0xFAFAFAFF).write(modelePath, function () {
                     // check image weight 
                     var stats = fs.statSync(modelePath);
                     winston.info(FILE_NAME + ' - get stats for image: ' + modelePath);
