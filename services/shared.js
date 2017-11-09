@@ -9,7 +9,7 @@ var sizeOf = require('image-size');
 
 module.exports = {
     // Resolve multiple promises and return their results in an array
-    doPromises: function(array) {
+    doPromises: function (array) {
         return array.reduce((previousPromise, promise) => {
             return previousPromise.then(resultsArray => {
                 return promise.then(res => {
@@ -34,13 +34,13 @@ module.exports = {
         }, Promise.resolve([]));
     },
 
-    transformImage: function(filePath, name, quality){
+    transformImage: function (filePath, name, quality) {
         var _this = this;
         var weight = 120000; // Weight max of the final picture wanted
         var minWidth = 1000;
         var minHeight = 800;
-        var miniatureWidth = 80;
-        var miniatureHeight = 60;
+        var miniatureWidth = 200;
+        var miniatureHeight = 160;
         var thumbsPath = 'public/images/thumbs/' + name + '.jpg'; // Path of the thumbs picture
         var modelePath = 'public/images/fullsize/' + name + 'modele.jpg'; // Path of the modele picture (700-400 with quality 100)
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
@@ -49,11 +49,11 @@ module.exports = {
         return jimp.read(filePath).then(img => {
 
             // First call to this function
-            if(quality === 100) {
+            if (quality === 100) {
 
                 // Check if we need to resize
                 var dimensions = sizeOf(filePath);
-                if(dimensions.width > minWidth || dimensions.height > minHeight){
+                if (dimensions.width > minWidth || dimensions.height > minHeight) {
 
                     // Resize image
                     winston.info(FILE_NAME + ' - transformImage: Resizing image in 700x400')
@@ -61,14 +61,14 @@ module.exports = {
                 }
 
                 // Save model image
-                img.write(modelePath, function(){
+                img.write(modelePath, function () {
                     // check image weight 
                     var stats = fs.statSync(modelePath);
                     winston.info(FILE_NAME + ' - get stats for image: ' + modelePath);
                     var fileSizeInBytes = stats.size;
 
-                    if(fileSizeInBytes > weight){
-                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ': ' +modelePath);
+                    if (fileSizeInBytes > weight) {
+                        winston.info(FILE_NAME + ' - Image too big with quality = ' + quality + ': ' + modelePath);
 
                         // If weight too big, lower quality
                         quality = quality - 10;
@@ -77,8 +77,8 @@ module.exports = {
                     } else {
                         /* If weight is good, make the thumbs picture and create the final of the picture (fullPath), 
                         delete the modele picture and delete the picture without an extension */
-                        winston.info(FILE_NAME + ' - Image created with quality = '+ quality + ': ' +modelePath);
-                        img.write(fullPath); 
+                        winston.info(FILE_NAME + ' - Image created with quality = ' + quality + ': ' + modelePath);
+                        img.write(fullPath);
                         img.scaleToFit(miniatureWidth, miniatureHeight).quality(60).write(thumbsPath);
                         fs.unlink(modelePath);
                         fs.unlink(toDeletePath);
@@ -87,14 +87,14 @@ module.exports = {
                 });
             } else {
                 // Recursive call to this function 
-                img.quality(quality).write(fullPath, function(){
-                    
+                img.quality(quality).write(fullPath, function () {
+
                     // check if the weight is better now
                     var stats = fs.statSync(fullPath);
                     var fileSizeInBytes = stats.size;
-                    if(fileSizeInBytes > weight){
+                    if (fileSizeInBytes > weight) {
 
-                        winston.info(FILE_NAME + ' - Image too big with quality = '+ quality + ': ' + modelePath);
+                        winston.info(FILE_NAME + ' - Image too big with quality = ' + quality + ': ' + modelePath);
 
                         // If the weight is again too big, lower the quality
                         quality = quality - 10;
@@ -103,9 +103,9 @@ module.exports = {
                     } else {
 
                         // Create the thumbs picture, delete the modele picture and the 'without extension' picture
-                        winston.info(FILE_NAME + ' - Image created with quality : '+ quality + ': ' +modelePath);
+                        winston.info(FILE_NAME + ' - Image created with quality : ' + quality + ': ' + modelePath);
                         img.scaleToFit(miniatureWidth, miniatureHeight).quality(60).write(thumbsPath);
-                        fs.unlink(modelePath); 
+                        fs.unlink(modelePath);
                         fs.unlink(toDeletePath);
                         return;
                     }
@@ -116,7 +116,7 @@ module.exports = {
         });
     },
 
-    saveImage: function(file, name) {
+    saveImage: function (file, name) {
         var _this = this;
         var fullPath = 'public/images/fullsize/' + name + '.jpg'; // Path of the fullSize picture
 
@@ -125,28 +125,28 @@ module.exports = {
             winston.error(FILE_NAME + ' - The file it too big');
             throw 'sizeError'
         }
-        
+
         winston.info(FILE_NAME + ' - Image will be resized : ' + fullPath);
 
-       return _this.transformImage(file.path, name, 100).then(function(){
-        return;
-       }).catch(function(){
-        winston.error(FILE_NAME + ' - Fail to transform image');
-       });
+        return _this.transformImage(file.path, name, 100).then(function () {
+            return;
+        }).catch(function () {
+            winston.error(FILE_NAME + ' - Fail to transform image');
+        });
     },
 
     // Function use to send a socket message with every new information on bestBid and buttons
-    emitNewBidder: function(io) {
+    emitNewBidder: function (io) {
 
         // Get new bestBid
         return bidService.getAll(3, 0).then(bidders => {
-            var newHomepage = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), {bidders: bidders});
-            var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), {bidder: bidders[0]});
-            var changeTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), {bidder: bidders[1]})
-            
+            var newHomepage = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), { bidders: bidders });
+            var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[0] });
+            var changeTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[1] })
+
             io.sockets.emit('newBidder', {
-                newHomepage: newHomepage, 
-                bestBid: bidders[0], 
+                newHomepage: newHomepage,
+                bestBid: bidders[0],
                 newTableRow: newTableRow,
                 changeTableRow: changeTableRow
             });
