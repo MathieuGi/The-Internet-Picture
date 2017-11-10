@@ -14,7 +14,7 @@ var sequelize = require('sequelize')
 var returnRouter = function (io) {
 
     router.get('/googledfd1b614c73d040a.html', function (req, res, next) {
-        res.render('googledfd1b614c73d040a');
+        res.send('googledfd1b614c73d040a');
     });
 
     /* GET home page. */
