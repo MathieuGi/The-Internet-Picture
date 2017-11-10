@@ -183,7 +183,15 @@ body,
 
 /************************* CSS ****************************/
 
-.meta-description{
+.bold {
+    font-weight: bold;
+}
+
+strong {
+    font-weight: normal;
+}
+
+.meta-description {
     position: absolute;
     opacity: 0;
     top: -10000px;
