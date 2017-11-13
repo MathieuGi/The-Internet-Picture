@@ -142,13 +142,11 @@ module.exports = {
         return bidService.getAll(3, 0).then(bidders => {
             var newHomepage = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), { bidders: bidders });
             var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[0] });
-            var changeTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[1] })
 
             io.sockets.emit('newBidder', {
                 newHomepage: newHomepage,
                 bestBid: bidders[0],
-                newTableRow: newTableRow,
-                changeTableRow: changeTableRow
+                newTableRow: newTableRow
             });
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
     },

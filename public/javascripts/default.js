@@ -138,15 +138,10 @@ $(document).ready(function () {
   });
 
   // Form: Update name when change file
-  var input = $('#form-image')[0];
-
-  input.onchange = function () {
+  $('#form-image').change(function () {
     var filename = this.value.replace(/C:\\fakepath\\/i, '');
     $('#form-image-text').html(filename);
-  }
-
-  // Timer
-  startTime();
+  });
 
   // Footer -> twitter and facebook buttons
   (function (d, s, id) {
@@ -252,23 +247,12 @@ $(document).ready(function () {
       $('.picture-area').fadeTo(400, 0, function () {
         $('.picture-area').html(data.newHomepage);
         setTimeout(function () {
-
-          // Others timer 
-          hideTimePart('.others-area.order-1');
-          hideTimePart('.others-area.order-3');
-
-          // Richest adapte img position
-          replaceImg();
-        }, 100)
-        setTimeout(function () {
           $('.picture-area').fadeTo(300, 1);
         }, 200);
       });
     } else {
       $('.picture-area').html(data.newHomepage);
     }
-    $('.rank-table .table tbody tr').first().remove();
-    $('.rank-table .table tbody').prepend(data.changeTableRow);
     $('.rank-table .table tbody').prepend(data.newTableRow);
 
     $('.bid-value').html(data.bestBid.price / 100);
@@ -295,69 +279,6 @@ $(document).ready(function () {
     bodyHeight = $('body').height();
     marginTop = bodyHeight - footerPosition.top + footer.height();
     footer.css('margin-top', marginTop);
-  }
-
-  function startTime() {
-    var oneDay = 24 * 60 * 60 * 1000
-    var createdAt = parseInt($('#richest-time').val(), 10);
-    var date = new Date();
-    var currentTime = Math.abs(date.getTime() + (2 * 60 * 60 * 1000) - createdAt);
-    // alert("created : " + createdAt + " timezoneoff : " + timezoneOffset + " currentTime : " + currentTime)
-    var timer = new Date(currentTime);
-    var d = Math.trunc(currentTime / oneDay);
-
-    // RETIRER LE -1 LORSQU'ON CHANGE DE FUSEAU HORAIRE
-    var h = timer.getHours() - 1;
-    var m = timer.getMinutes();
-    var s = timer.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-
-    addToTimer('days', d);
-    addToTimer('hours', h);
-    addToTimer('minutes', m);
-    addToTimer('seconds', s);
-
-    if (d !== 0) {
-      $('.richest-area .days').show();
-    }
-    if (h !== 0) {
-      $('.richest-area .hours').show();
-    }
-    if (m !== 0) {
-      $('.richest-area .minutes').show();
-    }
-
-    if (d == 0 && h == 0) {
-      $('.richest-area table').css('width', '100px');
-      if (m == 0) {
-        $('.richest-area table').css('width', '50px');
-      }
-    }
-
-    var t = setTimeout(startTime, 500);
-  }
-
-  function checkTime(i) {
-    // add zero in front of numbers < 10
-    if (i < 10) {
-      i = '0' + i
-    }
-    return i;
-  }
-
-  function checkDay(d) {
-    if (d > 0) {
-      d = d + 'j ';
-    } else {
-      d = '';
-    }
-    return d;
-  }
-
-  // Change the value in timer, or hide if value = 0 (Type can be days, hours, ...)
-  function addToTimer(type, value) {
-    $('.richest-area td.' + type).html(value);
   }
 
   // Send all information to create and paye a new bid
@@ -443,12 +364,6 @@ $(document).ready(function () {
       return false;
     }
 
-    // else if ($('#form-price').val() % 1 != 0){
-    //     $('#must-be-integer').show()
-    //     $(window).scrollTop($("#form-price").offset().top - 40)
-    //     return false
-    // }  
-
     else if (Number($('#form-price').val(), 10) < Number($('.min-price').val(), 10)) {
       $('#price-too-low').show();
       $(window).scrollTop($('#form-price').offset().top - 40);
@@ -487,7 +402,3 @@ $(document).ready(function () {
 
 // JS for the footer
 
-// When clicking on the "twitter"
-$('.btn-twitter').on('click', function () {
-  alert('ok');
-});
