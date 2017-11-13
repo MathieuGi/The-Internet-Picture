@@ -1,3 +1,11 @@
+/************************* Variables ************************/
+
+:root {
+    --main-color-1: #212121;
+    --main-color-2: gold;
+}
+
+
 /************************* Fonts ****************************/
 
 @font-face {
@@ -84,15 +92,15 @@ body,
 }
 
 .podium.rank-1 {
-    font-size: 16rem;
+    font-size: 15rem;
 }
 
 .podium.rank-2 {
-    font-size: 13rem;
+    font-size: 12rem;
 }
 
 .podium.rank-3 {
-    font-size: 10rem;
+    font-size: 8rem;
 }
 
 .homepage-information {
@@ -183,12 +191,20 @@ body,
 
 /************************* CSS ****************************/
 
+button {
+    font-weight: bold;
+}
+
 .bold {
     font-weight: bold;
 }
 
 strong {
     font-weight: normal;
+}
+
+th strong {
+    font-weight: bold;
 }
 
 .meta-description {
@@ -198,26 +214,9 @@ strong {
     left: -10000px;
 }
 
-.fa-envelope {
-    color: #446084;
-}
-
 .fa-facebook,
 .fa-twitter {
     color: white;
-}
-
-.contact {
-    color: #dadace;
-    cursor: pointer;
-}
-
-.contact:hover {
-    color: white;
-    text-decoration: none;
-    /*border-top-style:solid;
-    border-top-color: #BBD2E1;
-    border-width:1px;*/
 }
 
 .messageBar {
@@ -236,7 +235,7 @@ body {
 }
 
 .rights {
-    background: #446084;
+    background: var(--main-color-1);
     padding-top: 15px;
     padding-bottom: 10px;
     display: flex;
@@ -280,7 +279,7 @@ body {
 
 .main-title a {
     text-decoration: none;
-    color: #c9b25f;
+    color: white;
     cursor: pointer;
 }
 
@@ -291,17 +290,20 @@ body {
     font-family: "Raleway_ExtraLight";
 }
 
+
+/* Menu */
+
 #menu .menu-item {
-    color: #9bacc2;
+    color: white;
 }
 
 #menu .menu-item.active {
-    color: #c9b25f;
+    color: var(--main-color-2);
     font-weight: bold;
 }
 
 #buy-button {
-    background-color: #c9b25f !important;
+    background-color: var(--main-color-2) !important;
     opacity: 0.8 !important;
 }
 
@@ -312,13 +314,14 @@ body {
 
 #trump,
 .confirm button {
-    color: #ffffff;
-    background-color: #c9b25f;
+    color: var(--main-color-1);
+    background-color: var(--main-color-2);
     border-radius: 4px;
     border: none;
     padding: 15px 32px;
     cursor: pointer;
     opacity: 0.8;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
 }
 
 #trump:hover,
@@ -374,7 +377,7 @@ tr.line-ranked-table {
 }
 
 .rank-table {
-    color: #446084;
+    color: var(--main-color-1);
 }
 
 .rank-table-area .header h2 {
@@ -383,8 +386,8 @@ tr.line-ranked-table {
 }
 
 .rank-table thead th {
-    border-bottom: 2px solid #c9b25f;
-    border-top: 2px solid #c9b25f;
+    border-bottom: 2px solid var(--main-color-2);
+    border-top: 2px solid var(--main-color-2);
 }
 
 .rank-table .index {
@@ -411,9 +414,10 @@ tr.line-ranked-table {
 
 .rank-table .see-more {
     cursor: pointer;
-    background: #c9b25f;
-    color: white;
+    background: var(--main-color-2);
+    color: var(--main-color-1);
     opacity: 0.8;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
 }
 
 .rank-table .see-more:hover {
@@ -450,13 +454,17 @@ tr.line-ranked-table {
     align-items: center;
 }
 
+#bid-summary button {
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+}
+
 #bid-summary .richest-text {
     position: absolute;
     bottom: 0;
     height: 60px;
     width: 100%;
     background-color: white;
-    color: #446084;
+    color: #212121;
     opacity: 0.8;
     display: flex;
     align-items: center;
@@ -497,12 +505,12 @@ tr.line-ranked-table {
 /* Homepage part */
 
 .picture-area {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .richest-area .top-rank {
     margin-bottom: 25px;
-    color: #446084;
+    color: var(--main-color-1);
 }
 
 .richest-area td,
@@ -573,26 +581,26 @@ tr.line-ranked-table {
     position: relative;
     left: -15px;
     width: calc(100% + 30px);
-    background-color: #c9b25f;
-    padding-bottom: 15px;
-    border-top: 10px solid #446084;
-    color: white;
+    background-color: var(--main-color-2);
+    padding-bottom: 20px;
+    border-top: 10px solid var(--main-color-1);
+    color: var(--main-color-1);
     box-shadow: 0px 0px 5px 2px #666666;
 }
 
 .podium.rank-1 {
     position: relative;
     top: 5px;
-    height: 200px;
+    height: 150px;
     z-index: 99;
 }
 
 .podium.rank-2 {
-    height: 150px;
+    height: 110px;
 }
 
 .podium.rank-3 {
-    height: 130px;
+    height: 90px;
 }
 
 .shadow {
@@ -602,13 +610,13 @@ tr.line-ranked-table {
 
 .homepage-information {
     margin-top: 85px;
-    display: flex;
+    padding: 20px;
     align-items: center;
-    background-color: white;
-    border: 1px white;
+    background-color: var(--main-color-1);
+    border: 1px var(--main-color-1);
     border-radius: 3px;
     overflow: hidden;
-    color: #c9b25f;
+    color: white;
 }
 
 .homepage-information .info-picto {
@@ -637,17 +645,17 @@ tr.line-ranked-table {
     position: absolute;
     right: 0.7rem;
     top: 0.3rem;
-    color: #9bacc2;
+    color: var(--main-color-1);
     cursor: pointer;
 }
 
 .icone-field .fa {
-    color: #9bacc2;
+    color: var(--main-color-1);
 }
 
 .icone-field {
     position: relative;
-    border: 2px solid #9bacc2;
+    border: 2px solid var(--main-color-1);
     border-radius: 6px;
     padding: 0;
 }
@@ -664,7 +672,7 @@ tr.line-ranked-table {
 #button-form-image {
     text-align: left;
     background-color: white;
-    border: 2px solid #9bacc2;
+    border: 2px solid var(--main-color-1);
     border-radius: 6px;
     height: fit-content;
 }
@@ -674,14 +682,14 @@ tr.line-ranked-table {
 }
 
 .btn-form-image {
-    background-color: #9bacc2;
+    background-color: var(--main-color-1);
+    color: white;
     cursor: pointer;
     border-radius: 0px;
-    border-right: 1px solid #9bacc2;
 }
 
 .btn-form-image:hover {
-    background-color: lightgray;
+    opacity: 0.8;
 }
 
 
@@ -709,14 +717,6 @@ tr.line-ranked-table {
 
 #paiement-form .checkbox {
     margin-bottom: 20px;
-}
-
-#paiement-form button:focus {
-    background: #555ABF;
-}
-
-#paiement-form button:active {
-    background: #43458B;
 }
 
 #paiement-form .outcome {
@@ -794,4 +794,13 @@ tr.line-ranked-table {
 #bid-summary .recap td,
 #bid-summary .recap th {
     border: 0px;
+}
+
+.contact-us {
+    color: white;
+    cursor: pointer;
+}
+
+.rights span {
+    color: white;
 }
