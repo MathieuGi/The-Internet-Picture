@@ -291,17 +291,10 @@ $(document).ready(function () {
     var bodyHeight;
     var marginTop;
 
-    if ($('body').height() < $(window).height()) {
-      footerPosition = footer.position();
-      bodyHeight = $('body').height();
-      marginTop = $(window).height() - footer.height() - footerPosition.top;
-      footer.css('margin-top', marginTop);
-    } else {
-      footerPosition = footer.position();
-      bodyHeight = $('body').height();
-      marginTop = bodyHeight - footerPosition.top;
-      footer.css('margin-top', marginTop);
-    }
+    footerPosition = footer.position();
+    bodyHeight = $('body').height();
+    marginTop = bodyHeight - footerPosition.top + footer.height();
+    footer.css('margin-top', marginTop);
   }
 
   function startTime() {

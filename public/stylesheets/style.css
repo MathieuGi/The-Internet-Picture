@@ -191,19 +191,12 @@ body,
 
 /************************* CSS ****************************/
 
-button {
-    font-weight: bold;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-strong {
-    font-weight: normal;
-}
-
-th strong {
+button,
+th strong,
+.bold,
+strong,
+.rank-table-area h2,
+.bid-more h2 {
     font-weight: bold;
 }
 
@@ -279,7 +272,6 @@ body {
 
 .main-title a {
     text-decoration: none;
-    color: white;
     cursor: pointer;
 }
 
@@ -407,9 +399,6 @@ tr.line-ranked-table {
 .rank-table .thumb {
     display: inline-flex;
     align-items: center;
-    width: 80px;
-    height: 50px;
-    margin-right: 15px;
 }
 
 .rank-table .see-more {

@@ -8,8 +8,14 @@
         <% } %>
     </td>
   <td class="align-middle text-truncate">
-    <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt='Le plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>' data-img="<%= bidder.img_path %>">
-    <%= bidder.name %>
+    <div class="name-container">
+      <div class="thumb">
+        <img class="thumbs" src="images/thumbs/<%= bidder.img_path %>" alt="Image miniature du plus riche numéro <%= index + 1 + (locals.offset ? offset : 0) %>" data-img="<%= bidder.img_path %>">
+      </div>
+      <div class="name">
+          <%= bidder.name %>
+      </div>
+    </div>
   </td>
   
   <td class="align-middle text-center"><%= bidder.price / 100 %> €</td>
