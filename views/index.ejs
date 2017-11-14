@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
   <meta charset="utf-8" />
   <meta name="title" content="Qui est le plus riche ? - Venez prendre sa place" />
@@ -7,11 +9,12 @@
   <title>Qui est le plus riche ?</title>
 
   <!-- Facebook meta -->
-  <meta property="og:url"           content="https://quiestleplusriche.fr/" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Qui est le plus riche ?" />
-  <meta property="og:description"   content="Qui sera le plus riche !?" />
-  <meta property="og:image"         content="https://quiestleplusriche.fr/public/images/fullsize/<%= bidders[0].img_path %>" />
+  <meta property="og:title" content="Qui est le plus riche ?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quiestleplusriche.fr/" />
+  <meta property="og:description" content="Qui sera le plus riche !?" />
+  <meta property="og:image" content="https://quiestleplusriche.fr/public/images/fullsize/<%= bidders[0].img_path %>" />
+  <meta property="fb:app_id" content="191949008044908" />
 
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,500i" rel="stylesheet">
@@ -25,20 +28,6 @@
 <div id="fb-root"></div>
 
 <div class="black-container"></div>
-
-<div class="meta-description">Il y a des questions que subsistent... surtout à notre époque. Par exemple, qui est le plus riche?</div>
-
-<!-- Background pictograme for rank table 
-<div class="main-area rank-table-area background-picto">
-  <div class="fa fa-trophy"></div>
-</div>
--->
-
-<!-- Background pictograme for Bid form
-<div class="main-area bid-more background-picto">
-  <div class="fa fa-euro"></div>
-</div>
- -->
 
 <div class="container-fluid"> 
   <header>

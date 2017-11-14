@@ -26,6 +26,7 @@
     "multer": "1.3.0",
     "mysql2": "1.4.2",
     "popper.js": "1.11.0",
+    "prerender-node": "^2.7.4",
     "sequelize": "4.8.4",
     "serve-favicon": "2.4.5",
     "socket.io": "2.0.3",
