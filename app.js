@@ -42,6 +42,8 @@ app.use(device.capture());
 
 device.enableViewRouting(app);
 
+app.use(require('prerender-node').set('prerenderToken', 'mvhWhKnEbXUpP5VxKNHv'));
+
 app.use('/', index);
 app.use('/users', users);
 
