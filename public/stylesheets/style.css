@@ -194,10 +194,13 @@ body,
 button,
 th strong,
 .bold,
-strong,
 .rank-table-area h2,
 .bid-more h2 {
     font-weight: bold;
+}
+
+strong {
+    font-weight: normal;
 }
 
 .meta-description {
@@ -378,8 +381,8 @@ tr.line-ranked-table {
 }
 
 .rank-table thead th {
-    border-bottom: 2px solid var(--main-color-2);
-    border-top: 2px solid var(--main-color-2);
+    border-bottom: 2px solid var(--main-color-1);
+    border-top: 2px solid var(--main-color-1);
 }
 
 .rank-table .index {

@@ -5,6 +5,14 @@
   <meta name="title" content="Qui est le plus riche ? - Venez prendre sa place" />
   <meta name="description" content="Il y a des questions que subsistent... surtout à notre époque. Par exemple, qui est le plus riche ?" />
   <title>Qui est le plus riche ?</title>
+
+  <!-- Facebook meta -->
+  <meta property="og:url"           content="https://quiestleplusriche.fr" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Qui est le plus riche ?" />
+  <meta property="og:description"   content="Qui sera le plus riche !?" />
+  <meta property="og:image"         content="https://quiestleplusriche.fr/images/fullsize/<%= bidders[0].img_path %>" />
+
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,500i" rel="stylesheet">
   <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css"/>
@@ -32,7 +40,6 @@
  -->
 
 <div class="container-fluid"> 
-    
   <header>
     <% include header %>
   </header>
@@ -48,8 +55,8 @@
 
   <div id="bid-summary-container" class="row justify-content-md-center"></div>
 
-  <!-- Don't know if it's usefull 
-  <div id="fb-root"></div> -->
+  <!-- Don't know if it's usefull -->
+  <div id="fb-root"></div> 
 
 </div>
 <div class="footer">

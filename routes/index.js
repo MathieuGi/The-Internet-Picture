@@ -33,25 +33,6 @@ var returnRouter = function (io) {
             winston.info(FILE_NAME + ' - Fail to use bidService.getAll() function: ' + err);
             response.render('error');
         });
-
-
-
-
-
-
-        // Uncomment if multiple request are needed
-        // // Prepare an array of queries
-        // var promisesArray = [
-        //     bidService.getAll(),
-        // ];
-
-        // // Execute all queries in the array
-        // sharedService.doPromises(promisesArray).then(res => {
-
-        //     winston.info(FILE_NAME + ' - Send respond to client');
-        //     response.render('index', { res: res });
-        // })
-
     });
 
     // Load more element in rank-table
