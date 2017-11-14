@@ -141,7 +141,7 @@ module.exports = {
         // Get new bestBid
         return bidService.getAll(3, 0).then(bidders => {
             var newHomepage = ejs.render(fs.readFileSync('views/homepage.ejs', 'utf8'), { bidders: bidders });
-            var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[0] });
+            var newTableRow = ejs.render(fs.readFileSync('views/rankTableRow.ejs', 'utf8'), { bidder: bidders[0], index: 0 });
 
             io.sockets.emit('newBidder', {
                 newHomepage: newHomepage,

@@ -253,6 +253,11 @@ $(document).ready(function () {
     } else {
       $('.picture-area').html(data.newHomepage);
     }
+
+    $('.line-ranked-table .index').each(function (index) {
+      $(this).html(index + 2 + ".")
+    });
+
     $('.rank-table .table tbody').prepend(data.newTableRow);
 
     $('.bid-value').html(data.bestBid.price / 100);
