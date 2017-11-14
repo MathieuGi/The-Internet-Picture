@@ -1,6 +1,6 @@
 /******************* Stripe *********************/
 
-var stripe = Stripe('pk_test_zbTAfIVJ1gtAwSUl3Wr7PEcR');
+var stripe = Stripe('pk_live_43dsseaXvLZKULQhHcLRlXKe');
 var elements = stripe.elements();
 
 var style = {
