@@ -20,8 +20,7 @@ var credentials = { key: privateKey, cert: certificate };
 var port_HTTP = normalizePort(process.env.PORT_HTTP || '3001');
 var port_HTTPS = normalizePort(process.env.PORT_HTTPS || '3000');
 
-// At top of routing calls
-app.all('*', ensureSecure); 
+
 
 // Create the HTTP server (listening on the port_HTTP)
 http.createServer(app).listen(port_HTTP);
@@ -29,17 +28,6 @@ http.createServer(app).listen(port_HTTP);
 // Create the HTTPS server (listening on the port_HTTPS)
 var server_HTTPS = https.createServer(credentials, app);
 server_HTTPS.listen(port_HTTPS);
-
-// Redirect the HTTP to the HTTPS
-function ensureSecure(req, res, next){
-  if(req.secure){
-    // OK, continue
-    return next();
-  };
-  // handle port numbers if you need non defaults
-  res.redirect('https://' + req.hostname + req.url);
-}
-
 
 // Attach socket.io
 var io = app.io
@@ -64,7 +52,7 @@ function normalizePort(val) {
 }
 
 
- // Event listener for HTTPS server "error" event.
+// Event listener for HTTPS server "error" event.
 function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;

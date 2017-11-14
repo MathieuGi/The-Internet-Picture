@@ -40,6 +40,9 @@ app.use(express.static('public'));
 app.use(helmet());
 app.use(device.capture());
 
+// At top of routing calls
+app.all('*', ensureSecure);
+
 device.enableViewRouting(app);
 
 app.use('/', index);
@@ -51,9 +54,20 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
 // Redirect all request to /
-app.use(function (req, res) {
-    res.redirect("/");
-});
+// app.use(function (req, res) {
+//     res.redirect("/");
+// });
+
+// Redirect the HTTP to the HTTPS
+function ensureSecure(req, res, next) {
+    winston.info("test")
+    if (req.secure) {
+        // OK, continue 
+        return next();
+    };
+    // handle port numbers if you need non defaults
+    res.redirect('https://' + req.hostname + req.url);
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
