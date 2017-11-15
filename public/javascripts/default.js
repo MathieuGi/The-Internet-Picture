@@ -276,6 +276,7 @@ $(document).ready(function () {
   // Replace footer 
   function replaceFooter() {
     var footer = $('.footer');
+    var windowHeight = window.innerHeight;
     var footerPosition;
     var bodyHeight;
     var marginTop;
@@ -283,10 +284,10 @@ $(document).ready(function () {
     footerPosition = footer.position();
     bodyHeight = $('body').height();
 
-    if (bodyHeight > $(window).height() + 100) {
+    if (bodyHeight > windowHeight + 50) {
       marginTop = 50;
     } else {
-      marginTop = bodyHeight - (footerPosition.top + footer.height());
+      marginTop = windowHeight - (footerPosition.top + footer.height());
     }
 
     footer.css('margin-top', marginTop);
