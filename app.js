@@ -53,11 +53,6 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
-// Redirect all request to /
-// app.use(function (req, res) {
-//     res.redirect("/");
-// });
-
 // Redirect the HTTP to the HTTPS
 function ensureSecure(req, res, next) {
     winston.info("test")
@@ -68,6 +63,11 @@ function ensureSecure(req, res, next) {
     // handle port numbers if you need non defaults
     res.redirect('https://' + req.hostname + req.url);
 }
+
+// Redirect all request to /
+app.use(function (req, res) {
+    res.redirect("/");
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
