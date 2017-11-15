@@ -283,7 +283,7 @@ $(document).ready(function () {
     footerPosition = footer.position();
     bodyHeight = $('body').height();
 
-    if (bodyHeight > $(window).height() + 50) {
+    if (bodyHeight > $(window).height() + 100) {
       marginTop = 50;
     } else {
       marginTop = bodyHeight - (footerPosition.top + footer.height());
