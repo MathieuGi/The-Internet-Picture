@@ -1,10 +1,14 @@
 <% if(bidder.price != 0) { %>
 <tr class="line-ranked-table" data-url="<%= bidder.url %>">
   <td class="align-middle index text-center">
-        <% if(index + (locals.offset ? offset : 0) < 3) { %>
-            <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png">
+        <% if(index + (locals.offset ? offset : 0) == 0) { %>
+            <td class="align-middle index first-index text-center">
+                <img class="picto-medal" src="images/static/picto_medaille_<%= index + 1 %>.png">
+            </td>
         <% } else { %>
-            <%= index + 1 + (locals.offset ? offset : 0) %>.
+            <td class="align-middle index text-center">
+                <%= index + 1 + (locals.offset ? offset : 0) %>.
+            </td>
         <% } %>
     </td>
   <td class="align-middle text-truncate">
