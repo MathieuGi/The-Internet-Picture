@@ -56,16 +56,10 @@ app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
 // Redirect the HTTP to the HTTPS
 function ensureSecure(req, res, next) {
-    var str = "";
-    console.log(req.body)
-    // req.body.keys().forEach(element => {
-    //     str += "{" + element[0] + " : " + element[1] + "},";
-    // });
 
     winston.info(FILE_NAME + ' - Request ip: ' + req.ip)
+    winston.info(FILE_NAME + ' - Request hostname: ' + req.hostname)
     winston.info(FILE_NAME + ' - Request url: ' + req.originalUrl)
-    winston.info(FILE_NAME + ' - Request path: ' + req.path)
-    winston.info(FILE_NAME + ' - Request body": ' + str)
 
 
     if (req.secure) {
@@ -75,11 +69,12 @@ function ensureSecure(req, res, next) {
     };
     // handle port numbers if you need non defaults
     winston.warn(FILE_NAME + ' - Http request redirect to https');
-    res.redirect('https://' + req.hostname + req.url);
+    res.redirect('https://' + req.hostname + req.originalUrl);
 }
 
 // Redirect all request to /
 app.use(function (req, res) {
+    winston.warn(FILE_NAME + ' - Redirect to homepage');
     res.redirect("/");
 });
 
