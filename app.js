@@ -9,6 +9,7 @@ var winston = require('winston');
 var socket_io = require("socket.io");
 var compression = require("compression");
 var device = require("express-device");
+const FILE_NAME = "app.js";
 
 var app = express();
 
@@ -55,12 +56,25 @@ app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
 // Redirect the HTTP to the HTTPS
 function ensureSecure(req, res, next) {
-    winston.info("test")
+    var str = "";
+    console.log(req.body)
+    // req.body.keys().forEach(element => {
+    //     str += "{" + element[0] + " : " + element[1] + "},";
+    // });
+
+    winston.info(FILE_NAME + ' - Request ip: ' + req.ip)
+    winston.info(FILE_NAME + ' - Request url: ' + req.originalUrl)
+    winston.info(FILE_NAME + ' - Request path: ' + req.path)
+    winston.info(FILE_NAME + ' - Request body": ' + str)
+
+
     if (req.secure) {
-        // OK, continue 
+        // OK, continue
+        winston.info(FILE_NAME + ' - Https request');
         return next();
     };
     // handle port numbers if you need non defaults
+    winston.warn(FILE_NAME + ' - Http request redirect to https');
     res.redirect('https://' + req.hostname + req.url);
 }
 
