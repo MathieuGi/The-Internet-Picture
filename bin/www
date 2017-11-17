@@ -8,22 +8,20 @@ var app = require('../app');
 var debug = require('debug')('theinternetpicture:server');
 var fs = require('fs');
 var https = require('https');
-var http = require("http");
 var privateKey = fs.readFileSync('sslcert/www.quiestleplusriche.fr_private_key.key', 'utf8');
 var certificate = fs.readFileSync('sslcert/www.quiestleplusriche.fr_ssl_certificate.cer', 'utf8');
 
 // Create the credentials for the HTTPS server
-var credentials = { key: privateKey, cert: certificate };
+var credentials = { 
+    key: privateKey, 
+    cert: certificate,
+    requestCert: true,
+    rejectUnauthorized: false 
+    };
 
 // Specify the two differents ports
 
-var port_HTTP = normalizePort(process.env.PORT_HTTP || '3001');
 var port_HTTPS = normalizePort(process.env.PORT_HTTPS || '3000');
-
-
-
-// Create the HTTP server (listening on the port_HTTP)
-http.createServer(app).listen(port_HTTP);
 
 // Create the HTTPS server (listening on the port_HTTPS)
 var server_HTTPS = https.createServer(credentials, app);
