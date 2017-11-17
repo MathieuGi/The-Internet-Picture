@@ -8,7 +8,7 @@ $(document).ready(function () {
   // Navigation menu
   var footer = $('.footer');
 
-  replaceFooter()
+  // replaceFooter()
 
   $('.menu-item').click(function (e) {
     var menu = $(this).attr('id');
@@ -25,7 +25,7 @@ $(document).ready(function () {
     } else {
       $('.social-div').show();
     }
-    replaceFooter()
+    // replaceFooter()
 
     // Unselect the page after changing page
     var selection = window.getSelection();
@@ -274,24 +274,24 @@ $(document).ready(function () {
   /*********************** Functions **********************/
 
   // Replace footer 
-  function replaceFooter() {
-    var footer = $('.footer');
-    var windowHeight = window.innerHeight;
-    var footerPosition;
-    var bodyHeight;
-    var marginTop;
+  // function replaceFooter() {
+  //   var footer = $('.footer');
+  //   var windowHeight = window.innerHeight;
+  //   var footerPosition;
+  //   var bodyHeight;
+  //   var marginTop;
 
-    footerPosition = footer.position();
-    bodyHeight = $('body').height();
-    if (bodyHeight > windowHeight) {
-      marginTop = 50;
-    } else {
-      marginTop = windowHeight - (footerPosition.top + footer.height());
-    }
+  //   footerPosition = footer.position();
+  //   bodyHeight = $('body').height();
+  //   if (bodyHeight > windowHeight) {
+  //     marginTop = 50;
+  //   } else {
+  //     marginTop = windowHeight - (footerPosition.top + footer.height());
+  //   }
 
 
-    footer.css('margin-top', marginTop);
-  }
+  //   footer.css('margin-top', marginTop);
+  // }
 
   // Send all information to create and paye a new bid
   var sendForm = function (stripeToken) {
