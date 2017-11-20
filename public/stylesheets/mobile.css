@@ -184,3 +184,9 @@ header.main-header {
 .popover {
     width: 300px;
 }
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 600px;
+    }
+}
