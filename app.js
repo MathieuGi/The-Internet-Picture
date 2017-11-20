@@ -41,9 +41,6 @@ app.use(express.static('public'));
 app.use(helmet());
 app.use(device.capture());
 
-// At top of routing calls
-app.all('*', ensureSecure);
-
 device.enableViewRouting(app);
 
 app.use('/', index);
@@ -53,24 +50,6 @@ app.use('/users', users);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
-
-// Redirect the HTTP to the HTTPS
-function ensureSecure(req, res, next) {
-
-    winston.info(FILE_NAME + ' - Request ip: ' + req.ip)
-    winston.info(FILE_NAME + ' - Request hostname: ' + req.hostname)
-    winston.info(FILE_NAME + ' - Request url: ' + req.originalUrl)
-
-
-    if (req.secure) {
-        // OK, continue
-        winston.info(FILE_NAME + ' - Https request');
-        return next();
-    };
-    // handle port numbers if you need non defaults
-    winston.warn(FILE_NAME + ' - Http request redirect to https');
-    res.redirect('https://' + req.hostname + req.originalUrl);
-}
 
 // Redirect all request to /
 app.use(function (req, res) {
