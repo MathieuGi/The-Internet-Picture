@@ -4,8 +4,11 @@ var path = require('path');
 var fs = require('fs');
 var jimp = require('jimp');
 var bidService = require('./bids');
+var models = require('../models');
+var connectionsService = models.connections;
 var ejs = require('ejs');
 var sizeOf = require('image-size');
+var sequelize = require('sequelize');
 
 module.exports = {
     // Resolve multiple promises and return their results in an array
@@ -150,4 +153,13 @@ module.exports = {
             });
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
     },
+
+    // Count number of connections
+    addConnection: function(){
+        connectionsService.findOne().then(res => {
+            res.updateAttributes({
+                numberConnections: res.numberConnections + 1
+            });
+        });
+    }
 }
