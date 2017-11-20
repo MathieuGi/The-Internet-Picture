@@ -22,6 +22,8 @@ var returnRouter = function (io) {
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
         winston.info(FILE_NAME + ' - Request from ' + req.device.type);
 
+        // sharedService.addConnection();
+
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
             if (req.device.type === "phone") {
