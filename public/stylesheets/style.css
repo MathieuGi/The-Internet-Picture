@@ -544,7 +544,7 @@ tr.line-ranked-table {
     height: 60px;
     width: 100%;
     bottom: 0;
-    background-color: white;
+    background-color: #fafafa;
     opacity: 0.8;
     display: flex;
     align-items: center;
