@@ -41,11 +41,11 @@ $(document).ready(function () {
       url: '/getBidsList',
       data: { offset: offset },
       success: function (res) {
-        $('#load-more').replaceWith(res)
-        $('.rank-table .see-more').data('offset', offset + 10)
+        $('#load-more').replaceWith(res);
+        $('.rank-table .see-more').data('offset', offset + 10);
       },
       error: function (err) {
-        console.log('error')
+        console.log('error');
       }
     });
   });
@@ -129,7 +129,7 @@ $(document).ready(function () {
       $('#paiement-form .loading').show();
       var extraDetails = {
         name: $('#form-card-name').val()
-      }
+      };
       stripe.createToken(card, extraDetails).then(setOutcome);
     }
   });
@@ -252,7 +252,7 @@ $(document).ready(function () {
     }
 
     $('.line-ranked-table .index').each(function (index) {
-      $(this).html(index + 2 + ".")
+      $(this).html(index + 2 + ".");
     });
 
     $('.rank-table .table tbody').prepend(data.newTableRow);
@@ -279,7 +279,7 @@ $(document).ready(function () {
       var url = '/createBid';
 
       // Prepare 
-      var data = new FormData()
+      var data = new FormData();
       data.append('image', $('#form-image')[0].files[0]);
       data.append('name', $('#form-name').val());
       data.append('url', $('#form-url').val());
@@ -323,7 +323,7 @@ $(document).ready(function () {
         }
       });
     }
-  }
+  };
 
   // Validate form
   var validateForm = function (validationNumber) {
@@ -382,9 +382,10 @@ $(document).ready(function () {
     } else {
       return true;
     }
-  }
+  };
+
   function isValidEmailAddress(emailAddress) {
     var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
     return pattern.test(emailAddress);
-  }
+  };
 });
