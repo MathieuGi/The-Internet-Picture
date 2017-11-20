@@ -76,7 +76,7 @@ body,
 }
 
 #menu .menu-item {
-    font-size: 1.3rem
+    font-size: 1.3rem;
 }
 
 
@@ -472,7 +472,7 @@ tr.line-ranked-table {
 }
 
 #bid-summary .confirm button {
-    margin: 1.3rem
+    margin: 1.3rem;
 }
 
 #bid-summary .top-rank {
