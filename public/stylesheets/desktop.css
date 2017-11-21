@@ -79,6 +79,13 @@ html {
 
 /* Homepage */
 
+.homepage-information {
+    border: 1px var(--main-color-1);
+    background-color: var(--main-color-1);
+    color: white;
+    padding: 20px;
+}
+
 .main-area [data-rank="1"] img {
     min-height: 150px;
     max-height: 300px;

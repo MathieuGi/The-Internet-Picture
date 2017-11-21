@@ -605,13 +605,9 @@ tr.line-ranked-table {
 
 .homepage-information {
     margin-top: 85px;
-    padding: 20px;
     align-items: center;
-    background-color: var(--main-color-1);
-    border: 1px var(--main-color-1);
     border-radius: 3px;
     overflow: hidden;
-    color: white;
 }
 
 .homepage-information .info-picto {

@@ -108,6 +108,13 @@ header.main-header {
     max-height: 800px;
 }
 
+/* homepage */
+
+.homepage-information {
+    text-align: justify;
+    padding: 30px;
+}
+
 .main-area [data-rank="1"] img {
     min-height: 500px;
     max-height: 800px;
