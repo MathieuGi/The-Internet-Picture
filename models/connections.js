@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var connections = sequelize.define('connections', {
-    numberConnections: DataTypes.INTEGER
+    ip: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

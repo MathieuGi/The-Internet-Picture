@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      numberConnections: {
-        type: Sequelize.INTEGER
+      ip: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

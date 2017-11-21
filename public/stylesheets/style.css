@@ -21,13 +21,12 @@
 h1,
 .block-image .richest-text,
 #paiement-form .error-message,
-.popover {
+.popover, .ita {
     font-family: "Raleway-Italic", sans-serif;
 }
 
 body,
 #menu,
-.rank-table table,
 #paiement-form,
 #bid-summary {
     font-family: "Raleway-Regular", sans-serif;
@@ -38,6 +37,9 @@ body,
     font-weight: bold;
 }
 
+.rank-table table {
+    font-family: "Trebuchet MS"
+}
 
 /* Modals */
 
