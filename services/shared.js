@@ -155,11 +155,9 @@ module.exports = {
     },
 
     // Count number of connections
-    addConnection: function(){
-        connectionsService.findOne().then(res => {
-            res.updateAttributes({
-                numberConnections: res.numberConnections + 1
-            });
-        });
+    addConnection: function(ip){
+        connectionsService.create({ ip: ip}).then(res => {
+            winston.info(FILE_NAME + " - New connection");
+          })
     }
 }
