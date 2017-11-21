@@ -158,6 +158,6 @@ module.exports = {
     addConnection: function(ip){
         connectionsService.create({ ip: ip}).then(res => {
             winston.info(FILE_NAME + " - New connection");
-          })
+        })
     }
 }

@@ -22,7 +22,7 @@ var returnRouter = function (io) {
         winston.info(FILE_NAME + ' - Prepare to answer to / request');
         winston.info(FILE_NAME + ' - Request from ' + req.device.type);
         var ip = typeof req.get('X-Real-IP') !== 'undefined' ? req.get('X-Real-IP') : req.get('X-Forwarded-For');
-        // sharedService.addConnection(ip));
+        sharedService.addConnection(ip);
 
         bidService.getAll(10, 0).then(res => {
             winston.info(FILE_NAME + ' - Send respond to client');
