@@ -20,7 +20,8 @@
     </div>
   </td>
   
-  <td class="align-middle text-center"><%= bidder.price / 100 %> €</td>
+  <% var price = bidder.price / 100 %>
+  <td class="align-middle text-center"><%= price.toString().replace('.', ',') %> €</td>
     <td class="align-middle text-center">
       <% var date = new Date(bidder.createdAt); %>
       <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> %>
