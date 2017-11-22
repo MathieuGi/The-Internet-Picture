@@ -125,6 +125,10 @@ body,
     font-size: 2rem;
 }
 
+.rank-table .increase-bid {
+    font-size: 3rem;
+}
+
 
 /* Bid more form */
 
