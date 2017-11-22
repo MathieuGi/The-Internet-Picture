@@ -55,6 +55,9 @@ html {
 /* Menu */
 
 .main-title {
+    margin-top: 1vh;
+    padding-top: 10px;
+    padding-bottom: 5px;
     border-bottom: 1px solid var(--main-color-1);
     background-color: var(--main-color-1);
 }
