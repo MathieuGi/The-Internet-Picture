@@ -354,9 +354,13 @@ $(document).ready(function () {
     }
 
     else if (Number($('#form-price').val(), 10) < Number($('.min-price').val(), 10)) {
-      $('#price-too-low').show();
-      $(window).scrollTop($('#form-price').offset().top - 40);
-      return false;
+
+      if (confirm('Attention votre enchère étant inférieure à l\'enchère actuelle la plus élevé vous ne prendrez donc pas la première place ! Votre enchère pourra toujours remonter plus tard dans le classement si une relance est effectuée par vous ou une autre personne.')) {
+        return true;
+      } else {
+        return false;
+      }
+
     }
 
     else if ((!$('#form-terms').prop('checked'))) {
