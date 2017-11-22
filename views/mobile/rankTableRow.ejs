@@ -22,9 +22,12 @@
   
   <% var price = bidder.price / 100 %>
   <td class="align-middle text-center"><%= price.toString().replace('.', ',') %> €</td>
-    <td class="align-middle text-center">
-      <% var date = new Date(bidder.createdAt); %>
-      <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> %>
-    </td>
+  <td class="align-middle text-center">
+    <% var date = new Date(bidder.createdAt); %>
+    <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> %>
+  </td>
+  <td class="align-middle text-center">
+    <span class="fa fa-plus increase-bid" data-id="<%= bidder.id %>"></span>
+  </td>
 </tr>
 <% } %>
