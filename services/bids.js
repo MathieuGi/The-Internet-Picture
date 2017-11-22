@@ -30,7 +30,7 @@ module.exports = {
             },
             order: [
                 ['price', 'DESC'],
-                ['createdAt', 'DESC']
+                ['updatedAt', 'ASC']
             ]
         }).then(function (res) {
             if (res == null) {
@@ -53,7 +53,7 @@ module.exports = {
             },
             order: [
                 ['price', 'DESC'],
-                ['createdAt', 'DESC']
+                ['updatedAt', 'ASC']
             ],
             limit: limit,
             offset: offset
@@ -99,11 +99,12 @@ module.exports = {
     },
 
     delete: function (id) {
+        winston.info(FILE_NAME + " - Bid has been deleted !")
         return bid.destroy({
             where: {
                 id: id
             }
-        })
+        });
     },
 
     // This function modifiy the bid_time of the bid corresponding to the id_bid in argument
@@ -135,6 +136,20 @@ module.exports = {
     setActive: function (id) {
         return bid.update({
             is_active: true
+        }, {
+                where: {
+                    id: id
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                throw err;
+            });
+    },
+
+    increaseBid: function (id, value) {
+        return bid.update({
+            value: value
         }, {
                 where: {
                     id: id
