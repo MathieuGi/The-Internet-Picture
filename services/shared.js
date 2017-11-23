@@ -154,9 +154,16 @@ module.exports = {
         }).catch(err => winston.error(FILE_NAME + ' - emitNewBidder: ' + err));
     },
 
+    // Function use to send a socket message with the bid id to remove from rank table
+    emitOldId: function (io, id) {
+        io.sockets.emit('removeOldBid', {
+            oldId: id,
+        });
+    },
+
     // Count number of connections
-    addConnection: function(ip){
-        connectionsService.create({ ip: ip}).then(res => {
+    addConnection: function (ip) {
+        connectionsService.create({ ip: ip }).then(res => {
             winston.info(FILE_NAME + " - New connection");
         })
     }

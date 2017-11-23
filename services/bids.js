@@ -133,9 +133,9 @@ module.exports = {
         })
     },
 
-    setActive: function (id) {
+    setActive: function (id, value) {
         return bid.update({
-            is_active: true
+            is_active: value
         }, {
                 where: {
                     id: id

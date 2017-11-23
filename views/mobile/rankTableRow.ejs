@@ -1,5 +1,5 @@
 <% if(bidder.price != 0) { %>
-<tr class="line-ranked-table" data-url="<%= bidder.url %>">
+<tr class="line-ranked-table" data-url="<%= bidder.url %>" data-id="<%= bidder.id %>">
        
   <td class="align-middle index text-center">
     <%= index + 1 + (locals.offset ? offset : 0) %>.

@@ -72,6 +72,17 @@ html {
 }
 
 
+/* Bid more */
+
+.back-button {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 999;
+}
+
+
 /* paiement confirmation */
 
 #bid-summary .block-image .img,
@@ -158,18 +169,16 @@ html {
 }
 
 @media (min-width: 1700px) {
-  .main-area [data-rank="1"] img {
-    min-height: 250px;
-    max-height: 460px;
-  }
-  
-  .main-area [data-rank="2"] img {
-    min-height: 200px;
-    max-height: 320px;
-  }
-  
-  .main-area [data-rank="3"] img {
-    min-height: 110px;
-    max-height: 230px;
-  }
+    .main-area [data-rank="1"] img {
+        min-height: 250px;
+        max-height: 460px;
+    }
+    .main-area [data-rank="2"] img {
+        min-height: 200px;
+        max-height: 320px;
+    }
+    .main-area [data-rank="3"] img {
+        min-height: 110px;
+        max-height: 230px;
+    }
 }
