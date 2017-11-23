@@ -632,7 +632,7 @@ tr.line-ranked-table {
 }
 
 .rank-table .increase-bid {
-    color: var(--main-color-2);
+    color: var(--main-color-2)
 }
 
 .bid-more .form-control {
