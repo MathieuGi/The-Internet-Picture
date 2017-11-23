@@ -331,7 +331,7 @@ $(document).ready(function () {
         alert('Une erreur est survenue');
       }
     });
-  }
+  };
 
   // Send all information to create and paye a new bid
   var sendForm = function (stripeToken) {
@@ -440,7 +440,7 @@ $(document).ready(function () {
         }
       });
     }
-  }
+  };
 
   // Validate form
   var validateForm = function (validationNumber) {
