@@ -115,6 +115,21 @@ header.main-header {
 
 /* homepage */
 
+
+.slogan{
+    
+    top: -2px;
+    
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.fa-hand-o-right{
+    font-size:24px;
+    color:gold;
+}
+
 .homepage-information {
     text-align: justify;
     padding: 30px;
