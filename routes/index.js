@@ -75,50 +75,56 @@ var returnRouter = function (io) {
 
         // Variables settings
         var body = req.body;
+        var oldId = body.oldId != "" ? body.oldId : 1;
         bidService.getByIdAndToken(body.id, body.token).then(bidder => {
             bidService.getBest().then(bestBidder => {
-
-                var params = body.email !== "" ? {
-                    // Send price in centimes
-                    amount: bidder.price,
-                    currency: "eur",
-                    receipt_email: body.email,
-                    description: "Nouvelle enchère",
-                    source: bidder.transaction_id,
-                } : {
+                bidService.getById(parseInt(oldId, 10)).then(oldBid => {
+                    var params = body.email !== "" ? {
                         // Send price in centimes
-                        amount: bidder.price,
+                        amount: bidder.price - oldBid.price,
                         currency: "eur",
+                        receipt_email: body.email,
                         description: "Nouvelle enchère",
                         source: bidder.transaction_id,
-                    }
-                stripe.charges.create(params, function (err, charge) {
-                    if (err) {
-                        winston.error(FILE_NAME + ' - Paiement failed:' + err);
-                        return res.status(500).json({ error: 'paiementFailed' });
-                    } else {
-
-                        if (body.oldId !== "") {
-                            bidService.setActive(parseInt(body.oldId, 10), false).then(function () {
-                                bidService.setActive(bidder.id, true).then(function () {
-                                    sharedService.emitNewBidder(io);
-                                    sharedService.emitOldId(io, body.oldId);
-                                    return res.status(200).json({ result: 'success' });
-                                });
-                            });
-                        } else {
-                            bidService.setBidTime().then(() => {
-                                bidService.setActive(bidder.id, true).then(function () {
-                                    sharedService.emitNewBidder(io);
-                                    return res.status(200).json({ result: 'success' });
-                                });
-                            });
+                    } : {
+                            // Send price in centimes
+                            amount: bidder.price - oldBid.price,
+                            currency: "eur",
+                            description: "Nouvelle enchère",
+                            source: bidder.transaction_id,
                         }
-                    }
+                    stripe.charges.create(params, function (err, charge) {
+                        if (err) {
+                            winston.error(FILE_NAME + ' - Paiement failed:' + err);
+                            return res.status(500).json({ error: 'paiementFailed' });
+                        } else {
+
+                            if (body.oldId !== "") {
+                                bidService.setActive(parseInt(body.oldId, 10), false).then(function () {
+                                    bidService.setActive(bidder.id, true).then(function () {
+                                        sharedService.emitNewBidder(io);
+                                        sharedService.emitOldId(io, body.oldId);
+                                        return res.status(200).json({ result: 'success' });
+                                    });
+                                });
+                            } else {
+                                bidService.setBidTime().then(() => {
+                                    bidService.setActive(bidder.id, true).then(function () {
+                                        sharedService.emitNewBidder(io);
+                                        return res.status(200).json({ result: 'success' });
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }).catch(err => {
+                    winston.info(FILE_NAME + ' - Fail to use bidService.getBest() function: ' + err);
                 });
             }).catch(err => {
-                winston.info(FILE_NAME + ' - Fail to use bidService.getBest() function: ' + err);
+
             });
+
+
         }).catch(err => {
             winston.info(FILE_NAME + ' - Fail to use bidService.getById() function: ' + err);
             return res.status(500).json({ error: 'IdNotFound' })

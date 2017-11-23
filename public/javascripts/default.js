@@ -350,6 +350,7 @@ $(document).ready(function () {
       data.append('url', $('#form-url').val());
       data.append('text', $('#form-text').val());
       data.append('price', $('#form-price').val());
+      data.append('oldId', '');
       data.append('token', stripeToken);
       $.ajax({
         type: 'POST',
