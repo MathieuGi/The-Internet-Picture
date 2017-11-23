@@ -1,7 +1,6 @@
-<div id="bid-summary" data-id="<%= bidder.id %>" class="col-11">
-  <h2 class="text-center">Recapitulatif</h2>
+<div data-id="<%= bidder.id %>" class="col-8 bid-to-increase">
+  <h2 class="text-center">Relancer l'enchère</h2>
   <hr>
-  <p class="text-center">Prévisualisation : <a class="reload-image">cliquez ici si l'<strong>image</strong> ne s'affiche pas correctement</a></p>
   <article class="block-image">
 
     <% if(bidder.url != "") { %>
@@ -10,7 +9,7 @@
 
       <div class="img <%= bidder.text === "" ? 'align-items-center' : 'align-items-start' %>">
         <div>
-          <img src="images/fullsize/<%= bidder.img_path %>" alt="Prévisualisation nouvelle image">              
+          <img class="img-fluid" src="images/fullsize/<%= bidder.img_path %>" alt="Image enchère <%= bidder.id %>">              
         </div>
       </div>
 
@@ -28,7 +27,7 @@
 
   </article>
   <div class="recap">
-    <table class="table">
+    <table class="table table-responsive">
       <tbody>
         <tr>
           <th>Nom : </th>
@@ -49,25 +48,11 @@
         </tr>
         <% } %>
 
-        <tr class="increase-value"></tr>
-
         <tr>
-          <th class="total-bid-value"><strong>Montant</strong> de votre <strong>enchère</strong> : </th>
+          <th><strong>Montant</strong> actuelle de l'<strong>enchère</strong> : </th>
           <td><%= bidder.price / 100 %> €</td>
         </tr>
       </tbody>
     </table>
   </div>    
-
-  <footer class="confirm">
-    <button class="modify">RETOUR</button>
-    <div>
-      <button class="paye">CONFIRMER</button>  
-      <div class="loading">
-            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
-    </div>
-  </footer>
-
 </div>

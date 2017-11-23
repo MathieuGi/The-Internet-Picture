@@ -30,6 +30,24 @@ $(document).ready(function () {
     e.stopPropagation();
   });
 
+  // Increase bid
+  $('.increase-bid').click(function () {
+    var id = $(this).data('id');
+    getBidInfo(id);
+  });
+
+  // Back from increase bid page
+  $('.back-button').click(function () {
+    isNewBid = true;
+    $('#increase-bid-area').html("");
+    $('.form-price-label').html('Montant');
+    $('#menu').show();
+    $('.main-area').hide();
+    $('.rank-table-area').show();
+    $('.back-button').hide();
+    $('.name-group, .image-group, .link-group, .text-group').show();
+  });
+
   // Load more in rank table
   $('.rank-table').on('click', '.see-more', function () {
     var offset = $(this).data('offset');
@@ -96,6 +114,8 @@ $(document).ready(function () {
       price.val(priceArray[0] + '.' + priceDecimals);
     }
   });
+
+  var isNewBid = true;
 
   // On clicking on trump button, show payement form
   $('#trump').click(function (e) {
@@ -182,7 +202,13 @@ $(document).ready(function () {
       stripeToken = result.token.id;
       successElement.querySelector('.token').textContent = result.token.id;
       successElement.classList.add('visible');
-      sendForm(stripeToken);
+
+      if (isNewBid) {
+        sendForm(stripeToken);
+      } else {
+        SendIncreaseForm(stripeToken);
+      }
+
     } else if (result.error) {
       $('#paiement-form .loading').hide();
       $('#paiement-form .confirm-button').show();
@@ -208,10 +234,11 @@ $(document).ready(function () {
     var url = '/confirmBid';
     var id = $('#bid-summary').data('id');
     var email = $('#form-email').val();
+    var oldId = typeof $('.bid-to-increase').data('id') !== 'undefined' ? $('.bid-to-increase').data('id') : "";
     $.ajax({
       type: 'POST',
       url: url,
-      data: { id: id, token: stripeToken, email: email },
+      data: { id: id, token: stripeToken, email: email, oldId: oldId },
       success: function (res) {
         location.reload();
       },
@@ -263,12 +290,48 @@ $(document).ready(function () {
     $('.paiement-success').show().delay(2500).fadeOut(2000);
   }
 
+  function removeOldBid(data) {
+    $('.rank-table tr[data-id="' + data.oldId + '"]').remove();
+    $('.rank-table .index').each(function (index) {
+      if (index !== 0) {
+        this.value = index + 1;
+      }
+    });
+  }
+
   var socket = io.connect(window.location.host);
   socket.on('newBidder', function (data) {
     updateDomAfterNewBid(data);
   });
 
+  socket.on('removeOldBid', function (data) {
+    removeOldBid(data);
+  });
+
   /*********************** Functions **********************/
+
+  // Get info for increase bid
+  var getBidInfo = function (id) {
+    url = "/getBidInfo";
+    $.ajax({
+      type: 'GET',
+      url: url,
+      data: { id: id },
+      success: function (res) {
+        isNewBid = false;
+        $('#increase-bid-area').html(res);
+        $('.form-price-label').html('Montant de la relance');
+        $('#menu').hide();
+        $('.main-area').hide();
+        $('.bid-more').show();
+        $('.back-button').show();
+        $('.name-group, .image-group, .link-group, .text-group').hide();
+      },
+      error: function () {
+        alert('Une erreur est survenue');
+      }
+    });
+  }
 
   // Send all information to create and paye a new bid
   var sendForm = function (stripeToken) {
@@ -325,36 +388,96 @@ $(document).ready(function () {
     }
   };
 
+  // Increase bid sending form
+  var SendIncreaseForm = function (stripeToken) {
+    $('.error-message').hide();
+
+    // If their is a token created by stripe
+    if (stripeToken != 0) {
+      var url = '/increaseBid';
+
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          id: $('.bid-to-increase').data('id'),
+          price: $('#form-price').val(),
+          token: stripeToken
+        },
+        success: function (res) {
+          $('#paiement-form .loading').hide();
+          $('#paiement-form .confirm-button').show();
+          $('#bid-summary-container').html(res);
+          $('.increase-value').replaceWith(
+            `<tr>
+              <th><strong>Montant</strong> de la <strong>relance</strong> : </th>
+              <td class="increase-value"> ` + $('#form-price').val() + ` €</td>
+            </tr>`
+          );
+          $('.total-bid-value').html('Nouveau <strong>montant</strong> de l\'<strong>enchère</strong> : ');
+          $('.bid-more').hide();
+          $('#bid-summary-container').show();
+          $(window).scrollTop(0);
+        },
+        error: function (err) {
+
+          // On error show button and hide loading
+          $('#paiement-form .loading').hide();
+          $('#paiement-form .confirm-button').show();
+
+          // Add paiementFailed
+          if (err.responseJSON.error == 'wrongType') {
+            $('#wrongImageType').show();
+          } else if (err.responseJSON.error == 'missingField') {
+            $('#mandatoryFields').show();
+          } else if (err.responseJSON.error == 'wrongFieldsType') {
+            $('#paiement-form .invalid-feedback').show();
+          } else if (err.responseJSON.error == 'noImage') {
+            $('#paiement-form #noImage').show();
+          } else {
+            $('#submitFailed').show();
+          }
+        }
+      });
+    }
+  }
+
   // Validate form
   var validateForm = function (validationNumber) {
     $('.error-message').hide();
 
-    if ($('#form-name').val() == '') {
-      $('#mandatoryFields').show();
-      $(window).scrollTop($('#form-name').offset().top - 40);
-      return false;
+    if (isNewBid) {
+      if ($('#form-name').val() == '') {
+        $('#mandatoryFields').show();
+        $(window).scrollTop($('#form-name').offset().top - 40);
+        return false;
+      }
+
+      else if ($('#form-image').val() == '') {
+        $('#noImage').show();
+        $(window).scrollTop($('#form-image').offset().top - 40);
+        return false;
+      }
+
+      else if ($('#form-image')[0].files[0].size > 4000000) {
+        $('#imageToBig').show();
+        $(window).scrollTop($('#form-image').offset().top - 40);
+        return false;
+      }
+
+      else if (Number($('#form-price').val(), 10) < Number($('.min-price').val(), 10)) {
+
+        if (confirm('Attention votre enchère étant inférieure à l\'enchère actuelle la plus élevé vous ne prendrez donc pas la première place ! Votre enchère pourra toujours remonter plus tard dans le classement si une relance est effectuée par vous ou une autre personne.')) {
+          return true;
+        } else {
+          return false;
+        }
+
+      }
     }
 
-    else if ($('#form-image').val() == '') {
-      $('#noImage').show();
-      $(window).scrollTop($('#form-image').offset().top - 40);
-      return false;
-    }
-
-    else if ($('#form-image')[0].files[0].size > 4000000) {
-      $('#imageToBig').show();
-      $(window).scrollTop($('#form-image').offset().top - 40);
-      return false;
-    }
-
-    else if ($('#form-price').val() == '') {
+    if ($('#form-price').val() == '') {
       $('#missing-price').show();
-      $(window).scrollTop($('#form-price').offset().top - 40);
-      return false;
-    }
-
-    else if (Number($('#form-price').val(), 10) < Number($('.min-price').val(), 10)) {
-      $('#price-too-low').show();
       $(window).scrollTop($('#form-price').offset().top - 40);
       return false;
     }

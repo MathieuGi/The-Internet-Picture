@@ -1,5 +1,5 @@
 <% if(bidder.price != 0) { %>
-    <tr class="line-ranked-table" data-url="<%= bidder.url %>">
+    <tr class="line-ranked-table" data-url="<%= bidder.url %>" data-id="<%= bidder.id %>">
         
         <% if(index + (locals.offset ? offset : 0) == 0) { %>
             <td class="align-middle index first-index text-center">
@@ -28,6 +28,9 @@
         <td class="align-middle text-center">
             <% var date = new Date(bidder.createdAt); %>
             <%= date.getUTCDate(); %> - <%= ("0" + (date.getUTCMonth() + 1)).slice(-2) %> - <%= date.getUTCFullYear(); %>
+        </td>
+        <td class="align-middle text-center">
+            <span class="fa fa-plus increase-bid" data-id="<%= bidder.id %>"></span>
         </td>
     </tr>
 

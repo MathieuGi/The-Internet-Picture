@@ -2,6 +2,8 @@
 <div class="row main-area bid-more">
   <div class="col-md-12 text-center">
 
+  <button class="back-button">RETOUR</button>
+
     <h2>Formulaire d'enchère</h2>
 
     <!-- Paiement form -->
@@ -12,8 +14,11 @@
         <!-- Form first part -->
         <div class="col-md-6 col-sm-10 information">
 
+          <!-- Increase bid area -->
+          <div id="increase-bid-area"></div>
+
           <!-- Name -->
-          <div class="form-group">
+          <div class="form-group name-group">
 
             <label for="form-name">Nom *</label>
             <div class="icone-field">
@@ -24,14 +29,14 @@
           </div>
 
           <!-- Image -->
-          <div class="form-group">
+          <div class="form-group image-group">
 
             <!-- Information bubble -->
             <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" data-content="Types acceptés : jpeg, png, jpg, gif. Taille maximum : 4 Mo."></span>
           
             <!-- Image -->
             <div class="img-input">
-              <label for="form-image"><strong>Image</strong> </label> <!-- (jpeg, png, jpg, gif - Maximum 4Mo) -->
+              <label for="form-image"><strong>Image *</strong> </label> <!-- (jpeg, png, jpg, gif - Maximum 4Mo) -->
               <input type="file" id="form-image" class="form-control" accept=".jpeg, .jpg, .png, .gif" data-buttonBefore="true" data-text="Parcourir" required>
               <div id="button-form-image">
                 <label for="form-image" class="btn btn-form-image">Parcourir </label>
@@ -44,7 +49,7 @@
           </div>
        
           <!-- Link -->
-          <div class="form-group">
+          <div class="form-group link-group">
 
             <!-- Information bubble -->
             <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" data-content="Choisissez un lien vers lequel seront redirigés les utilisateurs cliquant sur votre image."></span>
@@ -57,7 +62,7 @@
           </div>
 
           <!-- Text -->
-          <div class="form-group">
+          <div class="form-group text-group">
             
             <!-- Information bubble -->
             <span tabindex="0" class="info-icon fa fa-info-circle" data-trigger="focus" role="button" data-toggle="popover" data-placement="bottom" data-content=" Le texte apparaitra en bas de l'image."></span>
@@ -70,9 +75,9 @@
           </div>
 
           <!-- Selected price -->
-          <div class="form-group">
+          <div class="form-group price-group">
 
-            <label for="form-price"><strong>Montant</strong> (<strong>enchère</strong> actuelle : <span class="bid-value"><%= bidders[0].price / 100 %></span> €) </label>
+            <label for="form-price"><strong class="form-price-label">Montant</strong> * (Meilleure <strong>enchère</strong> : <span class="bid-value"><%= bidders[0].price / 100 %></span> €) </label>
             <input type='hidden' class="min-price" value='<%= (bidders[0].price + 1) / 100 %>'/>
             <div class="icone-field">
               <span class="icone-field-icone fa fa-eur"></span>
@@ -85,7 +90,7 @@
            <!-- User terms -->
           <div class="checkbox">
             <label for="form-terms">
-                <input id="form-terms" type="checkbox"> J'accepte les <a class="terms" data-toggle="modal" data-target="#terms-modal">conditions générales</a>
+                <input id="form-terms" type="checkbox"> J'accepte les <a class="terms" data-toggle="modal" data-target="#terms-modal">conditions générales</a> *
             </label>
             <br>
             <span class="error-message" id="missing-terms">Merci d'accepter les conditions générales</span>
@@ -158,7 +163,7 @@
           </div>
 
           <div class="ita">
-            Le paiement est sécurisé par stripe, solution de paiement en ligne. Pour plus d'information <a href="https://stripe.com/about">https://stripe.com/about</a>*
+            Le paiement est sécurisé par stripe, solution de paiement en ligne. Pour plus d'informations <a href="https://stripe.com/about" target="_blank">https://stripe.com/about</a>*
           </div>
 
           <!-- Submit -->

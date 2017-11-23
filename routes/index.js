@@ -37,6 +37,21 @@ var returnRouter = function (io) {
         });
     });
 
+    // Get bid information
+    router.get('/getBidInfo', function (req, response, next) {
+        winston.info(FILE_NAME + ' - Prepare to answer to /getBidInfo request');
+
+        var id = parseInt(req.query.id);
+
+        bidService.getById(id).then(res => {
+            winston.info(FILE_NAME + ' - Render bid info id: ' + id)
+            response.render('increase-bid', { bidder: res });
+        }).catch(err => {
+            winston.error(FILE_NAME + ' - Fail to use bidService.getById() function: ' + err);
+            response.json({ error: 'error' })
+        });
+    });
+
     // Load more element in rank-table
     router.get('/getBidsList', function (req, response, next) {
         winston.info(FILE_NAME + ' - Prepare to answer to /getBidsList request');
@@ -63,37 +78,44 @@ var returnRouter = function (io) {
         bidService.getByIdAndToken(body.id, body.token).then(bidder => {
             bidService.getBest().then(bestBidder => {
 
-                if (bidder.price <= bestBidder.price) {
-                    return res.status(500).json({ error: "PriceTooLow" })
-                } else {
-                    var params = body.email !== "" ? {
+                var params = body.email !== "" ? {
+                    // Send price in centimes
+                    amount: bidder.price,
+                    currency: "eur",
+                    receipt_email: body.email,
+                    description: "Nouvelle enchère",
+                    source: bidder.transaction_id,
+                } : {
                         // Send price in centimes
                         amount: bidder.price,
                         currency: "eur",
-                        receipt_email: body.email,
                         description: "Nouvelle enchère",
                         source: bidder.transaction_id,
-                    } : {
-                            // Send price in centimes
-                            amount: bidder.price,
-                            currency: "eur",
-                            description: "Nouvelle enchère",
-                            source: bidder.transaction_id,
-                        }
-                    stripe.charges.create(params, function (err, charge) {
-                        if (err) {
-                            winston.error(FILE_NAME + ' - Paiement failed:' + err);
-                            return res.status(500).json({ error: 'paiementFailed' });
+                    }
+                stripe.charges.create(params, function (err, charge) {
+                    if (err) {
+                        winston.error(FILE_NAME + ' - Paiement failed:' + err);
+                        return res.status(500).json({ error: 'paiementFailed' });
+                    } else {
+
+                        if (body.oldId !== "") {
+                            bidService.setActive(parseInt(body.oldId, 10), false).then(function () {
+                                bidService.setActive(bidder.id, true).then(function () {
+                                    sharedService.emitNewBidder(io);
+                                    sharedService.emitOldId(io, body.oldId);
+                                    return res.status(200).json({ result: 'success' });
+                                });
+                            });
                         } else {
                             bidService.setBidTime().then(() => {
-                                bidService.setActive(bidder.id).then(function () {
+                                bidService.setActive(bidder.id, true).then(function () {
                                     sharedService.emitNewBidder(io);
                                     return res.status(200).json({ result: 'success' });
                                 });
                             });
                         }
-                    });
-                }
+                    }
+                });
             }).catch(err => {
                 winston.info(FILE_NAME + ' - Fail to use bidService.getBest() function: ' + err);
             });
@@ -173,6 +195,47 @@ var returnRouter = function (io) {
                 return res.status(500).json({ error: err });
             });
         }
+    });
+
+    // Post request to create a new bid
+    router.post('/increaseBid', function (req, res, next) {
+        winston.info(FILE_NAME + ' - Prepare to answer to /createBid request');
+
+        // Variables settings
+        var body = req.body;
+
+        // Verifying the file extension
+
+        // Check variables types
+        if (!(checkType.string(body.token) &&
+            checkType.positive(parseInt(body.price * 100, 10)))
+        ) {
+            winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
+            return res.status(500).json({ error: "wrongFieldsType" });
+        }
+
+        bidService.getById(body.id).then(bid => {
+
+            // Create the new bid
+            bidService.create(bid.name, bid.img_path, bid.url, bid.text, parseInt(body.price * 100) + bid.price, body.token).then(function (newBid) {
+
+                if (req.device.type === "phone") {
+                    return res.status(200).render('mobile/confirmBid', { bidder: newBid });
+                } else {
+                    return res.status(200).render('confirmBid', { bidder: newBid });
+                }
+            }).catch(function (err) {
+                winston.error(FILE_NAME + ' - Fail to add new bid in database');
+                winston.error(FILE_NAME + ' - create bid: ' + err)
+                return res.status(500).json({ error: 'creationFailed' });
+            });
+        }).catch(err => {
+            winston.error(FILE_NAME + ' - fail to find bid by id: ' + err)
+            return res.status(500).json({ error: 'error' });
+        });
+
+
+
     });
 
     return router;

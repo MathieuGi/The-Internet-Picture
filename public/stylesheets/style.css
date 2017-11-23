@@ -21,7 +21,8 @@
 h1,
 .block-image .richest-text,
 #paiement-form .error-message,
-.popover, .ita {
+.popover,
+.ita {
     font-family: "Raleway-Italic", sans-serif;
 }
 
@@ -40,6 +41,7 @@ body,
 .rank-table table {
     font-family: "Trebuchet MS"
 }
+
 
 /* Modals */
 
@@ -125,6 +127,10 @@ body,
     font-size: 2rem;
 }
 
+.rank-table .increase-bid {
+    font-size: 3rem;
+}
+
 
 /* Bid more form */
 
@@ -152,7 +158,8 @@ body,
 }
 
 #paiement-form button,
-#trump {
+#trump,
+.back-button {
     font-size: 1.6rem;
 }
 
@@ -311,7 +318,8 @@ body {
 }
 
 #trump,
-.confirm button {
+.confirm button,
+.back-button {
     color: var(--main-color-1);
     background-color: var(--main-color-2);
     border-radius: 4px;
@@ -323,7 +331,8 @@ body {
 }
 
 #trump:hover,
-.confirm button:hover {
+.confirm button:hover,
+.back-button:hover {
     opacity: 1;
 }
 
@@ -616,6 +625,11 @@ tr.line-ranked-table {
 
 
 /* Bid more part */
+
+#increase-bid-area {
+    display: flex;
+    justify-content: center;
+}
 
 .bid-more .form-control {
     border: 0;
