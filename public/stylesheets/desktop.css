@@ -82,6 +82,22 @@ html {
 
 /* Homepage */
 
+.main-area{
+    position:relative;
+}
+
+.slogan{
+    position: absolute;
+    top: -2px;
+    left: 23px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fa-hand-o-right{
+    color:gold;
+}
+
 .homepage-information {
     border: 1px var(--main-color-1);
     background-color: var(--main-color-1);
