@@ -31,7 +31,9 @@ $(document).ready(function () {
   });
 
   // Increase bid
-  $('.increase-bid').click(function () {
+  $('.increase-bid').click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var id = $(this).data('id');
     getBidInfo(id);
   });
