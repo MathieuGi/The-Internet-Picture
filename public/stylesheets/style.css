@@ -631,6 +631,10 @@ tr.line-ranked-table {
     justify-content: center;
 }
 
+.rank-table .increase-bid {
+    color: var(--main-color-2);
+}
+
 .bid-more .form-control {
     border: 0;
 }
