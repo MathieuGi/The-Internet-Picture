@@ -398,6 +398,42 @@ $(document).ready(function () {
     }
   };
 
+  var imageIsLoaded = function () {
+    $("<img/>")
+      .on('load', function () {
+        setTimeout(function () {
+          replaceText('#bid-summary');
+        }, 500);
+
+      })
+      .on('error', function () {
+
+        setTimeout(function () {
+          $('#bid-summary .img img').replaceWith($('#bid-summary .img div').html());
+        }, 500);
+
+        imageIsLoaded();
+      })
+      .attr("src", $('#bid-summary .img img').attr("src"))
+      ;
+  }
+
+  var replaceText = function (area) {
+    var newWidth = 0;
+    $(area + ' .richest-text').each(function (index) {
+      // if their is a link add one more .children
+      if ($(this).siblings().is("a")) {
+        newWidth = $(this).siblings().children().children().width();
+      } else {
+        newWidth = $(this).siblings().children().width();
+      }
+      if (newWidth !== 0) {
+        $(this).css('width', newWidth);
+        $(this).css('margin-top', - $(this).outerHeight());
+      }
+    });
+  }
+
   // Increase bid sending form
   var SendIncreaseForm = function (stripeToken) {
     $('.error-message').hide();
