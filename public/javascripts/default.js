@@ -376,6 +376,7 @@ $(document).ready(function () {
           $('.bid-more').hide();
           $('#bid-summary-container').show();
           $(window).scrollTop(0);
+          imageIsLoaded();
         },
         error: function (err) {
 
