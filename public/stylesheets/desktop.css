@@ -97,12 +97,13 @@ html {
     position:relative;
 }
 
-.slogan{
+#slogan {
     position: absolute;
     top: -2px;
     left: 23px;
     font-size: 14px;
     font-weight: bold;
+    max-width: 30%;
 }
 
 .fa-hand-o-right{
