@@ -30,6 +30,13 @@ $(document).ready(function () {
     e.stopPropagation();
   });
 
+  // Richest-text placement
+  $(document).ajaxComplete(function () {
+    replaceText('#bid-summary');
+  });
+
+  // replaceText('.picture-area')
+
   // Increase bid
   $('.increase-bid').click(function (e) {
     e.preventDefault();
