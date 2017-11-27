@@ -12,7 +12,7 @@ $(document).ready(function () {
     var menu = $(this).attr('id');
 
     $('.menu-item').removeClass('active');
-    $(this).addClass('active');
+    $('#' + menu).addClass('active');
     $('.main-area').hide();
     $('.' + menu).show();
 
