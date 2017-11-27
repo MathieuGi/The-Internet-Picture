@@ -2,8 +2,6 @@
 <div class="row main-area bid-more">
   <div class="col-md-12 text-center">
 
-    <button class="back-button">RETOUR</button>
-
     <h2>Formulaire d'enchère</h2>
 
     <!-- Paiement form -->
@@ -83,7 +81,7 @@
               <span class="icone-field-icone fa fa-eur"></span>
               <input type="number" class="form-control form-price icone-field-field" id="form-price" placeholder="Entrez un montant" required> 
             </div>
-            <span class="error-message" id="price-too-low">L'<strong>enchère</strong> minimum est de <span class="min-bid-value"><%= (bidders[0].price + 1) / 100 %></span> €</span>
+            <span class="error-message" id="price-too-low">La <strong>relance</strong> minimum est de 0,5 €</span>
             <span class="error-message" id="missing-price">Merci de renseigner un <strong>montant</strong> correct</span>
           </div>
 
@@ -97,6 +95,7 @@
           </div>
 
           <!-- Go to the pay part -->
+            <button class="back-button">RETOUR</button>
           <input type="button" id="trump" value="ENCHERIR" href="#paiement" class="bold"/>
 
           <p class="star-legend">* Champ obligatoire</p>

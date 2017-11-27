@@ -529,6 +529,11 @@ $(document).ready(function () {
       return false;
     }
 
+    else if (Number($('#form-price').val(), 10) < 0.5) {
+      $('#price-too-low').show();
+      $(window).scrollTop($('#form-price').offset().top - 40);
+    }
+
     else if ((!$('#form-terms').prop('checked'))) {
       $('#missing-terms').show();
       $(window).scrollTop($('#missing-terms').offset().top - 40);
