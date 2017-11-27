@@ -92,10 +92,28 @@ var returnRouter = function (io) {
                             currency: "eur",
                             description: "Nouvelle enchère",
                             source: bidder.transaction_id,
-                        }
+                        };
+
+                    if (body.oldId !== "") {
+                        bidService.setActive(parseInt(body.oldId, 10), false).then(function () {
+                            bidService.setActive(bidder.id, true);
+                        });
+                    } else {
+                        bidService.setActive(bidder.id, true);
+                    }
+
                     stripe.charges.create(params, function (err, charge) {
                         if (err) {
                             winston.error(FILE_NAME + ' - Paiement failed:' + err);
+
+                            if (body.oldId !== "") {
+                                bidService.setActive(parseInt(body.oldId, 10), true).then(function () {
+                                    bidService.setActive(bidder.id, false);
+                                });
+                            } else {
+                                bidService.setActive(bidder.id, false);
+                            }
+
                             return res.status(500).json({ error: 'paiementFailed' });
                         } else {
 

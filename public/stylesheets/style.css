@@ -508,8 +508,11 @@ tr.line-ranked-table {
 /* Homepage part */
 
 .name-link {
-    text-decoration: underline;
     cursor: pointer;
+}
+
+.name-link:hover {
+    text-decoration: underline;
 }
 
 .picture-area {
