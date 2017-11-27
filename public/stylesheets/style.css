@@ -324,10 +324,14 @@ body {
     background-color: var(--main-color-2);
     border-radius: 4px;
     border: none;
-    padding: 15px 32px;
+    padding: 20px 32px;
     cursor: pointer;
     opacity: 0.8;
     box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    width: initial !important;
+    height: initial !important;
+    line-height: initial !important;
+    font-weight: bold;
 }
 
 #trump:hover,
@@ -435,6 +439,10 @@ tr.line-ranked-table {
 
 /* paiement confirmation */
 
+#bid-summary table td {
+    word-break: break-all;
+}
+
 #bid-summary .confirm .loading {
     display: none;
 }
@@ -498,6 +506,11 @@ tr.line-ranked-table {
 
 
 /* Homepage part */
+
+.name-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .picture-area {
     margin-top: 20px;
@@ -622,6 +635,10 @@ tr.line-ranked-table {
 #increase-bid-area {
     display: flex;
     justify-content: center;
+}
+
+#increase-bid-area table td {
+    word-break: break-all;
 }
 
 .rank-table .increase-bid {
