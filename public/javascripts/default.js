@@ -54,7 +54,7 @@ $(document).ready(function () {
     $('.main-area').hide();
     $('.rank-table-area').show();
     $('.back-button').hide();
-    $('.name-group, .image-group, .link-group, .text-group').show();
+    $('.name-group, .image-group, .link-group').show();
   });
 
   // Load more in rank table
@@ -334,7 +334,7 @@ $(document).ready(function () {
         $('.main-area').hide();
         $('.bid-more').show();
         $('.back-button').show();
-        $('.name-group, .image-group, .link-group, .text-group').hide();
+        $('.name-group, .image-group, .link-group').hide();
       },
       error: function () {
         alert('Une erreur est survenue');
@@ -447,6 +447,7 @@ $(document).ready(function () {
         url: url,
         data: {
           id: $('.bid-to-increase').data('id'),
+          text: $('#form-text').val(),
           price: $('#form-price').val(),
           token: stripeToken
         },

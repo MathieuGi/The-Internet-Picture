@@ -1,4 +1,4 @@
-<div data-id="<%= bidder.id %>" class="col-8 bid-to-increase">
+<div data-id="<%= bidder.id %>" class="col-12 bid-to-increase">
   <h2 class="text-center">Relancer l'enchère</h2>
   <hr>
   <article class="block-image">
@@ -17,7 +17,7 @@
     </a>
     <% } %> 
     
-    <% if(bidder.text != "") { %>
+    <% if(bidder.text != "" && false) { %>
     <div class="richest-text text-center">
       <span>
         <%= bidder.text %>
@@ -49,7 +49,7 @@
         <% } %>
 
         <tr>
-          <th><strong>Montant</strong> actuelle de l'<strong>enchère</strong> : </th>
+          <th><strong>Enchère</strong> actuelle : </th>
           <td><%= bidder.price / 100 %> €</td>
         </tr>
       </tbody>

@@ -214,16 +214,20 @@ var returnRouter = function (io) {
 
         // Check variables types
         if (!(checkType.string(body.token) &&
-            checkType.positive(parseInt(body.price * 100, 10)))
+            parseInt(body.price * 100, 10) >= 50 &&
+            checkType.string(body.text))
         ) {
+            console.log(parseInt(body.price * 100, 10));
             winston.error(FILE_NAME + ' - Trying to create bid with wrong type of variables');
             return res.status(500).json({ error: "wrongFieldsType" });
         }
 
         bidService.getById(body.id).then(bid => {
 
+            var text = body.text !== "" ? body.text : bid.text;
+
             // Create the new bid
-            bidService.create(bid.name, bid.img_path, bid.url, bid.text, parseInt(body.price * 100) + bid.price, body.token).then(function (newBid) {
+            bidService.create(bid.name, bid.img_path, bid.url, text, parseInt(body.price * 100) + bid.price, body.token).then(function (newBid) {
 
                 if (req.device.type === "phone") {
                     return res.status(200).render('mobile/confirmBid', { bidder: newBid });
