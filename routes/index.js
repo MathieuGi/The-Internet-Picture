@@ -75,21 +75,22 @@ var returnRouter = function (io) {
 
         // Variables settings
         var body = req.body;
-        var oldId = body.oldId != "" ? parseInt(body.oldId, 10) : 1;
+        var oldId = body.oldId != "" ? parseInt(body.oldId, 10) : 0;
 
         bidService.getByIdAndToken(body.id, body.token).then(bidder => {
 
             bidService.getById(oldId).then(oldBid => {
+                var oldPrice = oldId === 0 ? 0 : oldBid.price;
                 var params = body.email !== "" ? {
                     // Send price in centimes
-                    amount: bidder.price - oldBid.price,
+                    amount: bidder.price - oldPrice,
                     currency: "eur",
                     receipt_email: body.email,
                     description: "Nouvelle enchère",
                     source: bidder.transaction_id,
                 } : {
                         // Send price in centimes
-                        amount: bidder.price - oldBid.price,
+                        amount: bidder.price - oldPrice,
                         currency: "eur",
                         description: "Nouvelle enchère",
                         source: bidder.transaction_id,
