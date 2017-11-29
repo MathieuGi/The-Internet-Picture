@@ -75,9 +75,11 @@ var returnRouter = function (io) {
 
         // Variables settings
         var body = req.body;
-        var oldId = body.oldId != "" ? body.oldId : 1;
+        var oldId = body.oldId != "" ? parseInt(body.oldId, 10) : 1;
+
         bidService.getByIdAndToken(body.id, body.token).then(bidder => {
-            bidService.getById(parseInt(oldId, 10)).then(oldBid => {
+
+            bidService.getById(oldId).then(oldBid => {
                 var params = body.email !== "" ? {
                     // Send price in centimes
                     amount: bidder.price - oldBid.price,
@@ -135,12 +137,12 @@ var returnRouter = function (io) {
                     }
                 });
             }).catch(err => {
-                winston.error(FILE_NAME + ' - Fail to use bidService.getBest() function: ' + err);
+                winston.error(FILE_NAME + ' - Fail to use bidService.getById() function: ' + err);
             });
 
 
         }).catch(err => {
-            winston.info(FILE_NAME + ' - Fail to use bidService.getById() function: ' + err);
+            winston.info(FILE_NAME + ' - Fail to use bidService.getByIdAndToken() function: ' + err);
             return res.status(500).json({ error: 'IdNotFound' })
         });
     });
